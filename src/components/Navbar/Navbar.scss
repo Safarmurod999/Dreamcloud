@@ -1,0 +1,111 @@
+@use "../../index.scss" as mixin;
+.navbar {
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 20px 0;
+  background-color: var(--secondary-color);
+  transition: .3s;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__toggle {
+    display: none;
+  }
+  &__menus {
+    @include mixin.flex-box(column, center, center, 14px);
+  }
+  &__list {
+    @include mixin.flex-box(row, center, center, 50px);
+    &--item {
+      a {
+        position: relative;
+        color: var(--primary-color, #01384d);
+        font-size: 14px;
+        font-family: "Raleway";
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        transition: 0.3s;
+        &:active {
+          font-weight: 600;
+        }
+        &:hover {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  &__contact {
+    width: 100%;
+    @include mixin.flex-box(row, center, end, 40px);
+    a {
+      @include mixin.flex-box(row, center, center, 5px);
+      color: var(--primary-color, #01384d);
+      font-size: 18px;
+      font-family: "Raleway";
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    button {
+      padding: 14px 28px;
+      color: var(--primary-color, #01384d);
+      font-size: 16px;
+      font-family: "Raleway";
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      border-radius: 5px;
+      border: 2px solid var(--primary-color, #01384d);
+      background: #fff;
+
+      transition: 0.3s;
+      &:hover {
+        background-color: var(--primary-color);
+        color: var(--color-5);
+      }
+    }
+  }
+}
+.shrink{
+  padding: 15px 0;
+  background-color: #cba78b;
+}
+@media screen and (max-width: 730px) {
+  .navbar {
+    &__menus {
+      position: absolute;
+      justify-content: start;
+      z-index: 999;
+      top: 0;
+      right: -100%;
+      background-color: var(--secondary-color);
+      width: 400px;
+      height: 100vh;
+      padding-top: 80px;
+      transition: 0.3s;
+    }
+    &__toggle {
+      display: block;
+      position: absolute;
+      top: 25px;
+      right: 25px;
+    }
+    &__list,
+    &__contact {
+      flex-direction: column;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .navbar {
+    &__menus {
+      width: 100%;
+    }
+  }
+}
