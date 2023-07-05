@@ -1,0 +1,43 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100vh;
+  background: #00000080;
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: .5s;
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    z-index: 9999;
+    width: 80%;
+    height: 80vh;
+    margin: auto auto;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__btn {
+    border-radius: 5px;
+    border: 2px solid var(--primary-color, #01384d);
+    background: #fff;
+    padding: 20px 40px;
+    color: var(--primary-color, #01384d);
+    font-size: 18px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+}

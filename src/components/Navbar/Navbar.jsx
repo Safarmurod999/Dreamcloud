@@ -19,20 +19,16 @@ function Navbar() {
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY > lastScrollY) {
-        // if scroll down hide the navbar
         setShow(false);
       } else {
-        // if scroll up show the navbar
         setShow(true);
       }
-      // remember current page location to use in the next move
       setLastScrollY(window.scrollY);
     }
   };
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", controlNavbar);
-      // cleanup function
       return () => {
         window.removeEventListener("scroll", controlNavbar);
       };
@@ -43,7 +39,10 @@ function Navbar() {
       <nav className={`navbar ${!show && "shrink"}`}>
         <div className="container">
           <div className="navbar__logo">
-            <img src={logo} alt="logo" />
+            <a href="#">
+              {" "}
+              <img src={logo} alt="logo" />
+            </a>
           </div>
           <button
             id="open"

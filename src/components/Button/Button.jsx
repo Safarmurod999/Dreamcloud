@@ -1,9 +1,12 @@
-import './Button.scss';
+import "./Button.scss";
 
-function Button({title,src}) {
+function Button({ title, src, callback }) {
   return (
-    <button className='button'>{title}<img src={src} alt="image" /></button>
-  )
+    <button className="button"  onClick={() => callback()} >
+      {title}
+      <img src={src} alt="image"/>
+    </button>
+  );
 }
 
-export default Button
+export default Button;
