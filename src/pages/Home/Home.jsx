@@ -4,7 +4,7 @@ import arrow from "../../assets/icons/arrow.svg";
 import range from "../../assets/icons/range.svg";
 import bed from "../../assets/images/home/home-main.png";
 import play_btn from "../../assets/icons/play-btn.svg";
-import video from "../../../public/videos/about-video.mp4";
+import video from "../../assets/videos/about-video.mp4";
 import showroom from "../../assets/images/home/showroom.png";
 import geolocation from "../../assets/icons/geolocation.svg";
 import address_img from "../../assets/images/home/address.png";
@@ -20,6 +20,7 @@ import "swiper/css/scrollbar";
 import { technologies } from "../../database/technologies";
 import { features } from "../../database/features";
 import AddressModal from "../../components/AddressModal/AddressModal";
+import { postData } from "../../utils/postData";
 
 function Home() {
   const [active, setActive] = useState(0);
@@ -31,7 +32,6 @@ function Home() {
   console.log(carousel);
   console.log(tabData);
   console.log(address);
-
   function videoControl(id) {
     const video = document.getElementById(`${id}`);
     console.log("play");
@@ -43,6 +43,13 @@ function Home() {
   }
   const modalControl = () => {
     document.querySelector(".modal").style.display = "flex";
+  };
+  const contactPost = (e) => {
+    e.preventDefault();
+    let data = document.querySelector(".contact__input").value;
+    postData("contact", data);
+    data = "";
+    console.log(data, "Posted");
   };
   return (
     !loading && (
@@ -263,9 +270,13 @@ function Home() {
           <div className="container">
             <div className="address__left">
               <div className="address__title title">Manzilimiz</div>
-             <img src={address_img} alt={address_img} className="address__left--img" />
+              <img
+                src={address_img}
+                alt={address_img}
+                className="address__left--img"
+              />
               <h4 className="address--location">{address[0].location}</h4>
-             
+
               <p className="address--destination text">
                 {address[0].destination}
               </p>
@@ -282,6 +293,33 @@ function Home() {
             </div>
             <div className="address__right">
               <img src={address_img} alt={address_img} />
+            </div>
+          </div>
+        </section>
+        <section id="contact" className="contact">
+          <div className="container">
+            <div className="contact__left">
+              <div className="contact__title title">Sizni qiziqtirdimi?</div>
+              <p className="contact__text text">
+                Raqamingizni qoldiring, biz sizga yana qo'ng'iroq qilamiz
+              </p>
+            </div>
+            <div className="contact__right">
+              <form className="contact__right--form form">
+                <div className="form__input">
+                  <span>+998 |</span>
+                  <input className="contact__input" type="text" required />
+                </div>
+                <button
+                  id="contact__submit"
+                  type="submit"
+                  onClick={(e) => {
+                    contactPost(e);
+                  }}
+                >
+                  Yuborish
+                </button>
+              </form>
             </div>
           </div>
         </section>
