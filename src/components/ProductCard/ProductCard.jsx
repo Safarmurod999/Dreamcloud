@@ -11,7 +11,7 @@ function ProductCard({
   warranty,
   capacity,
   size,
-  cost,
+  cost,orderControl
 }) {
   return (
     <li className="catalog__tab--panel--item card">
@@ -61,7 +61,7 @@ function ProductCard({
           {cost}
           <span>so'm</span>
         </h6>
-        <Button title={"Buyurtna berish"} src={cart} />
+        <Button callback={()=>orderControl()} title={"Buyurtna berish"} src={cart} />
       </div>
     </li>
   );

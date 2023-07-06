@@ -22,6 +22,7 @@ import { features } from "../../database/features";
 import AddressModal from "../../components/AddressModal/AddressModal";
 import { postData } from "../../utils/postData";
 import BackTop from "../../components/BackTop/BackTop";
+import OrderModal from "../../components/OrderModal/OrderModal";
 
 function Home() {
   const [active, setActive] = useState(0);
@@ -52,10 +53,14 @@ function Home() {
     data = "";
     console.log(data, "Posted");
   };
+  const orderControl = () => {
+    document.querySelector(".order").style.display = "flex";
+  };
   return (
     !loading && (
       <main>
-        <BackTop/>
+        <OrderModal />
+        <BackTop />
         <section className="home">
           <div className="container">
             <div className="home__left">
@@ -111,7 +116,7 @@ function Home() {
               <ul className="catalog__tab--panel">
                 {tabData.products.map((el) => {
                   if (el.category_id == active || active == 0) {
-                    return <ProductCard key={el.id} {...el} />;
+                    return <ProductCard key={el.id} {...el} orderControl={orderControl} />;
                   }
                 })}
               </ul>
@@ -310,7 +315,12 @@ function Home() {
               <form className="contact__right--form form">
                 <div className="form__input">
                   <span>+998 |</span>
-                  <input className="contact__input" type="text" required />
+                  <input
+                    className="contact__input"
+                    placeholder="Raqamingizni yozing"
+                    type="text"
+                    required
+                  />
                 </div>
                 <button
                   id="contact__submit"
