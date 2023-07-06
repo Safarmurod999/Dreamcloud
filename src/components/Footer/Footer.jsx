@@ -23,22 +23,22 @@ function Footer() {
           <ul className="footer__top--icon">
             <li>
               <a href="https://www.facebook.com/profile.php?id=100080957135659">
-                <i class="uil uil-facebook"></i>
+                <i className="uil uil-facebook"></i>
               </a>
             </li>
             <li>
               <a href="https://www.twitter.com/safarmurod0904">
-                <i class="uil uil-twitter"></i>
+                <i className="uil uil-twitter"></i>
               </a>
             </li>
             <li>
               <a href="https://www.instagram.com/safarmurod0904/">
-                <i class="uil uil-instagram-alt"></i>
+                <i className="uil uil-instagram-alt"></i>
               </a>
             </li>
             <li>
               <a href="https://www.youtube.com/@matrasy_luntek">
-                <i class="uil uil-youtube"></i>
+                <i className="uil uil-youtube"></i>
               </a>
             </li>
           </ul>

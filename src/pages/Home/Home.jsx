@@ -21,6 +21,7 @@ import { technologies } from "../../database/technologies";
 import { features } from "../../database/features";
 import AddressModal from "../../components/AddressModal/AddressModal";
 import { postData } from "../../utils/postData";
+import BackTop from "../../components/BackTop/BackTop";
 
 function Home() {
   const [active, setActive] = useState(0);
@@ -54,6 +55,7 @@ function Home() {
   return (
     !loading && (
       <main>
+        <BackTop/>
         <section className="home">
           <div className="container">
             <div className="home__left">
