@@ -34,6 +34,9 @@ function Navbar() {
       };
     }
   }, [lastScrollY]);
+  const orderControl = () => {
+    document.querySelector(".order").style.display = "flex";
+  };
   return (
     <header>
       <nav className={`navbar ${!show && "shrink"}`}>
@@ -80,7 +83,7 @@ function Navbar() {
               <a href="tel:+998901234567">
                 <img src={call} alt="call" /> +998 90 123 45 67
               </a>
-              <button>Buyurtma berish</button>
+              <button onClick={()=>orderControl()}>Buyurtma berish</button>
             </div>
           </div>
         </div>

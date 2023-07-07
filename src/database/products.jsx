@@ -20,7 +20,7 @@ export const tabData = {
     {
       id: 2,
       category_id: 1,
-      name: "Lux Full Ortopet Korean",
+      name: "Ortopedik Eko matras",
       category: "Model C+",
       product_images: "/product/lux.png",
       weight: 70,
@@ -51,7 +51,7 @@ export const tabData = {
     {
       id: 4,
       category_id: 2,
-      name: "Lux Full Ortopet Korean",
+      name: "Ortopedik Eko matras",
       category: "Model B+",
       product_images: "/product/lux.png",
       weight: 70,
@@ -96,7 +96,7 @@ export const tabData = {
     {
       id: 7,
       category_id: 5,
-      name: "Lux Full Ortopet Korean",
+      name: "Ortopedik Eko matras",
       category: "Model D",
       product_images: "/product/lux.png",
       weight: 70,

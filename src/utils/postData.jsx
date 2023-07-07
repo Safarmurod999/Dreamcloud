@@ -1,7 +1,7 @@
 import { BASE_URL } from "../const/const";
 export const postData = async (url, data) => {
     try {
-      fetch(`${BASE_URL}api/${url}`, {
+      fetch(`${BASE_URL}${url}`, {
         method: "post",
         headers: {
           Accept: "application/json",

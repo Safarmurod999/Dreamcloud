@@ -49,7 +49,7 @@ function Home() {
   const contactPost = (e) => {
     e.preventDefault();
     let data = document.querySelector(".contact__input").value;
-    postData("contact", data);
+    postData("api/contact", data);
     data = "";
     console.log(data, "Posted");
   };
@@ -66,7 +66,7 @@ function Home() {
             <div className="home__left">
               <h1 className="home__title">Kechalari sokin dam oling</h1>
               <img className="home__main" src={bed} alt="bed" />
-              <Button title={"Kategoriyalar"} src={arrow} />
+            <a href="#catalog">  <Button title={"Kategoriyalar"} src={arrow} callback={()=>console.log('click')}/></a>
               <img src={range} alt="range" />
             </div>
             <div className="home__right"></div>
@@ -129,7 +129,7 @@ function Home() {
             <ul className="stock--list">
               {tabData.products.map((el) => {
                 if (el.new_cost) {
-                  return <ProductCard key={el.id} {...el} />;
+                  return <ProductCard key={el.id} {...el} orderControl={orderControl}/>;
                 }
               })}
             </ul>
