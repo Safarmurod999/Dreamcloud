@@ -12,7 +12,6 @@ function Login() {
       password,
     };
     postData("admin/login", newUser);
-    console.log(newUser);
     document.querySelector("#login").value = "";
     document.querySelector("#password").value = "";
   };

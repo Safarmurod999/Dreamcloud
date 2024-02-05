@@ -44,7 +44,7 @@ function Footer() {
           </ul>
         </div>
         <div className="footer__bottom">
-          <p>&copy 2021 Dream Cloud. Barcha huquqlar himoyalangan.</p>
+          <p>&copy; 2021 Dream Cloud. Barcha huquqlar himoyalangan.</p>
           <img src={abutech} alt="image" />
         </div>
       </div>

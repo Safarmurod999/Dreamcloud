@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import Button from "../../components/Button/Button";
 import arrow from "../../assets/icons/arrow.svg";
@@ -8,35 +9,29 @@ import video from "../../assets/videos/about-video.mp4";
 import showroom from "../../assets/images/home/showroom.png";
 import geolocation from "../../assets/icons/geolocation.svg";
 import address_img from "../../assets/images/home/address.png";
-import "./Home.scss";
-import { tabData } from "../../database/products";
-import { useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import { technologies } from "../../database/technologies";
-import { features } from "../../database/features";
 import AddressModal from "../../components/AddressModal/AddressModal";
 import { postData } from "../../utils/postData";
 import BackTop from "../../components/BackTop/BackTop";
 import OrderModal from "../../components/OrderModal/OrderModal";
+import "./Home.scss";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 function Home() {
   const [active, setActive] = useState(0);
+  const [contact, setContact] = useState("");
   const { data: statistics } = useFetch("statistics");
-  const { data: products, loading } = useFetch("products");
-  const { data: carousel } = useFetch("carousel");
+  const { data: products } = useFetch("products");
+  const { data: categories } = useFetch("categories");
+  const { data: technologies } = useFetch("technologies");
   const { data: address } = useFetch("address");
-  console.log(products);
-  console.log(carousel);
-  console.log(tabData);
-  console.log(address);
+  const { data: features, loading } = useFetch("features");
   function videoControl(id) {
     const video = document.getElementById(`${id}`);
-    console.log("play");
     if (video.paused) {
       video.play();
     } else {
@@ -48,12 +43,10 @@ function Home() {
   };
   const contactPost = (e) => {
     e.preventDefault();
-    let data = document.querySelector(".contact__input").value;
-    postData("api/contact", data);
-    data = "";
-    console.log(data, "Posted");
+    postData("contact", { mobile_phone: `+998${contact}` });
+    setContact("");
   };
-  const orderControl = () => {
+  const orderControl = (id) => {
     document.querySelector(".order").style.display = "flex";
   };
   return (
@@ -66,7 +59,7 @@ function Home() {
             <div className="home__left">
               <h1 className="home__title">Kechalari sokin dam oling</h1>
               <img className="home__main" src={bed} alt="bed" />
-            <a href="#catalog">  <Button title={"Kategoriyalar"} src={arrow} callback={()=>console.log('click')}/></a>
+              <a href="#catalog">  <Button title={"Kategoriyalar"} src={arrow} callback={() => console.log('click')} /></a>
               <img src={range} alt="range" />
             </div>
             <div className="home__right"></div>
@@ -99,13 +92,12 @@ function Home() {
             <div className="catalog__title title">Bizning mahsulotlar</div>
             <div className="catalog__tab">
               <ul className="catalog__tab--list">
-                {tabData.categories.map((el) => {
+                {categories.map((el) => {
                   return (
                     <li
                       onClick={() => setActive(el.id)}
-                      className={`catalog__tab--list--item ${
-                        active == el.id && "active"
-                      }`}
+                      className={`catalog__tab--list--item ${active == el.id && "active"
+                        }`}
                       key={el.id}
                     >
                       {el.category}
@@ -114,8 +106,8 @@ function Home() {
                 })}
               </ul>
               <ul className="catalog__tab--panel">
-                {tabData.products.map((el) => {
-                  if (el.category_id == active || active == 0) {
+                {products.map((el) => {
+                  if (el.category_id == active || active == 0 && el.id < 4) {
                     return <ProductCard key={el.id} {...el} orderControl={orderControl} />;
                   }
                 })}
@@ -127,9 +119,9 @@ function Home() {
           <div className="container">
             <div className="stock__title title">Aksiyadagi mahsulotlar</div>
             <ul className="stock--list">
-              {tabData.products.map((el) => {
+              {products.map((el) => {
                 if (el.new_cost) {
-                  return <ProductCard key={el.id} {...el} orderControl={orderControl}/>;
+                  return <ProductCard key={el.id} {...el} orderControl={orderControl} />;
                 }
               })}
             </ul>
@@ -156,7 +148,7 @@ function Home() {
               }}
               // modules={[Navigation, Pagination, Scrollbar]}
               loop={true}
-              // navigation
+            // navigation
             >
               {technologies.map((el) => {
                 return (
@@ -319,6 +311,8 @@ function Home() {
                     className="contact__input"
                     placeholder="Raqamingizni yozing"
                     type="text"
+                    onChange={(e) => setContact(e.target.value)}
+                    value={contact}
                     required
                   />
                 </div>

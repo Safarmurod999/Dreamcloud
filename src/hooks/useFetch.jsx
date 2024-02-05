@@ -9,7 +9,7 @@ const useFetch = (url) => {
     setCallback(!callback);
   };
   const getData = async () => {
-    fetch(`${BASE_URL}api/${url}`)
+    fetch(`${BASE_URL}${url}`)
       .then((response) => {
         return response.json();
       })

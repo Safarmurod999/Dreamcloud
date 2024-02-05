@@ -2,7 +2,6 @@ import "./ProductCard.scss";
 import cart from "../../assets/icons/shopping_cart.svg";
 import Button from "../Button/Button";
 function ProductCard({
-  id,
   product_images,
   body,
   new_cost,
