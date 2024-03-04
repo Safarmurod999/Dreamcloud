@@ -15,6 +15,7 @@ import AddressModal from "../../components/AddressModal/AddressModal";
 import { postData } from "../../utils/postData";
 import BackTop from "../../components/BackTop/BackTop";
 import OrderModal from "../../components/OrderModal/OrderModal";
+import { features } from "../../data/data";
 import "./Home.scss";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -24,12 +25,10 @@ import "swiper/css/scrollbar";
 function Home() {
   const [active, setActive] = useState(0);
   const [contact, setContact] = useState("");
-  const { data: statistics } = useFetch("statistics");
-  const { data: products } = useFetch("products");
   const { data: categories } = useFetch("categories");
+  const { data: products } = useFetch("products");
   const { data: technologies } = useFetch("technologies");
-  const { data: address } = useFetch("address");
-  const { data: features, loading } = useFetch("features");
+  const { data: addresses, loading } = useFetch("addresses");
   function videoControl(id) {
     const video = document.getElementById(`${id}`);
     if (video.paused) {
@@ -43,7 +42,7 @@ function Home() {
   };
   const contactPost = (e) => {
     e.preventDefault();
-    postData("contact", { mobile_phone: `+998${contact}` });
+    postData("contact", { phone_number: `+998${contact}` });
     setContact("");
   };
   const orderControl = (id) => {
@@ -59,7 +58,14 @@ function Home() {
             <div className="home__left">
               <h1 className="home__title">Kechalari sokin dam oling</h1>
               <img className="home__main" src={bed} alt="bed" />
-              <a href="#catalog">  <Button title={"Kategoriyalar"} src={arrow} callback={() => console.log('click')} /></a>
+              <a href="#catalog">
+                {" "}
+                <Button
+                  title={"Kategoriyalar"}
+                  src={arrow}
+                  callback={() => console.log("click")}
+                />
+              </a>
               <img src={range} alt="range" />
             </div>
             <div className="home__right"></div>
@@ -69,19 +75,19 @@ function Home() {
           <div className="container">
             <ul className="features__list">
               <li className="features__list--item">
-                <h3>{statistics.experience}</h3>
+                <h3>7</h3>
                 <p>yillik tajriba</p>
               </li>
               <li className="features__list--item">
-                <h3>{statistics.clients}</h3>
+                <h3>10k+</h3>
                 <p>mamnun mijozlar</p>
               </li>
               <li className="features__list--item">
-                <h3>{statistics.warranty}</h3>
+                <h3>10</h3>
                 <p>yillik kafolat</p>
               </li>
               <li className="features__list--item">
-                <h3>{statistics.delivery}</h3>
+                <h3>3</h3>
                 <p>kunda yetkazish</p>
               </li>
             </ul>
@@ -92,24 +98,35 @@ function Home() {
             <div className="catalog__title title">Bizning mahsulotlar</div>
             <div className="catalog__tab">
               <ul className="catalog__tab--list">
-                {categories.map((el) => {
+                {categories.data.map((el) => {
                   return (
                     <li
                       onClick={() => setActive(el.id)}
-                      className={`catalog__tab--list--item ${active == el.id && "active"
-                        }`}
+                      className={`catalog__tab--list--item ${
+                        active == el.id && "active"
+                      }`}
                       key={el.id}
                     >
-                      {el.category}
+                      {el.category_name}
                     </li>
                   );
                 })}
               </ul>
               <ul className="catalog__tab--panel">
-                {products.map((el) => {
+                {/* {products.map((el) => {
                   if (el.category_id == active || active == 0 && el.id < 4) {
                     return <ProductCard key={el.id} {...el} orderControl={orderControl} />;
                   }
+                })} */}
+
+                {products.data.map((el) => {
+                  return (
+                    <ProductCard
+                      key={el.id}
+                      {...el}
+                      orderControl={orderControl}
+                    />
+                  );
                 })}
               </ul>
             </div>
@@ -119,9 +136,15 @@ function Home() {
           <div className="container">
             <div className="stock__title title">Aksiyadagi mahsulotlar</div>
             <ul className="stock--list">
-              {products.map((el) => {
-                if (el.new_cost) {
-                  return <ProductCard key={el.id} {...el} orderControl={orderControl} />;
+              {products.data.map((el) => {
+                if (el.discount) {
+                  return (
+                    <ProductCard
+                      key={el.id}
+                      {...el}
+                      orderControl={orderControl}
+                    />
+                  );
                 }
               })}
             </ul>
@@ -148,15 +171,15 @@ function Home() {
               }}
               // modules={[Navigation, Pagination, Scrollbar]}
               loop={true}
-            // navigation
+              // navigation
             >
-              {technologies.map((el) => {
+              {technologies.data.map((el) => {
                 return (
                   <SwiperSlide key={el.id}>
                     <div className="technologies--card">
                       <div className="technologies--card--title">{el.name}</div>
                       <video
-                        src={el.thumbnail}
+                        src={`http://localhost:3000/uploads/technologies/${el.video}`}
                         className="technologies--card--video"
                         id={el.id}
                       ></video>
@@ -270,20 +293,16 @@ function Home() {
             <div className="address__left">
               <div className="address__title title">Manzilimiz</div>
               <img
-                src={address_img}
+                src={`http://localhost:3000/uploads/addresses/${addresses.data[0].image}`}
                 alt={address_img}
                 className="address__left--img"
               />
-              <h4 className="address--location">{address[0].location}</h4>
+              <h4 className="address--location">{addresses.data[0].address}</h4>
 
               <p className="address--destination text">
-                {address[0].destination}
+                {addresses.data[0].descrtiption}
               </p>
-              <AddressModal
-                src={
-                  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96030.28356155523!2d69.09781803620774!3d41.22293936409461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae619aa5306045%3A0x781013294d66e773!2z0JzQsNGC0YDQsNGB0Ysg0LIg0YLQsNGI0LrQtdC90YLQtQ!5e0!3m2!1sru!2s!4v1688566708273!5m2!1sru!2s"
-                }
-              />
+              <AddressModal src={addresses.data[0].location} />
               <Button
                 title={"Geolokatsiya"}
                 src={geolocation}
@@ -291,7 +310,10 @@ function Home() {
               />
             </div>
             <div className="address__right">
-              <img src={address_img} alt={address_img} />
+              <img
+                src={`http://localhost:3000/uploads/addresses/${addresses.data[0].image}`}
+                alt={address_img}
+              />
             </div>
           </div>
         </section>

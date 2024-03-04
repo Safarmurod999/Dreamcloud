@@ -2,28 +2,31 @@ import "./ProductCard.scss";
 import cart from "../../assets/icons/shopping_cart.svg";
 import Button from "../Button/Button";
 function ProductCard({
-  product_images,
-  body,
-  new_cost,
-  name,
+  image,
+  description,
+  discount,
+  product_name,
   weight,
-  warranty,
+  guarantee,
   capacity,
   size,
-  cost,
+  price,
   orderControl,
 }) {
   return (
     <li className="catalog__tab--panel--item card">
-      {new_cost && <div className="card--status">{new_cost}</div>}
+      {discount && <div className="card--status">{discount}</div>}
       <div className="card--img">
-        <img src={product_images} alt={product_images} />
+        <img
+          src={`http://localhost:3000/uploads/products/${image}`}
+          alt={image}
+        />
       </div>
       <div className="card--content">
-        <div className="card--title title">{name}</div>
+        <div className="card--title title">{product_name}</div>
         <img
-          src={product_images}
-          alt={product_images}
+          src={`http://localhost:3000/uploads/products/${image}`}
+          alt={image}
           className="card--img--mobile"
         />
         <ul className="card--about">
@@ -37,7 +40,7 @@ function ProductCard({
           <li>
             <p>Kafolat</p>
             <h6>
-              {warranty}
+              {guarantee}
               <span>yillik</span>
             </h6>
           </li>
@@ -53,12 +56,12 @@ function ProductCard({
             </h6>
           </li>
         </ul>
-        <p className="card--text text">{body}</p>
+        <p className="card--text text">{description}</p>
         <p className="card--text text" style={{ marginBottom: "7px" }}>
           Narxi
         </p>
         <h6 className="card--price">
-          {cost}
+          {price}
           <span>so'm</span>
         </h6>
         <Button
