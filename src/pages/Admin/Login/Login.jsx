@@ -1,6 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
-import "./Login.scss";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./Login.scss";
 import { BASE_URL } from "../../../const/const";
 
 function Login() {
@@ -25,6 +27,7 @@ function Login() {
       }).then(async (res) => {
         let response = await res.json();
         if (response.data) {
+          toast.success("Login successfully !");
           setTimeout(() => navigate("/admin"), 1000);
           localStorage.setItem(
             "access_token",
@@ -34,6 +37,8 @@ function Login() {
             "username",
             JSON.stringify(response.data["username"])
           );
+        }else{
+          toast.error("Wrong credentials !");
         }
       });
     } catch (error) {
@@ -76,6 +81,7 @@ function Login() {
           </button>
         </Link>
       </form>
+      <ToastContainer />
     </section>
   );
 }

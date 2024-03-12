@@ -1,23 +1,31 @@
-import { useState } from "react";
-
 import "./App.css";
 import Home from "./pages/Home/Home";
-import { Route, Routes } from "react-router-dom";
+import { Route, Router, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Login from "./pages/Admin/Login/Login";
 import AdminPanel from "./pages/Admin/AdminPanel/AdminPanel";
-
 function App() {
+  const route = useLocation();
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        {/* <Route path="/admin" element={<AdminPanel />} /> */}
-      </Routes>
-      <Footer />
+      {route.pathname == "/" ? (
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+          <Footer />
+        </>
+      ) : route.pathname.startsWith("/admin") ? (
+        <Routes>
+          <Route path="/admin" element={<AdminPanel />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      )}
     </>
   );
 }

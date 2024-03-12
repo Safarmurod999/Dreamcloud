@@ -2,8 +2,12 @@
   width: 100%;
   height: 80vh;
   display: flex;
+  .toast-message{
+    z-index: 9999;
+  }
   &__form {
-    max-width: 330px;
+    max-width: 450px;
+    flex-grow: 1;
     padding: 30px;
     margin: auto auto;
     border-radius: 10px;
