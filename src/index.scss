@@ -87,6 +87,15 @@ button {
     padding: 0 10px;
   }
 }
+.sidebar {
+  svg{
+    font-size: 20px;
+  }
+  path {
+    fill: #ffffff !important;
+  }
+}
+
 @mixin flex-box($direction, $align, $justify, $gap) {
   display: flex;
   flex-direction: $direction;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../const/const";
+import { BASE_URL } from "../data/data";
 const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

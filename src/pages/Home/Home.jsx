@@ -98,36 +98,42 @@ function Home() {
             <div className="catalog__title title">Bizning mahsulotlar</div>
             <div className="catalog__tab">
               <ul className="catalog__tab--list">
-                {categories.data.map((el) => {
-                  return (
-                    <li
-                      onClick={() => setActive(el.id)}
-                      className={`catalog__tab--list--item ${
-                        active == el.id && "active"
-                      }`}
-                      key={el.id}
-                    >
-                      {el.category_name}
-                    </li>
-                  );
-                })}
+                {categories.data
+                  .sort((a, b) => a.id - b.id)
+                  .map((el) => {
+                    return (
+                      <li
+                        onClick={() => setActive(el.id)}
+                        className={`catalog__tab--list--item ${
+                          active == el.id && "active"
+                        }`}
+                        key={el.id}
+                      >
+                        {el.category_name}
+                      </li>
+                    );
+                  })}
               </ul>
               <ul className="catalog__tab--panel">
-                {/* {products.map((el) => {
-                  if (el.category_id == active || active == 0 && el.id < 4) {
-                    return <ProductCard key={el.id} {...el} orderControl={orderControl} />;
-                  }
-                })} */}
-
-                {products.data.map((el) => {
-                  return (
-                    <ProductCard
-                      key={el.id}
-                      {...el}
-                      orderControl={orderControl}
-                    />
-                  );
-                })}
+                {products.data.filter(
+                  (el) => el.category_id == active || active == 0
+                ).length > 0 ? (
+                  products.data.map((el) => {
+                    if (el.category_id == active || active == 0) {
+                      return (
+                        <ProductCard
+                          key={el.id}
+                          {...el}
+                          orderControl={orderControl}
+                        />
+                      );
+                    }
+                  })  
+                ) : (
+                  <div className="text-3xl">
+                    Bunday toifadagi mahsulot hozirda mavjud emas.
+                  </div>
+                )}
               </ul>
             </div>
           </div>

@@ -15,7 +15,7 @@ function ProductCard({
 }) {
   return (
     <li className="catalog__tab--panel--item card">
-      {discount && <div className="card--status">{discount}</div>}
+      {discount>0 && <div className="card--status">{discount}</div>}
       <div className="card--img">
         <img
           src={`http://localhost:3000/uploads/products/${image}`}

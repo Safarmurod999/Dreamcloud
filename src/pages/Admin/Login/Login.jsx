@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./Login.scss";
-import { BASE_URL } from "../../../const/const";
+import { BASE_URL } from "../../../data/data";
 
 function Login() {
   const [login, setLogin] = useState({

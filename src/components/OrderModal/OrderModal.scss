@@ -48,19 +48,20 @@
       line-height: normal;
     }
     &--name,
-    &--number,
+    &--mobile_phone,
     &--select {
       padding: 20px;
       border-radius: 5px;
       border: 2px solid var(--primary-color, #01384d);
       background: #fff;
+
     }
     &--name {
       width: 100%;
 
       margin-bottom: 25px;
     }
-    &--number {
+    &--mobile_phone {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -97,6 +98,9 @@
       }
       select {
         width: 100%;
+        option{
+          padding: 10px;
+        }
       }
     }
     &--count {
