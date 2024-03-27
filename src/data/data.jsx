@@ -8,7 +8,7 @@ import Orders from "../pages/Admin/Orders/Orders";
 import Customers from "../pages/Admin/Customers/Customers";
 import Categories from "../pages/Admin/Categories/Categories";
 import Products from "../pages/Admin/Products/Products";
-export const BASE_URL = 'http://localhost:3000/';
+export const BASE_URL = 'https://dreamcloud-backend-e4327b791528.herokuapp.com/';
 export const features = [
   {
     id: 1,

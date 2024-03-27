@@ -185,7 +185,7 @@ function Home() {
                     <div className="technologies--card">
                       <div className="technologies--card--title">{el.name}</div>
                       <video
-                        src={`http://localhost:3000/uploads/technologies/${el.video}`}
+                        src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/technologies/${el.video}`}
                         className="technologies--card--video"
                         id={el.id}
                       ></video>
@@ -299,7 +299,7 @@ function Home() {
             <div className="address__left">
               <div className="address__title title">Manzilimiz</div>
               <img
-                src={`http://localhost:3000/uploads/addresses/${addresses.data[0].image}`}
+                src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/addresses/${addresses.data[0].image}`}
                 alt={address_img}
                 className="address__left--img"
               />
@@ -317,7 +317,7 @@ function Home() {
             </div>
             <div className="address__right">
               <img
-                src={`http://localhost:3000/uploads/addresses/${addresses.data[0].image}`}
+                src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/addresses/${addresses.data[0].image}`}
                 alt={address_img}
               />
             </div>

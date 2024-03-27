@@ -18,14 +18,14 @@ function ProductCard({
       {discount>0 && <div className="card--status">{discount}</div>}
       <div className="card--img">
         <img
-          src={`http://localhost:3000/uploads/products/${image}`}
+          src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/products/${image}`}
           alt={image}
         />
       </div>
       <div className="card--content">
         <div className="card--title title">{product_name}</div>
         <img
-          src={`http://localhost:3000/uploads/products/${image}`}
+          src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/products/${image}`}
           alt={image}
           className="card--img--mobile"
         />
