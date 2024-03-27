@@ -4,10 +4,13 @@ import { BiCategory } from "react-icons/bi";
 import { RiProductHuntLine } from "react-icons/ri";
 import { GoTools } from "react-icons/go";
 import { CiLocationOn } from "react-icons/ci";
-import Orders from "../pages/Admin/Orders/Orders";
-import Customers from "../pages/Admin/Customers/Customers";
-import Categories from "../pages/Admin/Categories/Categories";
-import Products from "../pages/Admin/Products/Products";
+import { lazy } from "react";
+const Orders = lazy(() => import('../pages/Admin/Orders/Orders'));
+const Customers = lazy(() => import('../pages/Admin/Customers/Customers'));
+const Categories = lazy(() => import('../pages/Admin/Categories/Categories'));
+const Products = lazy(() => import('../pages/Admin/Products/Products'));
+const Technologies = lazy(() => import('../pages/Admin/Technologies/Technologies'));
+const Addresses = lazy(() => import('../pages/Admin/Addresses/Addresses'));
 export const BASE_URL = 'https://dreamcloud-backend-e4327b791528.herokuapp.com/';
 export const features = [
   {
@@ -73,6 +76,7 @@ export const adminRoutes = [
     name: "Texnologiyalar",
     current: false,
     icon: <GoTools />,
+    element: <Technologies />,
   },
   {
     id: 5,
@@ -80,5 +84,6 @@ export const adminRoutes = [
     name: "Manzil",
     current: false,
     icon: <CiLocationOn />,
+    element: <Addresses />
   },
 ];

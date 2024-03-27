@@ -3,7 +3,7 @@ import "./OrderModal.scss";
 import close from "../../assets/images/navbar/close.svg";
 import { postData } from "../../utils/postData";
 import useFetch from "../../hooks/useFetch";
-
+import Spinner from "../Spinner/Spinner";
 function OrderModal() {
   const [newOrder, setOrder] = useState({
     customer_name: "",
@@ -11,10 +11,10 @@ function OrderModal() {
     product_id: 1,
     count: 1,
   });
+  const { data: products, loading,error } = useFetch("products");
   const onChangeHandler = (e) => {
     setOrder({ ...newOrder, [e.target.name]: e.target.value });
   };
-  const { data: products, loading } = useFetch("products");
   const countHandler = (e, payload) => {
     e.preventDefault();
     if (payload == "+") {
@@ -35,8 +35,14 @@ function OrderModal() {
     document.querySelector(".order").style.display = "none";
     setOrder({ customer_name: "", mobile_phone: "", product_id: 1, count: 1 });
   };
+  if (loading) {
+    return <Spinner position={"full"} />;
+  }
+  if (error) {
+    console.log(error);
+  }
   return (
-    !loading && (
+    products && (
       <div className="order">
         <form className="order__form">
           <div className="order__close" onClick={() => closeOrder()}>

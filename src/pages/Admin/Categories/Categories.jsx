@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
 import { MdDeleteOutline } from "react-icons/md";
 import { deleteData, updateData } from "../../../utils/postData";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const Categories = () => {
-    const { data: categories, loading } = useFetch("categories");
+    const { data: categories, loading,error } = useFetch("categories");
     const [accessToken, setAccessToken] = useState(
       JSON.parse(localStorage.getItem("access_token")) || ""
     );
@@ -17,8 +18,14 @@ const Categories = () => {
       updateData("categories", { isActive: data }, id, accessToken);
       location.reload();
     };
+    if (loading) {
+      return <Spinner position={"full"} />;
+    }
+    if (error) {
+      console.log(error);
+    }
   return (
-    !loading && (
+    categories && (
         <main>
           <div className="flex-1 py-6">
             <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">

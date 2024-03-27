@@ -21,6 +21,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import Spinner from "../../components/Spinner/Spinner";
 
 function Home() {
   const [active, setActive] = useState(0);
@@ -28,7 +29,7 @@ function Home() {
   const { data: categories } = useFetch("categories");
   const { data: products } = useFetch("products");
   const { data: technologies } = useFetch("technologies");
-  const { data: addresses, loading } = useFetch("addresses");
+  const { data: addresses, loading, error } = useFetch("addresses");
   function videoControl(id) {
     const video = document.getElementById(`${id}`);
     if (video.paused) {
@@ -48,8 +49,14 @@ function Home() {
   const orderControl = (id) => {
     document.querySelector(".order").style.display = "flex";
   };
+  if (loading) {
+    return <Spinner position={"full"} />;
+  }
+  if (error) {
+    console.log(error);
+  }
   return (
-    !loading && (
+    addresses && (
       <main>
         <OrderModal />
         <BackTop />
@@ -128,7 +135,7 @@ function Home() {
                         />
                       );
                     }
-                  })  
+                  })
                 ) : (
                   <div className="text-3xl">
                     Bunday toifadagi mahsulot hozirda mavjud emas.

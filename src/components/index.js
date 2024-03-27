@@ -7,3 +7,4 @@ export { default as Navbar } from "./Navbar/Navbar";
 export { default as OrderModal } from "./OrderModal/OrderModal";
 export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as Sidebar } from "./Sidebar/Sidebar";
+export { default as Spinner } from "./Spinner/Spinner";

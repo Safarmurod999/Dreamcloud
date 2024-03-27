@@ -1,10 +1,13 @@
 import "./App.css";
+import { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Layout, Home, Login } from "./pages/index";
+import { Layout, Login } from "./pages/index";
 import { adminRoutes } from "./data/data";
 import ProtectedRoute from "./pages/Layout/ProtectedRoute";
 import NotFound from "./pages/NotFound/NotFound";
+import { Spinner } from "./components";
 
+const Home = lazy(() => import('./pages/Home/Home'));
 function App() {
   const route = useLocation();
   return (
@@ -16,7 +19,9 @@ function App() {
               path="/"
               element={
                 <Layout>
-                  <Home />
+                  <Suspense fallback={<Spinner position="full" />}>
+                    <Home />
+                  </Suspense>
                 </Layout>
               }
             />
@@ -29,7 +34,14 @@ function App() {
               <Route
                 key={route.id}
                 path={route.path}
-                element={<Layout>{route.element}</Layout>}
+                element={
+                  <Layout>
+                    {" "}
+                    <Suspense fallback={<Spinner position="full" />}>
+                      {route.element}
+                    </Suspense>
+                  </Layout>
+                }
               />
             ))}
           </Route>
@@ -37,11 +49,11 @@ function App() {
         </Routes>
       ) : route.pathname.startsWith("/login") ? (
         <Routes>
-          <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
       )}
     </>

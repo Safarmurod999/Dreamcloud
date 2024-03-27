@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
 import { MdDeleteOutline } from "react-icons/md";
 import { deleteData, updateData } from "../../../utils/postData";
+import Spinner from "../../../components/Spinner/Spinner"
 const Products = () => {
-  const { data: products, loading } = useFetch("products");
+  const { data: products, loading,error } = useFetch("products");
   const [accessToken, setAccessToken] = useState(
     JSON.parse(localStorage.getItem("access_token")) || ""
   );
@@ -15,8 +16,14 @@ const Products = () => {
     updateData("products", { status: data }, id, accessToken);
     location.reload();
   };
+  if (loading) {
+    return <Spinner position={"full"} />;
+  }
+  if (error) {
+    console.log(error);
+  }
   return (
-    !loading && (
+    products && (
       <main>
         <div className="flex-1 py-6">
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
@@ -40,7 +47,7 @@ const Products = () => {
                       Yuklama
                     </th>
                     <th className="border-b border-gray-600 px-4 py-2 text-center">
-                      Razmeri
+                      O'lchami
                     </th>
                     <th className="border-b border-gray-600 px-4 py-2 text-center">
                       Miqdori
