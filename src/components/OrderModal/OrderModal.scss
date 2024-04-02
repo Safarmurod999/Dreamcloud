@@ -20,6 +20,7 @@
     width: 440px;
     @media screen and (max-width: 576px) {
       padding: 15px;
+      width: 100%;
     }
     &--title {
       color: var(--primary-color, #01384d);
@@ -37,7 +38,7 @@
       font-style: normal;
       font-weight: 600;
       line-height: normal;
-    }
+    } 
     input,
     select {
       color: var(--primary-color, #01384d);
@@ -54,9 +55,9 @@
       border-radius: 5px;
       border: 2px solid var(--primary-color, #01384d);
       background: #fff;
-      outline: none;
+      outline: none !important;
       &:focus{
-        outline: none;
+        outline: none !important;
       }
 
     }

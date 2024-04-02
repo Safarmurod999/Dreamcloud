@@ -12,8 +12,8 @@ const Orders = () => {
     deleteData("orders", id);
     location.reload();
   };
-  const updateOrder = (data, id) => {
-    updateData("orders", { recall: data }, id, accessToken);
+  const updateOrder = async (data, id) => {
+    await updateData("orders", { recall: data }, id, accessToken);
     location.reload();
   };
   if (loading) {
