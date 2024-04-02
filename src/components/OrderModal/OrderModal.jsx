@@ -11,7 +11,7 @@ function OrderModal() {
     product_id: 1,
     count: 1,
   });
-  const { data: products, loading,error } = useFetch("products");
+  const { data: products, loading, error } = useFetch("products");
   const onChangeHandler = (e) => {
     setOrder({ ...newOrder, [e.target.name]: e.target.value });
   };
@@ -94,10 +94,10 @@ function OrderModal() {
             <div id="count" className="order__form--group">
               <button
                 className="order__form--btn"
-                onClick={(e) => countHandler(e, "+")}
+                onClick={(e) => countHandler(e, "-")}
               >
                 {" "}
-                +{" "}
+                -{" "}
               </button>
               <input
                 className="order__form--amount"
@@ -106,11 +106,11 @@ function OrderModal() {
               />
               <button
                 className="order__form--btn"
-                onClick={(e) => countHandler(e, "-")}
+                onClick={(e) => countHandler(e, "+")}
               >
                 {" "}
-                -{" "}
-              </button>
+                +{" "}
+              </button>{" "}
             </div>
           </div>
           <button
