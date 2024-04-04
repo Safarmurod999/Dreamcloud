@@ -2,11 +2,12 @@ import "./ProductCard.scss";
 import cart from "../../assets/icons/shopping_cart.svg";
 import Button from "../Button/Button";
 function ProductCard({
+  id,
   image,
   description,
   discount,
   product_name,
-  weight,
+  overweight,
   guarantee,
   capacity,
   size,
@@ -33,7 +34,7 @@ function ProductCard({
           <li>
             <p>Yuklama</p>
             <h6>
-              {weight}
+              {overweight}
               <span>kg</span>
             </h6>
           </li>
@@ -65,7 +66,7 @@ function ProductCard({
           <span>so'm</span>
         </h6>
         <Button
-          callback={() => orderControl()}
+          callback={() => orderControl(id)}
           title={"Buyurtna berish"}
           src={cart}
         />

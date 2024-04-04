@@ -4,7 +4,7 @@ import close from "../../assets/images/navbar/close.svg";
 import { postData } from "../../utils/postData";
 import useFetch from "../../hooks/useFetch";
 import Spinner from "../Spinner/Spinner";
-function OrderModal() {
+function OrderModal({id}) {
   const [newOrder, setOrder] = useState({
     customer_name: "",
     mobile_phone: "",
@@ -30,10 +30,22 @@ function OrderModal() {
   };
   const postOrder = (e) => {
     e.preventDefault();
-    console.log(newOrder);
-    postData("orders", newOrder);
-    document.querySelector(".order").style.display = "none";
-    setOrder({ customer_name: "", mobile_phone: "", product_id: 1, count: 1 });
+    let phoneValid = /^9989[012345789][0-9]{7}$/;
+
+    newOrder.mobile_phone = "998" + newOrder.mobile_phone;
+    console.log(newOrder.mobile_phone);
+    if (phoneValid.test(newOrder.mobile_phone)) {
+      postData("orders", newOrder);
+      document.querySelector(".order").style.display = "none";
+      setOrder({
+        customer_name: "",
+        mobile_phone: "",
+        product_id: 1,
+        count: 1,
+      });
+    } else {
+      alert("Invalid phone number");
+    }
   };
   if (loading) {
     return <Spinner position={"full"} />;

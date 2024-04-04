@@ -32,18 +32,21 @@ function Home() {
   const { data: addresses, loading, error } = useFetch("addresses");
   function videoControl(id) {
     const video = document.getElementById(`${id}`);
+    let html = document.getElementById(`btn-${id}`)
     if (video.paused) {
       video.play();
+      html.style.display = "none";
     } else {
       video.pause();
+      html.style.display = "flex";
     }
-  }
+  } 
   const modalControl = () => {
     document.querySelector(".modal").style.display = "flex";
   };
   const contactPost = (e) => {
     e.preventDefault();
-    postData("contact", { phone_number: `+998${contact}` });
+    postData("contacts", { phone_number: `+998${contact}` });
     setContact("");
   };
   const orderControl = (id) => {
@@ -56,9 +59,9 @@ function Home() {
     console.log(error);
   }
   return (
-    addresses && (
+    categories && products && technologies && addresses && (
       <main>
-        <OrderModal />
+        <OrderModal/>
         <BackTop />
         <section className="home">
           <div className="container">
@@ -145,24 +148,26 @@ function Home() {
             </div>
           </div>
         </section>
-        <section id="stock" className="stock">
-          <div className="container">
-            <div className="stock__title title">Aksiyadagi mahsulotlar</div>
-            <ul className="stock--list">
-              {products.data.map((el) => {
-                if (el.discount) {
-                  return (
-                    <ProductCard
-                      key={el.id}
-                      {...el}
-                      orderControl={orderControl}
-                    />
-                  );
-                }
-              })}
-            </ul>
-          </div>
-        </section>
+        {products.data.filter((el) => el.discount).length > 0 && (
+          <section id="stock" className="stock">
+            <div className="container">
+              <div className="stock__title title">Aksiyadagi mahsulotlar</div>
+              <ul className="stock--list">
+                {products.data.map((el) => {
+                  if (el.discount) {
+                    return (
+                      <ProductCard
+                        key={el.id}
+                        {...el}
+                        orderControl={orderControl}
+                      />
+                    );
+                  }
+                })}
+              </ul>
+            </div>
+          </section>
+        )}
         <section className="technologies">
           <div className="container">
             <div className="technologies__title title">
@@ -200,7 +205,7 @@ function Home() {
                         className="technologies--card--btn"
                         onClick={() => videoControl(el.id)}
                       >
-                        <img src={play_btn} alt="play-btn" />
+                        <img src={play_btn} id={`btn-${el.id}`} alt="play-btn" />
                       </div>
                       <p className="technologies--card--description">
                         {el.description}
@@ -247,7 +252,7 @@ function Home() {
                   className="about__video--btn"
                   onClick={() => videoControl("about__video")}
                 >
-                  <img src={play_btn} alt="play-btn" />
+                  <img src={play_btn} id="btn-about__video" alt="play-btn" />
                 </div>
               </div>
             </div>

@@ -4,6 +4,7 @@ import call from "../../assets/images/navbar/call.svg";
 import open__nav from "../../assets/images/navbar/open.svg";
 import close__nav from "../../assets/images/navbar/close.svg";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [show, setShow] = useState(true);
@@ -83,7 +84,7 @@ function Navbar() {
               <a href="tel:+998901234567">
                 <img src={call} alt="call" /> +998 90 123 45 67
               </a>
-              <button onClick={()=>orderControl()}>Buyurtma berish</button>
+              <Link to="/login" className="button">Kirish</Link>
             </div>
           </div>
         </div>

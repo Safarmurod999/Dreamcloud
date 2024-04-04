@@ -6,9 +6,7 @@ import Spinner from "../../../components/Spinner/Spinner";
 
 const Customers = () => {
     const { data: orders, loading,error } = useFetch("orders");
-    const [accessToken, setAccessToken] = useState(
-      JSON.parse(localStorage.getItem("access_token")) || ""
-    );
+    let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
     console.log(orders);
     const deleteCustomer = (id) => {
       deleteData("orders", id);
@@ -75,14 +73,14 @@ const Customers = () => {
                         <td className="border-b border-gray-600 px-4 py-1 text-center">
                           {" "}
                           <button
-                            type="button"
-                            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                            onClick={() => deleteCustomer(el.id)}
-                          >
-                            <MdDeleteOutline
-                              style={{ fill: "#fff", fontSize: "20px" }}
-                            />
-                          </button>
+                              type="button"
+                              className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
+                              onClick={() => deleteCategory(el.id)}
+                            >
+                              <MdDeleteOutline
+                                style={{ fill: "#f00", fontSize: "20px" }}
+                              />
+                            </button>
                         </td>
                       </tr>
                     ))}
