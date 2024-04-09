@@ -1,4 +1,13 @@
 import { BASE_URL } from "../data/data";
+export const getData = async (url) => {
+  try {
+    const res = await fetch(`${BASE_URL}${url}`);
+    return res;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const postData = async (url, data) => {
   try {
     await fetch(`${BASE_URL}${url}`, {

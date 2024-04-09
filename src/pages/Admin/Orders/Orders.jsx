@@ -1,20 +1,31 @@
-import React, { useState } from "react";
-import useFetch from "../../../hooks/useFetch";
+import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
-import { deleteData, updateData } from "../../../utils/postData";
 import Spinner from "../../../components/Spinner/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteData, fetchData, updateData } from "../../../utils/slice";
 const Orders = () => {
-  const { data: orders, loading, error } = useFetch("orders");
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
+
+  const dispatch = useDispatch();
+  const orders = useSelector((state) => state.data.data);
+  const isLoading = useSelector((state) => state.data.isLoading);
+  const error = useSelector((state) => state.data.error);
+
+  useEffect(() => {
+    dispatch(fetchData("orders"));
+  }, [dispatch]);
+
   const deleteOrder = (id) => {
-    deleteData("orders", id);
+    dispatch(deleteData({ apiEndpoint: "orders", id }));
+  };
+
+  const updateOrder = (data, id) => {
+    let newData = { recall: data };
+    dispatch(updateData({ apiEndpoint: "orders", id, newData, accessToken }));
     location.reload();
   };
-  const updateOrder = async (data, id) => {
-    await updateData("orders", { recall: data }, id, accessToken);
-    location.reload();
-  };
-  if (loading) {
+
+  if (isLoading) {
     return <Spinner position={"full"} />;
   }
   if (error) {
@@ -51,7 +62,7 @@ const Orders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.data
+                  {[...orders.data]
                     .sort((a, b) => a.id - b.id)
                     .map((el) => (
                       <tr key={el.id}>
@@ -87,14 +98,14 @@ const Orders = () => {
                         <td className="border-b border-gray-600 px-4 py-1 text-center">
                           {" "}
                           <button
-                              type="button"
-                              className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
-                              onClick={() => deleteCategory(el.id)}
-                            >
-                              <MdDeleteOutline
-                                style={{ fill: "#f00", fontSize: "20px" }}
-                              />
-                            </button>
+                            type="button"
+                            className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
+                            onClick={() => deleteOrder(el.id)}
+                          >
+                            <MdDeleteOutline
+                              style={{ fill: "#f00", fontSize: "20px" }}
+                            />
+                          </button>
                         </td>
                       </tr>
                     ))}

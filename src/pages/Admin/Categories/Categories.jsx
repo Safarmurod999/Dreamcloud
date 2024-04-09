@@ -1,23 +1,40 @@
-import React, { useState } from "react";
-import useFetch from "../../../hooks/useFetch";
+import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
-import { deleteData, updateData } from "../../../utils/postData";
 import Spinner from "../../../components/Spinner/Spinner";
 import AdminModal from "../../../components/AdminModal/AdminModal";
-
+import { Button } from "flowbite-react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteData, fetchData, updateData } from "../../../utils/slice";
 const Categories = () => {
-  const { data: categories, loading, error } = useFetch("categories");
+  const [openModal, setOpenModal] = useState(false);
+  const [category, setCategory] = useState({
+    category_name: "",
+    isActive: false,
+  });
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
-  console.log(categories);
+
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.data.data);
+  const isLoading = useSelector((state) => state.data.isLoading);
+  const error = useSelector((state) => state.data.error);
+
+  useEffect(() => {
+    dispatch(fetchData("categories"));
+  }, [dispatch]);
+
   const deleteCategory = (id) => {
-    deleteData("categories", id);
-    location.reload();
+    dispatch(deleteData({ apiEndpoint: "categories", id }));
   };
+
   const updateCategory = (data, id) => {
-    updateData("categories", { isActive: data }, id, accessToken);
+    let newData = { isActive: data };
+    dispatch(
+      updateData({ apiEndpoint: "categories", id, newData, accessToken })
+    );
     location.reload();
   };
-  if (loading) {
+
+  if (isLoading) {
     return <Spinner position={"full"} />;
   }
   if (error) {
@@ -40,11 +57,11 @@ const Categories = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {categories.data
+                    {[...categories.data]
                       .sort((a, b) => a.id - b.id)
-                      .map((el) => (
+                      .map((el, index) => (
                         <tr key={el.id} className="border-b border-gray-600">
-                          <td className="px-4 py-2 text-center">{el.id}</td>
+                          <td className="px-4 py-2 text-center">{index + 1}</td>
                           <td className="px-4 py-2 text-center">
                             {el.category_name}
                           </td>
@@ -66,19 +83,58 @@ const Categories = () => {
                             {" "}
                             <button
                               type="button"
-                              className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
+                              className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2"
                               onClick={() => deleteCategory(el.id)}
                             >
                               <MdDeleteOutline
                                 style={{ fill: "#f00", fontSize: "20px" }}
                               />
                             </button>
-                            <AdminModal {...el} />
+                            <Button
+                              className="focus:outline-none text-white bg-[#E6ECEE] hover:bg-[#E6ECEE] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm py-2"
+                              onClick={() => {
+                                setOpenModal(true);
+                                setCategory(el);
+                              }}
+                            >
+                              <svg
+                                width="21"
+                                height="21"
+                                viewBox="0 0 21 21"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g clipPath="url(#clip0_452_355)">
+                                  <path
+                                    d="M2.625 15.2775V17.9375C2.625 18.1825 2.8175 18.375 3.0625 18.375H5.7225C5.83625 18.375 5.95 18.3312 6.02875 18.2437L15.5837 8.69749L12.3025 5.41624L2.75625 14.9625C2.66875 15.05 2.625 15.155 2.625 15.2775ZM18.1212 6.15999C18.4625 5.81874 18.4625 5.26749 18.1212 4.92624L16.0738 2.87874C15.7325 2.53749 15.1812 2.53749 14.84 2.87874L13.2388 4.47999L16.52 7.76124L18.1212 6.15999Z"
+                                    fill="black"
+                                  />
+                                </g>
+                                <defs>
+                                  <clipPath id="clip0_452_355">
+                                    <rect width="21" height="21" fill="white" />
+                                  </clipPath>
+                                </defs>
+                              </svg>
+                            </Button>
                           </td>
                         </tr>
                       ))}
                   </tbody>
                 </table>
+                <Button
+                  color={"primary"}
+                  className="focus:outline-none border-none text-white bg-[#E6ECEE] hover:bg-[#E6ECEE] font-medium rounded-lg text-sm mt-3 py-2"
+                  onClick={() => setOpenModal(true)}
+                >
+                  Qo'shish
+                </Button>
+                <AdminModal
+                  openModal={openModal}
+                  setOpenModal={setOpenModal}
+                  category={category}
+                  setCategory={setCategory}
+                />
               </div>
             </div>
           </div>

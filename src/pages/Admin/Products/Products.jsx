@@ -1,36 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../../../hooks/useFetch";
 import { MdDeleteOutline } from "react-icons/md";
-import { deleteData, updateData } from "../../../utils/postData";
 import Spinner from "../../../components/Spinner/Spinner";
+import { deleteData, fetchData, updateData } from "../../../utils/slice";
+import { useDispatch, useSelector } from "react-redux";
 const Products = () => {
-  const { data: products } = useFetch("products");
-  const { data: categories, loading, error } = useFetch("categories");
+  const { data: categories, loading } = useFetch("categories");
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
-  console.log(products.data);
+
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.data.data);
+  const isLoading = useSelector((state) => state.data.isLoading);
+  const error = useSelector((state) => state.data.error);
+
+  useEffect(() => {
+    dispatch(fetchData("products"));
+  }, [dispatch]);
 
   const deleteProduct = (id) => {
-    deleteData("products", id);
-    location.reload();
+    dispatch(deleteData({ apiEndpoint: "products", id }));
   };
+
   const updateProduct = (data, id) => {
-    updateData("products", { status: data }, id, accessToken);
-    location.reload();
+    let newData = { status: data };
+    dispatch(updateData({ apiEndpoint: "products", id, newData, accessToken }));
+    console.log({ apiEndpoint: "products", id, newData, accessToken });
+    // location.reload();
   };
-  if (loading) {
-    return <Spinner position={"full"} />;
+  
+  if (isLoading || loading) {
+    return <Spinner position={"absolute"} />;
   }
   if (error) {
     console.log(error);
   }
-  if (!loading && products&&categories) {
-    products.data.forEach((product) => {
-      product.category_name = categories.data.find(
+  if (!isLoading && !loading) {
+    var productsArr = products.data.map((product) => {
+      let category_name = categories.data.find(
         (c) => c.id == product.category_id
       ).category_name;
-      return product;
+
+      return { ...product, category_name };
     });
-    console.log(products.data);
   }
   return (
     products && (
@@ -69,12 +80,12 @@ const Products = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {products.data
+                  {productsArr
                     .sort((a, b) => a.id - b.id)
-                    .map((el) => (
+                    .map((el,index) => (
                       <tr key={el.id}>
                         <td className="border-b border-gray-600 px-4 py-2 text-center">
-                          {el.id}
+                          {index+1}
                         </td>
                         <td className="border-b border-gray-600 px-4 py-2 text-center">
                           {el.product_name}
@@ -109,14 +120,14 @@ const Products = () => {
                         <td className="border-b border-gray-600 px-4 py-1 text-center">
                           {" "}
                           <button
-                              type="button"
-                              className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
-                              onClick={() => deleteCategory(el.id)}
-                            >
-                              <MdDeleteOutline
-                                style={{ fill: "#f00", fontSize: "20px" }}
-                              />
-                            </button>
+                            type="button"
+                            className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
+                            onClick={() => deleteProduct(el.id)}
+                          >
+                            <MdDeleteOutline
+                              style={{ fill: "#f00", fontSize: "20px" }}
+                            />
+                          </button>
                         </td>
                       </tr>
                     ))}

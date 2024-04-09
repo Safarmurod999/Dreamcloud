@@ -8,16 +8,15 @@
   background: #00000080;
   backdrop-filter: blur(10px);
   display: none;
-  //   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.5s;
   &__form {
     position: relative;
+    width: 440px;
     padding: 40px;
     border: 1px solid #c7dff5;
     background: #f6fbff;
-    width: 440px;
     @media screen and (max-width: 576px) {
       padding: 15px;
       width: 100%;
@@ -38,7 +37,7 @@
       font-style: normal;
       font-weight: 600;
       line-height: normal;
-    } 
+    }
     input,
     select {
       color: var(--primary-color, #01384d);
@@ -56,10 +55,9 @@
       border: 2px solid var(--primary-color, #01384d);
       background: #fff;
       outline: none !important;
-      &:focus{
+      &:focus {
         outline: none !important;
       }
-
     }
     &--name {
       width: 100%;
@@ -73,7 +71,7 @@
       padding: 0;
       margin-bottom: 45px;
       outline: none;
-      &:focus{
+      &:focus {
         outline: none;
       }
       span {
@@ -97,7 +95,7 @@
         font-weight: 400;
         line-height: normal;
         outline: none;
-        &:focus{
+        &:focus {
           outline: none;
         }
       }
@@ -111,7 +109,7 @@
       }
       select {
         width: 100%;
-        option{
+        option {
           padding: 10px;
         }
       }
@@ -167,5 +165,40 @@
     top: 16px;
     right: 16px;
     cursor: pointer;
+  }
+}
+.success {
+  position: relative;
+  width: 440px;
+  padding: 40px;
+  border: 1px solid #c7dff5;
+  background: #f6fbff;
+  display: none;
+  flex-direction: column;
+  gap: 40px;
+  @media screen and (max-width: 576px) {
+    padding: 15px;
+    width: 100%;
+  }
+  &--title {
+    text-align: center;
+    color: var(--primary-color, #01384d);
+    font-family: "Raleway";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &--image {
+    width: 100%;
+  }
+  &--text {
+    text-align: center;
+    color: var(--primary-color, #01384d);
+    font-family: "Raleway";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 }

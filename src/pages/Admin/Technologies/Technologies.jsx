@@ -1,22 +1,34 @@
-import React, { useState } from "react";
-import useFetch from "../../../hooks/useFetch";
+import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
-import { deleteData, updateData } from "../../../utils/postData";
 import Spinner from "../../../components/Spinner/Spinner";
+import { deleteData, fetchData, updateData } from "../../../utils/slice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Technologies = () => {
-  const { data: technologies, loading, error } = useFetch("technologies");
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
-  console.log(technologies);
+
+  const dispatch = useDispatch();
+  const technologies = useSelector((state) => state.data.data);
+  const isLoading = useSelector((state) => state.data.isLoading);
+  const error = useSelector((state) => state.data.error);
+
+  useEffect(() => {
+    dispatch(fetchData("technologies"));
+  }, [dispatch]);
+
   const deleteTechnology = (id) => {
-    deleteData("technologies", id);
-    location.reload();
+    dispatch(deleteData({ apiEndpoint: "technologies", id }));
   };
+
   const updateTechnology = (data, id) => {
-    updateData("technologies", { recall: data }, id, accessToken);
+    let newData = { recall: data };
+    dispatch(
+      updateData({ apiEndpoint: "technologies", id, newData, accessToken })
+    );
     location.reload();
   };
-  if (loading) {
+
+  if (isLoading) {
     return <Spinner position={"full"} />;
   }
   if (error) {
@@ -47,7 +59,7 @@ const Technologies = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {technologies.data
+                  {[...technologies.data]
                     .sort((a, b) => a.id - b.id)
                     .map((el) => (
                       <tr key={el.id}>
@@ -68,7 +80,7 @@ const Technologies = () => {
                           <button
                             type="button"
                             className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
-                            onClick={() => deleteCategory(el.id)}
+                            onClick={() => deleteTechnology(el.id)}
                           >
                             <MdDeleteOutline
                               style={{ fill: "#f00", fontSize: "20px" }}

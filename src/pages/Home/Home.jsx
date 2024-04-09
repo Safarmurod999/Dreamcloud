@@ -12,7 +12,7 @@ import address_img from "../../assets/images/home/address.png";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AddressModal from "../../components/AddressModal/AddressModal";
-import { postData } from "../../utils/postData";
+// import { postData } from "../../utils/postData";
 import BackTop from "../../components/BackTop/BackTop";
 import OrderModal from "../../components/OrderModal/OrderModal";
 import { features } from "../../data/data";
@@ -26,13 +26,16 @@ import Spinner from "../../components/Spinner/Spinner";
 function Home() {
   const [active, setActive] = useState(0);
   const [contact, setContact] = useState("");
-  const { data: categories } = useFetch("categories");
-  const { data: products } = useFetch("products");
-  const { data: technologies } = useFetch("technologies");
-  const { data: addresses, loading, error } = useFetch("addresses");
+  const [productData, setProductData] = useState({});
+
+  const { data: categories, loading: loading1 } = useFetch("categories");
+  const { data: products, loading: loading2 } = useFetch("products");
+  const { data: technologies, loading: loading3 } = useFetch("technologies");
+  const { data: addresses, loading: loading4, error } = useFetch("addresses");
+
   function videoControl(id) {
     const video = document.getElementById(`${id}`);
-    let html = document.getElementById(`btn-${id}`)
+    let html = document.getElementById(`btn-${id}`);
     if (video.paused) {
       video.play();
       html.style.display = "none";
@@ -40,29 +43,34 @@ function Home() {
       video.pause();
       html.style.display = "flex";
     }
-  } 
+  }
   const modalControl = () => {
     document.querySelector(".modal").style.display = "flex";
   };
   const contactPost = (e) => {
     e.preventDefault();
-    postData("contacts", { phone_number: `+998${contact}` });
+    // postData("contacts", { phone_number: `+998${contact}` });
     setContact("");
   };
-  const orderControl = (id) => {
+  const orderControl = (data) => {
+    setProductData(data);
     document.querySelector(".order").style.display = "flex";
+    document.querySelector(".order__form").style.display = "block";
   };
-  if (loading) {
+  if (loading1 || loading2 || loading3 || loading4) {
     return <Spinner position={"full"} />;
   }
   if (error) {
     console.log(error);
   }
   return (
-    categories && products && technologies && addresses && (
+    categories &&
+    products &&
+    technologies &&
+    addresses && (
       <main>
-        <OrderModal/>
         <BackTop />
+        <OrderModal data={productData} />
         <section className="home">
           <div className="container">
             <div className="home__left">
@@ -134,7 +142,7 @@ function Home() {
                         <ProductCard
                           key={el.id}
                           {...el}
-                          orderControl={orderControl}
+                          orderControl={() => orderControl(el)}
                         />
                       );
                     }
@@ -159,7 +167,7 @@ function Home() {
                       <ProductCard
                         key={el.id}
                         {...el}
-                        orderControl={orderControl}
+                        orderControl={() => orderControl(el)}
                       />
                     );
                   }
@@ -187,9 +195,7 @@ function Home() {
                   slidesPerView: 3,
                 },
               }}
-              // modules={[Navigation, Pagination, Scrollbar]}
               loop={true}
-              // navigation
             >
               {technologies.data.map((el) => {
                 return (
@@ -205,7 +211,11 @@ function Home() {
                         className="technologies--card--btn"
                         onClick={() => videoControl(el.id)}
                       >
-                        <img src={play_btn} id={`btn-${el.id}`} alt="play-btn" />
+                        <img
+                          src={play_btn}
+                          id={`btn-${el.id}`}
+                          alt="play-btn"
+                        />
                       </div>
                       <p className="technologies--card--description">
                         {el.description}
