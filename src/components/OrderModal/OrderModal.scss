@@ -18,8 +18,9 @@
     border: 1px solid #c7dff5;
     background: #f6fbff;
     @media screen and (max-width: 576px) {
-      padding: 15px;
+      padding:40px 15px;
       width: 100%;
+      border: none;
     }
     &--title {
       color: var(--primary-color, #01384d);
@@ -85,7 +86,7 @@
         color: var(--color-7);
       }
       input {
-        flex-grow: 1;
+        width: 100%;
         height: 100%;
         padding: 0 20px;
         color: var(--primary-color, #01384d);
@@ -127,6 +128,7 @@
       }
     }
     &--group {
+      width: 100%;
       border-radius: 5px;
       display: flex;
       align-items: center;
@@ -137,11 +139,12 @@
       margin-top: 15px;
     }
     &--amount {
-      flex-grow: 1;
+      width: 50%;
       height: 100%;
       text-align: center;
     }
     &--btn {
+      width: 25%;
       padding: 16px 30px;
       border-left: 2px solid var(--primary-color, #01384d);
       border-right: 2px solid var(--primary-color, #01384d);
