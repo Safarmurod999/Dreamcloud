@@ -22,6 +22,31 @@ export const postData = async (url, data) => {
     console.log(error.message);
   }
 };
+export const postProduct = async (url, data) => {
+  try {
+    await fetch(`${BASE_URL}${url}`, {
+      method: "post",
+      body: data,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const updateProduct = async (url, data, id, token) => {
+  try {
+    await fetch(`${BASE_URL}${url}/${id}`, {
+      method: "put",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: data,
+    }).then(() => {
+      console.log(data, id, token);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 export const deleteData = async (url, data) => {
   try {
     await fetch(`${BASE_URL}${url}/${data}`, {

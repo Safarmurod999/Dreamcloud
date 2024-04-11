@@ -27,7 +27,7 @@ const Addresses = () => {
   };
 
   if (isLoading) {
-    return <Spinner position={"full"} />;
+    return <Spinner position={"relative"} />;
   }
   if (error) {
     console.log(error);
@@ -68,10 +68,10 @@ const Addresses = () => {
                           {el.address}
                         </td>
                         <td className="border-b border-gray-600 px-4 py-2 text-center">
-                          {el.description.slice(0, 50)}...
+                          {el?.description}
                         </td>
                         <td className="border-b border-gray-600 px-4 text-center">
-                          {el.location.slice(0, 50)}...
+                          {el?.location}
                         </td>
                         <td className="border-b border-gray-600 px-4 py-1 text-center">
                           {" "}

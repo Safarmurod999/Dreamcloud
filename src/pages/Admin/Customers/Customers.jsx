@@ -28,7 +28,7 @@ const Customers = () => {
   };
 
   if (isLoading) {
-    return <Spinner position={"full"} />;
+    return <Spinner position={"relative"} />;
   }
   if (error) {
     console.log(error);

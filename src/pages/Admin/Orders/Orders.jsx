@@ -26,8 +26,9 @@ const Orders = () => {
   };
 
   if (isLoading) {
-    return <Spinner position={"full"} />;
+    return <Spinner position={"relative"} />;
   }
+  console.log(orders);
   if (error) {
     console.log(error);
   }

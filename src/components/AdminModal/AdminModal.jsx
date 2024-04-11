@@ -9,7 +9,6 @@ const AdminModal = ({ category, openModal, setOpenModal, setCategory }) => {
   const requestCategory = async (e) => {
     e.preventDefault();
     if (category.id) {
-      console.log({ category_name: category.category_name, isActive: category.isActive });
       await updateData(
         "categories",
         { category_name: category.category_name, isActive: category.isActive },

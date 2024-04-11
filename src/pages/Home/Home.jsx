@@ -178,7 +178,7 @@ function Home() {
         )}
         <section className="technologies">
           <div className="container">
-            <div className="technologies__title title">
+            <div className="technologies__title title mb-[40px]">
               Ishlab chiqarish texnologiyalari
             </div>
             <Swiper

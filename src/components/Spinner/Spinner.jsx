@@ -5,26 +5,33 @@ import cx from "classnames";
 import "./Spinner.scss";
 
 const Spinner = ({ className, position, md }) => {
-	const classNames = cx(
-		"spinner-wrap",
-		position ? position : "",
-		md ? "md" : "",
-		className
-	);
-	return (
-		<div className={classNames}>
-			<div className="spinner" />
-		</div>
-	);
+  const classNames = cx(
+    "spinner-wrap",
+    position ? position : "",
+    md ? "md" : "",
+    className
+  );
+  return (
+    <div className={classNames}>
+      <div className="spinner" />
+    </div>
+  );
 };
 
 Spinner.propTypes = {
-	className: PropTypes.string,
-	position: PropTypes.oneOf(["center", "start", "end", "full", "absolute"])
+  className: PropTypes.string,
+  position: PropTypes.oneOf([
+    "center",
+    "start",
+    "end",
+    "full",
+    "relative",
+    "absolute",
+  ]),
 };
 Spinner.defaultProps = {
-	className: "",
-	position: "center"
+  className: "",
+  position: "center",
 };
 
 export default Spinner;
