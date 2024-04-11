@@ -37,7 +37,7 @@ function App() {
                 element={
                   <Layout>
                     {" "}
-                    <Suspense fallback={<Spinner position="full" />}>
+                    <Suspense fallback={<Spinner position="relative" />}>
                       {route.element}
                     </Suspense>
                   </Layout>

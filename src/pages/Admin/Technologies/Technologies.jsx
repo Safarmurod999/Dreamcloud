@@ -69,7 +69,7 @@ const Technologies = () => {
                         <td className="text-center">{el.id}</td>
                         <td className="text-center">{el.name}</td>
                         <td className="text-center">
-                          {el.description.slice(0, 50)}...
+                          {el.description}
                         </td>
                         <td className="px-4 text-center">{el.video}</td>
                         <td className="flex gap-2 px-4 py-1 text-center">

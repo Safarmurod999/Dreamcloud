@@ -70,6 +70,7 @@ const TechnologiesModal = ({
                 value={technology.description}
                 onChange={onChangeHandler}
                 name="description"
+                
                 required
               />
               <button
