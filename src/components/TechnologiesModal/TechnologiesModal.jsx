@@ -1,6 +1,6 @@
 import { FileInput, Label, Modal, TextInput } from "flowbite-react";
-import { postProduct, updateProduct } from "../../utils/postData";
-
+import { useDispatch } from "react-redux";
+import { addData, updateData } from "../../utils/slice";
 const TechnologiesModal = ({
   technology,
   openModal,
@@ -8,20 +8,27 @@ const TechnologiesModal = ({
   setTechnology,
 }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
+  const dispatch = useDispatch();
   const onChangeHandler = (e) => {
     setTechnology({ ...technology, [e.target.name]: e.target.value });
   };
   const requestTechnology = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("name", technology.name);
-    data.append("description", technology.description);
-    data.append("video", technology.video);
-    data.append("state", technology.state ? 1 : 0);
+    const newData = new FormData();
+    newData.append("name", technology.name);
+    newData.append("description", technology.description);
+    newData.append(
+      "video",
+      typeof technology.video == "string" ? null : technology.video
+    );
+    newData.append("state", technology.state ? 1 : 0);
     if (technology.id) {
-      await updateProduct("technologies", data, technology.id, accessToken);
+      let id = technology.id;
+      dispatch(
+        updateData({ apiEndpoint: "technologies", id, newData, accessToken })
+      );
     } else {
-      await postProduct("technologies", data);
+      dispatch(addData({ apiEndpoint: "technologies", newData }));
     }
     setOpenModal(false);
     setTechnology({ name: "", video: "", description: "", state: 1 });
@@ -70,7 +77,6 @@ const TechnologiesModal = ({
                 value={technology.description}
                 onChange={onChangeHandler}
                 name="description"
-                
                 required
               />
               <button

@@ -19,12 +19,11 @@ export const fetchData = createAsyncThunk(
     }
   }
 );
-
 export const addData = createAsyncThunk(
   "data/addData",
-  async ({ apiEndpoint, dataToAdd }, thunkAPI) => {
+  async ({ apiEndpoint, newData }, thunkAPI) => {
     try {
-      const response = await axios.post(`${BASE_URL}${apiEndpoint}`, dataToAdd);
+      const response = await axios.post(`${BASE_URL}${apiEndpoint}`, newData);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -52,7 +51,6 @@ export const updateData = createAsyncThunk(
     }
   }
 );
-
 export const deleteData = createAsyncThunk(
   "data/deleteData",
   async ({ apiEndpoint, id }, thunkAPI) => {
@@ -89,8 +87,7 @@ const dataSlice = createSlice({
       })
       .addCase(addData.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log(action.payload);
-        state.data.data.push(action.payload);
+        state.data.data.push(action.payload.data[0]);
       })
       .addCase(addData.rejected, (state, action) => {
         state.isLoading = false;

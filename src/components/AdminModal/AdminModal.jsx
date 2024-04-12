@@ -1,24 +1,28 @@
 import { Label, Modal, TextInput } from "flowbite-react";
-import { postData, updateData } from "../../utils/postData";
-
+import { useDispatch } from "react-redux";
+import { addData, updateData } from "../../utils/slice";
 const AdminModal = ({ category, openModal, setOpenModal, setCategory }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
   const onChangeHandler = (e) => {
     setCategory({ ...category, [e.target.name]: e.target.value });
   };
-  const requestCategory = async (e) => {
+  const dispatch = useDispatch();
+  const requestCategory = (e) => {
     e.preventDefault();
     if (category.id) {
-      await updateData(
-        "categories",
-        { category_name: category.category_name, isActive: category.isActive },
-        category.id,
-        accessToken
+      let newData = {
+        category_name: category.category_name,
+        isActive: category.isActive,
+      };
+      dispatch(
+        updateData({ apiEndpoint: "categories", id, newData, accessToken })
       );
     } else {
-      await postData("categories", {
+      let newData = {
         category_name: category.category_name,
-      });
+      };
+      console.log(newData);
+      dispatch(addData({ apiEndpoint: "categories", newData }));
     }
     setOpenModal(false);
     setCategory({ category_name: "", isActive: false });

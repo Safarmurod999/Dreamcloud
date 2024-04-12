@@ -6,8 +6,9 @@ import {
   TextInput,
   Textarea,
 } from "flowbite-react";
+import { useDispatch } from "react-redux";
+import { addData, updateData } from "../../utils/slice";
 import React from "react";
-import { postProduct, updateProduct } from "../../utils/postData";
 
 const ProductModal = ({
   product,
@@ -17,31 +18,35 @@ const ProductModal = ({
   categories,
 }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
+  const dispatch = useDispatch();
   const onChangeHandler = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
   const onChangeNumber = (e) => {
     setProduct({ ...product, [e.target.name]: +e.target.value });
   };
-  const requestProduct = async (e) => {
+  const requestProduct = (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("product_name", product.product_name);
-    data.append("category_id", product.category_id);
-    data.append("price", product.price);
-    data.append("count", product.count);
-    data.append("discount", product.discount);
-    data.append("overweight", product.overweight);
-    data.append("size", product.size);
-    data.append("capacity", product.capacity);
-    data.append("guarantee", product.guarantee);
-    data.append("description", product.description);
-    data.append("image", product.image);
-    data.append("status", product.status);
+    const newData = new FormData();
+    newData.append("product_name", product.product_name);
+    newData.append("category_id", product.category_id);
+    newData.append("price", product.price);
+    newData.append("count", product.count);
+    newData.append("discount", product.discount);
+    newData.append("overweight", product.overweight);
+    newData.append("size", product.size);
+    newData.append("capacity", product.capacity);
+    newData.append("guarantee", product.guarantee);
+    newData.append("description", product.description);
+    newData.append("image", product.image);
+    newData.append("status", product.status);
     if (product.id) {
-      await updateProduct("products", data, product.id, accessToken);
+      let id = product.id;
+      dispatch(
+        updateData({ apiEndpoint: "products", id, newData, accessToken })
+      );
     } else {
-      await postProduct("products", data);
+      dispatch(addData({ apiEndpoint: "products", newData }));
     }
     setProductModal(false);
     setProduct({
