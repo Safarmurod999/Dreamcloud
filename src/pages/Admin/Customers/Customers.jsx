@@ -30,7 +30,6 @@ const Customers = () => {
   const updateCustomer = (data, id) => {
     let newData = { recall: data };
     dispatch(updateData({ apiEndpoint: "orders", id, newData, accessToken }));
-    location.reload();
   };
 
   if (isLoading) {

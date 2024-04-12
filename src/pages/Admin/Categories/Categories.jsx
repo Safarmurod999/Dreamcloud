@@ -40,7 +40,9 @@ const Categories = () => {
       updateData({ apiEndpoint: "categories", id, newData, accessToken })
     );
   };
-
+  if (isLoading) {
+    return <Spinner position={"relative"} />;
+  }
   if (error) {
     console.log(error);
   }

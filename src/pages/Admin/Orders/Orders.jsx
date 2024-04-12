@@ -12,7 +12,9 @@ const Orders = () => {
   useEffect(() => {
     dispatch(fetchData("orders"));
   }, [dispatch]);
-
+  if (isLoading) {
+    return <Spinner position={"relative"} />;
+  }
   if (error) {
     console.log(error);
   }
