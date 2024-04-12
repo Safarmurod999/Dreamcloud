@@ -3,7 +3,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import Spinner from "../../../components/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteData, fetchData, updateData } from "../../../utils/slice";
-
+import { Table } from "flowbite-react";
 const Addresses = () => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
 
@@ -22,7 +22,9 @@ const Addresses = () => {
 
   const updateAddress = (data, id) => {
     let newData = { recall: data };
-    dispatch(updateData({ apiEndpoint: "addresses", id, newData, accessToken }));
+    dispatch(
+      updateData({ apiEndpoint: "addresses", id, newData, accessToken })
+    );
     location.reload();
   };
 
@@ -37,58 +39,56 @@ const Addresses = () => {
       <main>
         <div className="flex-1 py-6">
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
-            <div className="overflow-x-auto w-full">
-              <table className="table-auto w-full border-collapse border border-gray-800">
-                <thead>
-                  <tr className="bg-gray-200">
-                    <th className="border-b border-gray-600 px-4 py-2 text-center">
-                      Id
-                    </th>
-                    <th className="border-b border-gray-600 px-4 py-2 text-center">
-                      Manzil
-                    </th>
-                    <th className="border-b border-gray-600 px-4 py-2 text-center">
-                      Matn
-                    </th>
-                    <th className="border-b border-gray-600 px-4 py-2 text-center">
-                      Location
-                    </th>
-                    <th className="border-b border-gray-600 px-4 py-2 text-center"></th>
-                  </tr>
-                </thead>
-                <tbody>
+            <div className="overflow-x-auto w-full rounded-lg">
+              <Table hoverable className="rounded-lg border border-gray-200">
+                <Table.Head>
+                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+                    Id
+                  </Table.HeadCell>
+                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+                    Manzil
+                  </Table.HeadCell>
+                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+                    Matn
+                  </Table.HeadCell>
+                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+                    Location
+                  </Table.HeadCell>
+                  <Table.HeadCell className="bg-gray-200 py-4 text-center">Edit</Table.HeadCell>
+                </Table.Head>
+                <Table.Body>
                   {[...addresses.data]
                     .sort((a, b) => a.id - b.id)
                     .map((el) => (
-                      <tr key={el.id}>
-                        <td className="border-b border-gray-600 px-4 py-2 text-center">
+                      <Table.Row key={el.id} className="dark:bg-gray-800">
+                        <Table.Cell className="py-1 text-center whitespace-nowrap font-medium text-gray-900">
                           {el.id}
-                        </td>
-                        <td className="border-b border-gray-600 px-4 py-2 text-center">
+                        </Table.Cell>
+                        <Table.Cell className="py-1 text-center text-ellipsis overflow-hidden">
                           {el.address}
-                        </td>
-                        <td className="border-b border-gray-600 px-4 py-2 text-center">
+                        </Table.Cell>
+                        <Table.Cell className="py-1 text-center text-ellipsis overflow-hidden">
                           {el?.description}
-                        </td>
-                        <td className="border-b border-gray-600 px-4 text-center">
+                        </Table.Cell>
+                        <Table.Cell className="py-1 text-center max-w-[250px] text-ellipsis overflow-hidden">
                           {el?.location}
-                        </td>
-                        <td className="border-b border-gray-600 px-4 py-1 text-center">
+                        </Table.Cell>
+                        <Table.Cell className="py-1 text-center px-4">
                           {" "}
                           <button
                             type="button"
-                            className="focus:outline-none text-white bg-[#FBE9E9] hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
+                            className="focus:outline-none text-white bg-[#FBE9E9] focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-3 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
                             onClick={() => deleteAddress(el.id)}
                           >
                             <MdDeleteOutline
                               style={{ fill: "#f00", fontSize: "20px" }}
                             />
                           </button>
-                        </td>
-                      </tr>
+                        </Table.Cell>
+                      </Table.Row>
                     ))}
-                </tbody>
-              </table>
+                </Table.Body>
+              </Table>
             </div>
           </div>
         </div>

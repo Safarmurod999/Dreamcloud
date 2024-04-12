@@ -22,7 +22,7 @@ export const fetchData = createAsyncThunk(
 
 export const addData = createAsyncThunk(
   "data/addData",
-  async ({apiEndpoint,dataToAdd}, thunkAPI) => {
+  async ({ apiEndpoint, dataToAdd }, thunkAPI) => {
     try {
       const response = await axios.post(`${BASE_URL}${apiEndpoint}`, dataToAdd);
       return response.data;
@@ -31,7 +31,6 @@ export const addData = createAsyncThunk(
     }
   }
 );
-
 export const updateData = createAsyncThunk(
   "data/updateData",
   async ({ apiEndpoint, id, newData, accessToken }, thunkAPI) => {
@@ -46,7 +45,7 @@ export const updateData = createAsyncThunk(
           },
         }
       );
-
+      response.data.data[0].id = id;
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -90,8 +89,8 @@ const dataSlice = createSlice({
       })
       .addCase(addData.fulfilled, (state, action) => {
         state.isLoading = false;
+        console.log(action.payload);
         state.data.data.push(action.payload);
-        console.log(state.data.data);
       })
       .addCase(addData.rejected, (state, action) => {
         state.isLoading = false;
@@ -104,11 +103,11 @@ const dataSlice = createSlice({
       .addCase(updateData.fulfilled, (state, action) => {
         state.isLoading = false;
         const index = state.data.data.findIndex(
-          (item) => item.id === action.payload.id
+          (item) => item.id === action.payload.data[0].id
         );
         if (index !== -1) {
-          state.data.data[index] = action.payload;
-          console.log(action.payload);
+          console.log(action.payload.data[0]);
+          state.data.data[index] = action.payload.data[0];
         }
       })
       .addCase(updateData.rejected, (state, action) => {

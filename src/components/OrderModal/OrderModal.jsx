@@ -24,7 +24,7 @@ function OrderModal({ data }) {
     if (payload == "+") {
       setOrder({ ...newOrder, count: newOrder.count + 1 });
     } else {
-      if (newOrder.count < 0) {
+      if (newOrder.count == 1) {
         setOrder({ ...newOrder, count: 1 });
       } else setOrder({ ...newOrder, count: newOrder.count - 1 });
     }
@@ -87,6 +87,7 @@ function OrderModal({ data }) {
                 placeholder="Raqamingizni yozing"
                 value={newOrder.mobile_phone}
                 onChange={onChangeHandler}
+                maxLength={9}
                 required
               />
             </div>
