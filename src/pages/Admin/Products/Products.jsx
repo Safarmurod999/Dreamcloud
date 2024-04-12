@@ -53,7 +53,7 @@ const Products = () => {
     console.log({ apiEndpoint: "products", id, newData, accessToken });
   };
 
-  if (loading) {
+  if (isLoading || loading) {
     return <Spinner position={"relative"} />;
   }
   if (error) {
