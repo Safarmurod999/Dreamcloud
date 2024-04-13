@@ -5,6 +5,7 @@ import Spinner from "../../../components/Spinner/Spinner";
 import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  Breadcrumb,
   Button,
   Table,
   TableBody,
@@ -14,6 +15,7 @@ import {
   TableRow,
 } from "flowbite-react";
 import { ProductModal } from "../../../components";
+import { HiHome } from "react-icons/hi";
 const Products = () => {
   const { data: categories, loading } = useFetch("categories");
   const [product, setProduct] = useState({
@@ -73,10 +75,18 @@ const Products = () => {
     productsArr && (
       <main>
         <div className="flex-1 py-6">
+          <Breadcrumb aria-label="Products page" className="ml-[48px] mb-4">
+            <Breadcrumb.Item href="/admin" icon={HiHome}>
+              Dashboard
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Mahsulotlar</Breadcrumb.Item>
+          </Breadcrumb>
+          <h1 className="text-3xl font-medium ml-[50px]">Mahsulotlar</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
+            <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg">
-              <Table className="table-auto w-full rounded-lg border border-gray-200">
-                <TableHead>
+              <Table className="table-auto w-full rounded-lg border border-gray-800">
+                <TableHead className="border border-gray-800">
                   <TableHeadCell className="bg-gray-200 text-center py-4">
                     Id
                   </TableHeadCell>
@@ -109,7 +119,7 @@ const Products = () => {
                     .map((el, index) => (
                       <TableRow
                         key={el.id}
-                        className="border-b border-gray-200"
+                        className="border-b border-gray-800"
                       >
                         <TableCell className="py-1 text-center">
                           {index + 1}
@@ -187,22 +197,22 @@ const Products = () => {
                     ))}
                 </TableBody>
               </Table>
-              <Button
-                color={"primary"}
-                className="focus:outline-none border-none text-white bg-[#E6ECEE] hover:bg-[#E6ECEE] font-medium rounded-lg text-sm mt-3 "
-                onClick={() => setProductModal(true)}
-              >
-                Qo'shish
-              </Button>
-              <ProductModal
-                product={product}
-                categories={categories}
-                setProductModal={setProductModal}
-                productModal={productModal}
-                setProduct={setProduct}
-              />
             </div>
           </div>
+          <Button
+            color={"primary"}
+            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
+            onClick={() => setProductModal(true)}
+          >
+            Qo'shish
+          </Button>
+          <ProductModal
+            product={product}
+            categories={categories}
+            setProductModal={setProductModal}
+            productModal={productModal}
+            setProduct={setProduct}
+          />
         </div>
       </main>
     )

@@ -125,7 +125,7 @@ const ProductModal = ({
                 {product.image?.type && (
                   <img
                     src={URL.createObjectURL(product.image)}
-                    className="w-full h-full absolute top-0 left-0 rounded-lg"
+                    className="w-full h-full bg-gray-200 object-contain absolute top-0 left-0 rounded-lg"
                     alt=""
                   />
                 )}
@@ -274,6 +274,7 @@ const ProductModal = ({
             </div>
             <Textarea
               id="description"
+              className="border ring-1 ring-gray-200 rounded-md"
               name="description"
               placeholder="Ma'lumot kiriting ..."
               value={product.description}

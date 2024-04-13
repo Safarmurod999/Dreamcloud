@@ -5,6 +5,7 @@ import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import { useDispatch, useSelector } from "react-redux";
 import { TechnologiesModal } from "../../../components";
 import {
+  Breadcrumb,
   Button,
   Table,
   TableBody,
@@ -13,6 +14,7 @@ import {
   TableHeadCell,
   TableRow,
 } from "flowbite-react";
+import { HiHome } from "react-icons/hi";
 const Technologies = () => {
   const [technology, setTechnology] = useState({
     name: "",
@@ -54,10 +56,18 @@ const Technologies = () => {
     technologies && (
       <main>
         <div className="flex-1 py-6">
+          <Breadcrumb aria-label="Technologies page" className="ml-[48px] mb-4">
+            <Breadcrumb.Item href="/admin" icon={HiHome}>
+              Dashboard
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Texnologiyalar</Breadcrumb.Item>
+          </Breadcrumb>
+          <h1 className="text-3xl font-medium ml-[50px]">Texnologiyalar</h1>
           <div className="mx-auto px-4 py-6 sm:px-2 lg:px-12">
+            <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg">
-              <Table className="rounded-lg border border-gray-2">
-                <TableHead>
+              <Table className="rounded-lg border border-gray-800">
+                <TableHead className="border border-gray-800">
                   <TableHeadCell className="text-center bg-gray-200 py-4">
                     Id
                   </TableHeadCell>
@@ -79,7 +89,7 @@ const Technologies = () => {
                     .sort((a, b) => a.id - b.id)
                     .map((el) => (
                       <TableRow
-                        className="border-b border-gray-200"
+                        className="border-b border-gray-800"
                         key={el.id}
                       >
                         <TableCell className="text-center py-1">
@@ -89,7 +99,7 @@ const Technologies = () => {
                           {el.name}
                         </TableCell>
                         <TableCell className="text-center py-1 text-ellipsis overflow-hidden">
-                          {el.description.length > 30
+                          {el.description && el.description.length > 30
                             ? el.description.slice(0, 30) + "..."
                             : el.description}
                         </TableCell>
@@ -139,21 +149,21 @@ const Technologies = () => {
                     ))}
                 </TableBody>
               </Table>
-              <Button
-                color={"primary"}
-                className="focus:outline-none border-none text-white bg-[#E6ECEE] hover:bg-[#E6ECEE] font-medium rounded-lg text-sm mt-3 py-2"
-                onClick={() => setOpenModal(true)}
-              >
-                Qo'shish
-              </Button>
-              <TechnologiesModal
-                technology={technology}
-                openModal={openModal}
-                setTechnology={setTechnology}
-                setOpenModal={setOpenModal}
-              />
             </div>
           </div>
+          <Button
+            color={"primary"}
+            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 py-2"
+            onClick={() => setOpenModal(true)}
+          >
+            Qo'shish
+          </Button>
+          <TechnologiesModal
+            technology={technology}
+            openModal={openModal}
+            setTechnology={setTechnology}
+            setOpenModal={setOpenModal}
+          />
         </div>
       </main>
     )

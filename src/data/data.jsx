@@ -4,6 +4,10 @@ import { BiCategory } from "react-icons/bi";
 import { RiProductHuntLine } from "react-icons/ri";
 import { GoTools } from "react-icons/go";
 import { CiLocationOn } from "react-icons/ci";
+import { IoIosStats } from "react-icons/io";
+
+import { BsCart2 } from "react-icons/bs";
+
 import { lazy } from "react";
 const Orders = lazy(() => import('../pages/Admin/Orders/Orders'));
 const Customers = lazy(() => import('../pages/Admin/Customers/Customers'));
@@ -11,8 +15,16 @@ const Categories = lazy(() => import('../pages/Admin/Categories/Categories'));
 const Products = lazy(() => import('../pages/Admin/Products/Products'));
 const Technologies = lazy(() => import('../pages/Admin/Technologies/Technologies'));
 const Addresses = lazy(() => import('../pages/Admin/Addresses/Addresses'));
+const Dashboard = lazy(() => import('../pages/Admin/Dashboard/Dashboard'));
 export const BASE_URL = 'https://dreamcloud-backend-e4327b791528.herokuapp.com/';
 export const features = [
+  {
+    id: 1,
+    image: "/features/features-1.png",
+    is_active: 1,
+    title: "Yetkazib berish",
+    description: "Toshkent bo'ylab bepul o'lchov va etkazib berish",
+  },
   {
     id: 1,
     image: "/features/features-1.png",
@@ -41,13 +53,21 @@ export const adminRoutes = [
   {
     id: 0,
     path: "/admin",
-    name: "Buyurtmalar",
+    name: "Dashboard",
     current: true,
-    icon: <RiHome2Line />,
-    element: <Orders />,
+    icon: <IoIosStats />,
+    element: <Dashboard />,
   },
   {
     id: 1,
+    path: "/admin/orders",
+    name: "Buyurtmalar",
+    current: true,
+    icon: <BsCart2 />,
+    element: <Orders />,
+  },
+  {
+    id: 2,
     path: "/admin/customers",
     name: "Mijozlar",
     current: false,
@@ -55,7 +75,7 @@ export const adminRoutes = [
     element: <Customers />,
   },
   {
-    id: 2,
+    id: 3,
     path: "/admin/categories",
     name: "Kategoriyalar",
     current: false,
@@ -63,7 +83,7 @@ export const adminRoutes = [
     element: <Categories />,
   },
   {
-    id: 3,
+    id: 4,
     path: "/admin/products",
     name: "Mahsulotlar",
     current: false,
@@ -71,7 +91,7 @@ export const adminRoutes = [
     element: <Products />,
   },
   {
-    id: 4,
+    id: 5,
     path: "/admin/technologies",
     name: "Texnologiyalar",
     current: false,
@@ -79,7 +99,7 @@ export const adminRoutes = [
     element: <Technologies />,
   },
   {
-    id: 5,
+    id: 6,
     path: "/admin/addresses",
     name: "Manzil",
     current: false,
