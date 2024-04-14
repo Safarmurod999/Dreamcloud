@@ -10,4 +10,5 @@ export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as ProductModal } from "./ProductModal/ProductModal";
 export { default as Sidebar } from "./Sidebar/Sidebar";
 export { default as TechnologiesModal } from "./TechnologiesModal/TechnologiesModal";
+export {default as AdminAddresses} from "./AdminAddresses/AdminAddresses";
 export { default as Spinner } from "./Spinner/Spinner";

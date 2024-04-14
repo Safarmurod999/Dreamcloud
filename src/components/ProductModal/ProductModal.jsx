@@ -87,7 +87,10 @@ const ProductModal = ({
         });
       }}
     >
-      <Modal.Header>Mahsulot tahrirlash</Modal.Header>
+      <Modal.Header>
+        {product.id ? "Mahsulot tahrirlash" : "Mahsulot qo'shish"}{" "}
+        {product.product_name.length > 0 && `- ${product.product_name}`}
+      </Modal.Header>
       <Modal.Body>
         <form
           encType="multipart/form-data"

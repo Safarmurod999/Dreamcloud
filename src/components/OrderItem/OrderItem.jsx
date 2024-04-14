@@ -2,17 +2,12 @@ import React, { memo } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { deleteData, updateData } from "../../utils/slice";
 import { useDispatch } from "react-redux";
-import useFetch from "../../hooks/useFetch";
+
 import { TableCell, TableRow } from "flowbite-react";
 const OrderItem = ({ el }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
-  const { data: products, loading, error } = useFetch("products");
   const dispatch = useDispatch();
-  if (products && !loading) {
-    var product_name = products.data.find(
-      (product) => product.id == el.product_id
-    )?.product_name;
-  }
+
   const updateOrder = (data, id) => {
     let newData = { recall: data };
     dispatch(updateData({ apiEndpoint: "orders", id, newData, accessToken }));
@@ -25,7 +20,7 @@ const OrderItem = ({ el }) => {
       <TableCell className="py-1 text-center">{el.id}</TableCell>
       <TableCell className="py-1 text-center">{el.customer_name}</TableCell>
       <TableCell className="py-1 text-center">{el.mobile_phone}</TableCell>
-      <TableCell className="py-1 text-center">{product_name}</TableCell>
+      <TableCell className="py-1 text-center">{el.product_name}</TableCell>
       <TableCell className="py-1 text-center">{el.count}</TableCell>
       <TableCell className="py-1 px-4 text-center">
         <label className="inline-flex items-center cursor-pointer">
