@@ -61,11 +61,11 @@ const Products = () => {
   if (error) {
     console.log(error);
   }
-  if (products && !loading) {
+  if (products && !loading && !isLoading) {
     var productsArr = products.data.map((product) => {
       let category_name = categories.data.find(
         (c) => c.id == product.category_id
-      ).category_name;
+      )?.category_name;
 
       return { ...product, category_name };
     });

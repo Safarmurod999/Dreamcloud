@@ -38,14 +38,6 @@ const Technologies = () => {
     dispatch(deleteData({ apiEndpoint: "technologies", id }));
   };
 
-  const updateTechnology = (data, id) => {
-    let newData = { recall: data };
-    dispatch(
-      updateData({ apiEndpoint: "technologies", id, newData, accessToken })
-    );
-    location.reload();
-  };
-
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }

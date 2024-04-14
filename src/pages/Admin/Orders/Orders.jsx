@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import Spinner from "../../../components/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../../../utils/slice";
@@ -19,9 +19,11 @@ const Orders = () => {
   useEffect(() => {
     dispatch(fetchData("orders"));
   }, [dispatch]);
+
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
+
   if (error) {
     console.log(error);
   }
@@ -79,4 +81,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default memo(Orders);

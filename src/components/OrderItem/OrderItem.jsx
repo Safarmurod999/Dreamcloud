@@ -9,7 +9,9 @@ const OrderItem = ({ el }) => {
   const { data: products, loading, error } = useFetch("products");
   const dispatch = useDispatch();
   if (products && !loading) {
-    var el_name = products.data.find((product) => product.id == el.product_id);
+    var product_name = products.data.find(
+      (product) => product.id == el.product_id
+    )?.product_name;
   }
   const updateOrder = (data, id) => {
     let newData = { recall: data };
@@ -20,21 +22,11 @@ const OrderItem = ({ el }) => {
   };
   return (
     <TableRow key={el.id} className="border-b border-gray-800">
-      <TableCell className="py-1 text-center">
-        {el.id}
-      </TableCell>
-      <TableCell className="py-1 text-center">
-        {el.customer_name}
-      </TableCell>
-      <TableCell className="py-1 text-center">
-        {el.mobile_phone}
-      </TableCell>
-      <TableCell className="py-1 text-center">
-        {el_name?.product_name}
-      </TableCell>
-      <TableCell className="py-1 text-center">
-        {el.count}
-      </TableCell>
+      <TableCell className="py-1 text-center">{el.id}</TableCell>
+      <TableCell className="py-1 text-center">{el.customer_name}</TableCell>
+      <TableCell className="py-1 text-center">{el.mobile_phone}</TableCell>
+      <TableCell className="py-1 text-center">{product_name}</TableCell>
+      <TableCell className="py-1 text-center">{el.count}</TableCell>
       <TableCell className="py-1 px-4 text-center">
         <label className="inline-flex items-center cursor-pointer">
           <input

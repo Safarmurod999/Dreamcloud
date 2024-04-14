@@ -26,13 +26,6 @@ export const features = [
     description: "Toshkent bo'ylab bepul o'lchov va etkazib berish",
   },
   {
-    id: 1,
-    image: "/features/features-1.png",
-    is_active: 1,
-    title: "Yetkazib berish",
-    description: "Toshkent bo'ylab bepul o'lchov va etkazib berish",
-  },
-  {
     id: 2,
     image: "/features/features-2.png",
     is_active: 1,

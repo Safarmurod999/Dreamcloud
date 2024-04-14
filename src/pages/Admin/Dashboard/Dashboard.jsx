@@ -15,6 +15,8 @@ import {
   PointElement,
   LineElement,
 } from "chart.js";
+import { Link } from "react-router-dom";
+import { FaChevronRight } from "react-icons/fa6";
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement);
 function groupByDay(items) {
@@ -52,28 +54,26 @@ const Dashboard = () => {
       return acc;
     }, {});
 
-    // Extract dates and counts for chart data
     var labels = Object.keys(aggregatedData);
     var counts = Object.values(aggregatedData);
-    console.log(labels, counts);
-    // Data for the chart
+
     var chartData = {
       labels: labels,
       datasets: [
         {
           label: "Count",
           fill: false,
-          lineTension: 0.4, // Adjust the line tension for curved lines
-          backgroundColor: "rgba(75,192,192,0.4)",
-          borderColor: "rgba(75,192,192,1)",
-          pointBorderColor: "rgba(75,192,192,1)",
+          lineTension: 0.4,
+          backgroundColor: "rgb(31,41,55)",
+          borderColor: "rgb(31,41,55)",
+          pointBorderColor: "#FF6B6B",
           pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
+          pointBorderWidth: 2,
           pointHoverRadius: 5,
           pointHoverBackgroundColor: "rgba(75,192,192,1)",
           pointHoverBorderColor: "rgba(220,220,220,1)",
           pointHoverBorderWidth: 2,
-          pointRadius: 1,
+          pointRadius: 3,
           pointHitRadius: 10,
           data: counts,
         },
@@ -97,7 +97,7 @@ const Dashboard = () => {
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="overflow-x-auto w-full rounded-lg">
               <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center">
+                <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center border border-white hover:border-gray-800">
                   <IoLayersSharp className="text-4xl" />
                   <h1 className="text-3xl font-medium text-center mt-2">
                     Bugungi
@@ -106,7 +106,7 @@ const Dashboard = () => {
                     3 400 000 so'm
                   </p>
                 </div>
-                <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center">
+                <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center border border-white hover:border-gray-800">
                   <MdCalendarMonth className="text-4xl" />
                   <h1 className="text-3xl font-medium text-center mt-2">
                     Haftalik
@@ -115,7 +115,7 @@ const Dashboard = () => {
                     22 300 000 so'm
                   </p>
                 </div>
-                <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center">
+                <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center border border-white hover:border-gray-800">
                   <FaRegCreditCard className="text-4xl" />
                   <h1 className="text-3xl font-medium text-center mt-2">
                     Oylik
@@ -125,18 +125,29 @@ const Dashboard = () => {
                   </p>
                 </div>
               </div>
-              <div className="mt-3 w-1/2">
-                <Line
-                  data={chartData}
-                  options={{
-                    scales: {
-                      y: {
-                        beginAtZero: true,
-                        stepSize: 1,
+              <div className="mt-8 w-1/2">
+                <div className="flex justify-between items-center my-4">
+                  <p className="text-xl font-medium">Kunlik buyurtmalar statisikasi </p>
+                  <Link
+                    to={"/admin/orders"}
+                    className="flex items-center font-bold hover:text-gray-600"
+                  >
+                    Ko'rish <FaChevronRight className="text-sm" />
+                  </Link>
+                </div>
+                <div className="p-4 border rounded-lg border-gray-800">
+                  <Line
+                    data={chartData}
+                    options={{
+                      scales: {
+                        y: {
+                          beginAtZero: true,
+                          stepSize: 1,
+                        },
                       },
-                    },
-                  }}
-                />
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

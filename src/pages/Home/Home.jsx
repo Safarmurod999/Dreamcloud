@@ -78,11 +78,7 @@ function Home() {
               <img className="home__main" src={bed} alt="bed" />
               <a href="#catalog">
                 {" "}
-                <Button
-                  title={"Kategoriyalar"}
-                  src={arrow}
-                  callback={() => console.log("click")}
-                />
+                <Button title={"Kategoriyalar"} src={arrow} />
               </a>
               <img src={range} alt="range" />
             </div>

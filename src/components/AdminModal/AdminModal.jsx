@@ -10,6 +10,7 @@ const AdminModal = ({ category, openModal, setOpenModal, setCategory }) => {
   const requestCategory = (e) => {
     e.preventDefault();
     if (category.id) {
+      let id = category.id;
       let newData = {
         category_name: category.category_name,
         isActive: category.isActive,

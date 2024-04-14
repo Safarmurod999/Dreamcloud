@@ -40,7 +40,6 @@ export const updateData = createAsyncThunk(
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json", // Assuming your API accepts JSON data
           },
         }
       );
@@ -82,23 +81,23 @@ const dataSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(addData.pending, (state) => {
-        state.isLoading = true;
+        // state.isLoading = true;
         state.error = null;
       })
       .addCase(addData.fulfilled, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         state.data.data.push(action.payload.data[0]);
       })
       .addCase(addData.rejected, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(updateData.pending, (state) => {
-        state.isLoading = true;
+        // state.isLoading = true;
         state.error = null;
       })
       .addCase(updateData.fulfilled, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         const index = state.data.data.findIndex(
           (item) => item.id === action.payload.data[0].id
         );
@@ -108,21 +107,21 @@ const dataSlice = createSlice({
         }
       })
       .addCase(updateData.rejected, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(deleteData.pending, (state) => {
-        state.isLoading = true;
+        // state.isLoading = true;
         state.error = null;
       })
       .addCase(deleteData.fulfilled, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         state.data.data = state.data.data.filter(
           (item) => item.id !== action.payload
         );
       })
       .addCase(deleteData.rejected, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         state.error = action.payload;
       });
   },
