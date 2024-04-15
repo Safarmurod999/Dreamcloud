@@ -354,7 +354,7 @@ function Home() {
                 <div className="form__input">
                   <span>+998 |</span>
                   <input
-                    className="contact__input"
+                    className="contact__input focus:ring-0"
                     placeholder="Raqamingizni yozing"
                     type="text"
                     onChange={(e) => setContact(e.target.value)}

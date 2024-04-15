@@ -56,22 +56,22 @@ const Addresses = () => {
           <h1 className="text-3xl font-medium ml-[50px]">Manzillar</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg">
-              <Table hoverable className="rounded-lg border border-gray-800">
-                <Table.Head className="border border-gray-800">
-                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+              <Table hoverable className="rounded-lg">
+                <Table.Head className="border-gray-800">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
                     Id
                   </Table.HeadCell>
-                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
                     Manzil
                   </Table.HeadCell>
-                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
                     Matn
                   </Table.HeadCell>
-                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
                     Location
                   </Table.HeadCell>
-                  <Table.HeadCell className="bg-gray-200 py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
                     Edit
                   </Table.HeadCell>
                 </Table.Head>
@@ -141,8 +141,8 @@ const Addresses = () => {
             </div>
           </div>
           <Button
-            color={"primary"}
-            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
+            color={"default"}
+            className="ml-[48px] focus:outline-none border border-gray-700 bg-[#E6ECEE]  hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
             onClick={() => setOpenModal(true)}
           >
             Qo'shish

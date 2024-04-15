@@ -53,18 +53,18 @@ const Customers = () => {
         <h1 className="text-3xl font-medium ml-[50px]">Mijozlar</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
           <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg border">
-              <Table hoverable className="table-auto w-full rounded-lg border border-gray-800">
-                <TableHead className="border border-gray-800">
-                  <TableHeadCell className="text-center bg-gray-200 py-4">Id</TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">Sana</TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+              <Table hoverable className="table-auto w-full rounded-lg">
+                <TableHead className="border-gray-800">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">Id</TableHeadCell>
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">Sana</TableHeadCell>
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Telefon Raqami
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Qayta Aloqa
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">Edit</TableHeadCell>
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">Delete</TableHeadCell>
                 </TableHead>
                 <TableBody>
                   {[...orders.data]
@@ -72,7 +72,7 @@ const Customers = () => {
                     .map((el) => (
                       <TableRow
                         key={el.id}
-                        className=" border-b border-gray-800"
+                        className=" border-b border-gray-200"
                       >
                         <TableCell className="py-1 text-center">{el.id}</TableCell>
                         <TableCell className="py-1 text-center">

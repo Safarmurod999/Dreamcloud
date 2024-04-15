@@ -57,22 +57,22 @@ const Technologies = () => {
           <h1 className="text-3xl font-medium ml-[50px]">Texnologiyalar</h1>
           <div className="mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg">
-              <Table className="rounded-lg border border-gray-800">
-                <TableHead className="border border-gray-800">
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+              <Table hoverable className="rounded-lg">
+                <TableHead className="border-gray-800">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Id
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Nomi
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Matn
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Video
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Edit
                   </TableHeadCell>
                 </TableHead>
@@ -81,7 +81,7 @@ const Technologies = () => {
                     .sort((a, b) => a.id - b.id)
                     .map((el) => (
                       <TableRow
-                        className="border-b border-gray-800"
+                        className="border-b border-gray-200"
                         key={el.id}
                       >
                         <TableCell className="text-center py-1">
@@ -145,7 +145,7 @@ const Technologies = () => {
           </div>
           <Button
             color={"primary"}
-            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 py-2"
+            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
             onClick={() => setOpenModal(true)}
           >
             Qo'shish

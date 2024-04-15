@@ -84,34 +84,34 @@ const Products = () => {
           <h1 className="text-3xl font-medium ml-[50px]">Mahsulotlar</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg">
-              <Table className="table-auto w-full rounded-lg border border-gray-800">
-                <TableHead className="border border-gray-800">
-                  <TableHeadCell className="bg-gray-200 text-center py-4">
+            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+              <Table hoverable className="table-auto w-full rounded-lg">
+                <TableHead className="border-gray-800">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Id
                   </TableHeadCell>
-                  <TableHeadCell className="bg-gray-200 text-center py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Mahsulot nomi
                   </TableHeadCell>
-                  <TableHeadCell className="bg-gray-200 text-center py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Kategoriyasi
                   </TableHeadCell>
-                  <TableHeadCell className="bg-gray-200 text-center py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Narxi
                   </TableHeadCell>
-                  <TableHeadCell className="bg-gray-200 text-center py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Yuklama
                   </TableHeadCell>
-                  <TableHeadCell className="bg-gray-200 text-center py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     O'lchami
                   </TableHeadCell>
-                  <TableHeadCell className="bg-gray-200 text-center py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Miqdori
                   </TableHeadCell>
-                  <TableHeadCell className="bg-gray-200 text-center py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Status
                   </TableHeadCell>
-                  <TableHeadCell className="bg-gray-200 text-center py-4"></TableHeadCell>
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">Actions</TableHeadCell>
                 </TableHead>
                 <TableBody>
                   {productsArr
@@ -119,7 +119,7 @@ const Products = () => {
                     .map((el, index) => (
                       <TableRow
                         key={el.id}
-                        className="border-b border-gray-800"
+                        className="border-b border-gray-200"
                       >
                         <TableCell className="py-1 text-center">
                           {index + 1}
@@ -154,7 +154,7 @@ const Products = () => {
                             <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700"></div>
                           </label>
                         </TableCell>
-                        <TableCell className="py-1 px-4 py-1 flex gap-x-2 justify-end text-center">
+                        <TableCell className="py-1 px-4 py-1 flex gap-x-2 justify-center text-center">
                           {" "}
                           <button
                             type="button"

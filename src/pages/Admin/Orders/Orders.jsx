@@ -40,29 +40,29 @@ const Orders = () => {
           <h1 className="text-3xl font-medium ml-[50px]">Buyurtmalar</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg border">
-              <Table className="table-auto w-full border border-gray-800 rounded-lg">
-                <TableHead className="border-b border-gray-800">
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+              <Table hoverable className="table-auto w-full rounded-lg">
+                <TableHead className="border-gray-800">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Id
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Ismi
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Telefon Raqami
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Mahsulot Nomlari
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Miqdor
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Qayta Aloqa
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-200 py-4">
-                    Edit
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                    Delete
                   </TableHeadCell>
                 </TableHead>
                 <TableBody>

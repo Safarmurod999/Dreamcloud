@@ -16,7 +16,7 @@ const OrderItem = ({ el }) => {
     dispatch(deleteData({ apiEndpoint: "orders", id }));
   };
   return (
-    <TableRow key={el.id} className="border-b border-gray-800">
+    <TableRow key={el.id} className="border-b border-gray-200 bg-white">
       <TableCell className="py-1 text-center">{el.id}</TableCell>
       <TableCell className="py-1 text-center">{el.customer_name}</TableCell>
       <TableCell className="py-1 text-center">{el.mobile_phone}</TableCell>

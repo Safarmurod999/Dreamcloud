@@ -22,7 +22,11 @@ function OrderModal({ data }) {
   const countHandler = (e, payload) => {
     e.preventDefault();
     if (payload == "+") {
-      setOrder({ ...newOrder, count: newOrder.count + 1 });
+      if (newOrder.count == product_count) {
+        setOrder({ ...newOrder, count: newOrder.count });
+      } else if (newOrder.count < product_count) {
+        setOrder({ ...newOrder, count: newOrder.count + 1 });
+      }
     } else {
       if (newOrder.count == 1) {
         setOrder({ ...newOrder, count: 1 });
@@ -32,6 +36,7 @@ function OrderModal({ data }) {
   const closeOrder = () => {
     document.querySelector(".order").style.display = "none";
     document.querySelector(".success").style.display = "none";
+    setOrder({ customer_name: "", mobile_phone: "", count: 1 });
   };
   const postOrder = (e) => {
     e.preventDefault();
@@ -46,7 +51,6 @@ function OrderModal({ data }) {
       setOrder({
         customer_name: "",
         mobile_phone: "",
-        product_id: 1,
         count: 1,
       });
     } else {
@@ -59,6 +63,10 @@ function OrderModal({ data }) {
   if (error) {
     console.log(error);
   }
+  if (products && !loading) {
+    var product_count = products.data.find((el) => el.id == id)?.count;
+    console.log(product_count);
+  }
   return (
     products && (
       <>
@@ -68,9 +76,11 @@ function OrderModal({ data }) {
               <img src={close} alt="close" />
             </div>
             <div className="order__form--title">Buyurtma qilish</div>
+            <label className="order__form--label" htmlFor="name">Ismingiz</label>
             <input
-              className="order__form--name"
+              className="order__form--name focus:ring-0"
               type="text"
+              id="name"
               minLength={1}
               placeholder="Ismingiz"
               name="customer_name"
@@ -78,11 +88,13 @@ function OrderModal({ data }) {
               onChange={onChangeHandler}
               required
             />
-            <div className="order__form--mobile_phone">
+            <label className="order__form--label" htmlFor="phone">Telefon Raqamingiz</label>
+            <div className="order__form--mobile_phone focus:ring-0">
               <span>+998</span>
               <input
-                className="order__form--phone"
+                className="order__form--phone focus:ring-0"
                 type="text"
+                id="phone"
                 name="mobile_phone"
                 placeholder="Raqamingizni yozing"
                 value={newOrder.mobile_phone}
@@ -91,13 +103,13 @@ function OrderModal({ data }) {
                 required
               />
             </div>
-            <div className="order__form--category">
+            <div className="order__form--category focus:ring-0">
               <label className="order__form--label" htmlFor="category">
                 Mahsulotlarni toifasini tanlang
               </label>
               <select
                 id="category"
-                className="order__form--select"
+                className="order__form--select focus:ring-0"
                 name="product_id"
                 value={id}
                 onChange={onChangeHandler}
@@ -123,7 +135,8 @@ function OrderModal({ data }) {
                   -{" "}
                 </button>
                 <input
-                  className="order__form--amount"
+                  type="number"
+                  className="order__form--amount focus:ring-0"
                   readOnly
                   value={newOrder.count}
                 />
@@ -152,6 +165,7 @@ function OrderModal({ data }) {
               src={success_img}
               alt="succes_img"
               className="success--image"
+              max=""
             />
             <p className="success--text">
               Tez orada operatorlarimiz siz bilan bog’lanishadi

@@ -6,10 +6,10 @@ const Sidebar = () => {
   let username = JSON.parse(localStorage.getItem("username")) || "User";
   return (
     <aside className="flex flex-col w-[350px] h-screen px-5 py-8 overflow-y-auto bg-gray-800 sidebar">
-      <a className="mx-auto flex flex-col justify-center cursor-pointer" to="/admin/profile">
+      <a className="flex gap-4 cursor-pointer" to="/admin/profile">
         {" "}
         <img
-          className="h-14 w-14 rounded-full"
+          className="h-12 w-12 rounded-full"
           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           alt="Your Company"
         />
@@ -18,7 +18,7 @@ const Sidebar = () => {
         </span>
       </a>
 
-      <div className="flex flex-col justify-between flex-1 mt-6">
+      <div className="flex flex-col justify-between border-t border-gray-500 pt-4 flex-1 mt-6">
         <nav className="-mx-3 space-y-6 ">
           <div className="space-y-3 ">
             <label className="px-3 text-xs text-gray-500 uppercase">

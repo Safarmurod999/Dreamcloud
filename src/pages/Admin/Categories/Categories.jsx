@@ -52,20 +52,20 @@ const Categories = () => {
           <h1 className="text-3xl font-medium ml-[50px]">Kategoriyalar</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
           <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg">
-              <Table hoverable className="rounded-lg border border-gray-800">
-                <Table.Head className="border border-gray-800">
-                  <Table.HeadCell className="text-center bg-gray-200 py-4">
+            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+              <Table hoverable className="rounded-lg">
+                <Table.Head className="border-gray-800">
+                  <Table.HeadCell className="text-center bg-gray-700 text-white py-4">
                     Id
                   </Table.HeadCell>
-                  <Table.HeadCell className="text-center bg-gray-200 py-4">
+                  <Table.HeadCell className="text-center bg-gray-700 text-white py-4">
                     Kategoriyalar
                   </Table.HeadCell>
-                  <Table.HeadCell className="text-center bg-gray-200 py-4">
+                  <Table.HeadCell className="text-center bg-gray-700 text-white py-4">
                     Aktiv
                   </Table.HeadCell>
-                  <Table.HeadCell className="text-center bg-gray-200 py-4">
-                    Edit
+                  <Table.HeadCell className="text-center bg-gray-700 text-white py-4">
+                    Actions
                   </Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
@@ -74,7 +74,7 @@ const Categories = () => {
                     .map((el, index) => (
                       <Table.Row
                         key={el.id}
-                        className="dark:bg-gray-800 border border-gray-800"
+                        className="dark:bg-gray-800 border-b border-gray-200"
                       >
                         <Table.Cell className="py-1 text-center">
                           {index + 1}
