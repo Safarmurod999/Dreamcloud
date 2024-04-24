@@ -42,16 +42,16 @@ function Home() {
     if (video.paused) {
       video.play();
       html.style.display = "none";
-      video.addEventListener("mouseover", () => {
-        html.style.display = "flex";
-        console.log(html);
-        html.innerHTML = <IoPauseCircleSharp />;
-      });
+      // video.addEventListener("mouseover", () => {
+      //   html.style.display = "flex";
+      //   console.log(html);
+      //   html.innerHTML = <IoPauseCircleSharp />;
+      // });
     } else {
       video.pause();
       html.style.display = "flex";
       console.log(html);
-      html.innerHTML = <IoIosPlayCircle />;
+      // html.innerHTML = <IoIosPlayCircle />;
     }
   }
   const modalControl = () => {
@@ -208,20 +208,20 @@ function Home() {
                   <SwiperSlide key={el.id}>
                     <div className="technologies--card">
                       <div className="technologies--card--title">{el.name}</div>
-                      <video
-                        src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/technologies/${el.video}`}
-                        className="technologies--card--video"
-                        id={el.id}
-                      ></video>
-                      <div
-                        className="technologies--card--btn"
-                        onClick={() => videoControl(el.id)}
-                      >
-                        <img
-                          src={play_btn}
-                          id={`btn-${el.id}`}
-                          alt="play-btn"
-                        />
+                      <div className="w-full flex items-center justify-center relative">
+                        <video
+                          src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/technologies/${el.video}`}
+                          className="technologies--card--video"
+                          id={el.id}
+                        ></video>
+                        <div
+                          className="technologies--card--btn"
+                          onClick={() => videoControl(el.id)}
+                        >
+                          <div id={`btn-${el.id}`}>
+                            <IoIosPlayCircle className="text-[76px]" />
+                          </div>
+                        </div>
                       </div>
                       <p className="technologies--card--description">
                         {el.description}
