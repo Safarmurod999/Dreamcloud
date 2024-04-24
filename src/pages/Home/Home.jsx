@@ -5,6 +5,7 @@ import arrow from "../../assets/icons/arrow.svg";
 import range from "../../assets/icons/range.svg";
 import bed from "../../assets/images/home/home-main.png";
 import play_btn from "../../assets/icons/play-btn.svg";
+import pause from "../../assets/icons/pause.svg";
 import video from "../../assets/videos/about-video.mp4";
 import showroom from "../../assets/images/home/showroom.png";
 import geolocation from "../../assets/icons/geolocation.svg";
@@ -22,6 +23,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Spinner from "../../components/Spinner/Spinner";
+import { IoPauseCircleSharp } from "react-icons/io5";
+import { IoIosPlayCircle } from "react-icons/io";
 
 function Home() {
   const [active, setActive] = useState(0);
@@ -39,9 +42,16 @@ function Home() {
     if (video.paused) {
       video.play();
       html.style.display = "none";
+      video.addEventListener("mouseover", () => {
+        html.style.display = "flex";
+        console.log(html);
+        html.innerHTML = <IoPauseCircleSharp />;
+      });
     } else {
       video.pause();
       html.style.display = "flex";
+      console.log(html);
+      html.innerHTML = <IoIosPlayCircle />;
     }
   }
   const modalControl = () => {
@@ -258,7 +268,9 @@ function Home() {
                   className="about__video--btn"
                   onClick={() => videoControl("about__video")}
                 >
-                  <img src={play_btn} id="btn-about__video" alt="play-btn" />
+                  <div id="btn-about__video">
+                    <IoIosPlayCircle className="text-[76px]" />
+                  </div>
                 </div>
               </div>
             </div>
