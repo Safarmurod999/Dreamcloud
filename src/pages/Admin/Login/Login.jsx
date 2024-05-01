@@ -37,6 +37,10 @@ function Login() {
             "username",
             JSON.stringify(response.data["username"])
           );
+          localStorage.setItem(
+            "isSuperAdmin",
+            JSON.stringify(response.data["isSuperAdmin"])
+          );
         }else{
           toast.error("Wrong credentials !");
         }
