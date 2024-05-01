@@ -33,7 +33,22 @@ function App() {
         <Routes>
           <Route element={<ProtectedRoute />}>
             {adminRoutes.map((route) => {
-              if (route.path == "admins") {
+              if (route.path !== "admins") {
+                return (
+                  <Route
+                    key={route.id}
+                    path={route.path}
+                    element={
+                      <Layout>
+                        {" "}
+                        <Suspense fallback={<Spinner position="relative" />}>
+                          {route.element}
+                        </Suspense>
+                      </Layout>
+                    }
+                  />
+                );
+              } else {
                 if (isSuperAdmin) {
                   return (
                     <Route
@@ -50,21 +65,6 @@ function App() {
                     />
                   );
                 }
-              } else {
-                return (
-                  <Route
-                    key={route.id}
-                    path={route.path}
-                    element={
-                      <Layout>
-                        {" "}
-                        <Suspense fallback={<Spinner position="relative" />}>
-                          {route.element}
-                        </Suspense>
-                      </Layout>
-                    }
-                  />
-                );
               }
             })}
           </Route>
