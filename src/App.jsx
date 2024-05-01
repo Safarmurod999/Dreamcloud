@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route element={<ProtectedRoute />}>
             {adminRoutes.map((route) => {
-              if (route.path == "admin") {
+              if (route.path == "admins") {
                 if (isSuperAdmin) {
                   return (
                     <Route
