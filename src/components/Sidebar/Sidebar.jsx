@@ -40,7 +40,7 @@ const Sidebar = () => {
                     onClick={() => setActiveRoute(item.id)}
                   >
                     {item.icon}
-                    <span className="mx-2 text-lg font-medium">
+                    <span className="mx-2 text-lg text-white font-medium">
                       {item.name}
                     </span>
                   </Link>
@@ -59,7 +59,7 @@ const Sidebar = () => {
                       onClick={() => setActiveRoute(item.id)}
                     >
                       {item.icon}
-                      <span className="mx-2 text-lg font-medium">
+                      <span className="mx-2 text-lg text-white font-medium">
                         {item.name}
                       </span>
                     </Link>
