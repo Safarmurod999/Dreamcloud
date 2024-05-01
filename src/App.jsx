@@ -7,9 +7,11 @@ import ProtectedRoute from "./pages/Layout/ProtectedRoute";
 import NotFound from "./pages/NotFound/NotFound";
 import { Spinner } from "./components";
 
-const Home = lazy(() => import('./pages/Home/Home'));
+const Home = lazy(() => import("./pages/Home/Home"));
 function App() {
   const route = useLocation();
+  const isSuperAdmin =
+    JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
   return (
     <>
       {route.pathname == "/" ? (
@@ -30,30 +32,51 @@ function App() {
       ) : route.pathname.startsWith("/admin") ? (
         <Routes>
           <Route element={<ProtectedRoute />}>
-            {adminRoutes.map((route) => (
-              <Route
-                key={route.id}
-                path={route.path}
-                element={
-                  <Layout>
-                    {" "}
-                    <Suspense fallback={<Spinner position="relative" />}>
-                      {route.element}
-                    </Suspense>
-                  </Layout>
+            {adminRoutes.map((route) => {
+              if (route.path == "admin") {
+                if (isSuperAdmin) {
+                  return (
+                    <Route
+                      key={route.id}
+                      path={route.path}
+                      element={
+                        <Layout>
+                          {" "}
+                          <Suspense fallback={<Spinner position="relative" />}>
+                            {route.element}
+                          </Suspense>
+                        </Layout>
+                      }
+                    />
+                  );
                 }
-              />
-            ))}
+              } else {
+                return (
+                  <Route
+                    key={route.id}
+                    path={route.path}
+                    element={
+                      <Layout>
+                        {" "}
+                        <Suspense fallback={<Spinner position="relative" />}>
+                          {route.element}
+                        </Suspense>
+                      </Layout>
+                    }
+                  />
+                );
+              }
+            })}
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       ) : route.pathname.startsWith("/login") ? (
         <Routes>
-            <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       ) : (
         <Routes>
-            <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       )}
     </>
