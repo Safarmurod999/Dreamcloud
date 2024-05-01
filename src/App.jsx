@@ -50,6 +50,7 @@ function App() {
                 );
               } else {
                 if (isSuperAdmin) {
+                  console.log(isSuperAdmin);
                   return (
                     <Route
                       key={route.id}

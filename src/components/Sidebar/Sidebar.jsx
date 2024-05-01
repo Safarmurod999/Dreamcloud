@@ -4,7 +4,9 @@ import { adminRoutes } from "../../data/data";
 
 const Sidebar = () => {
   let username = JSON.parse(localStorage.getItem("username")) || "User";
-  const [activeRoute,setActiveRoute] = useState(0);
+  const [activeRoute, setActiveRoute] = useState(0);
+  const isSuperAdmin =
+  JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
   return (
     <aside className="flex flex-col w-[350px] h-screen px-5 py-8 overflow-y-auto bg-gray-800 sidebar">
       <a className="flex gap-4 cursor-pointer" to="/admin/profile">
@@ -26,20 +28,45 @@ const Sidebar = () => {
               analytics
             </label>
 
-            {adminRoutes.map((item) => (
-              <Link
-                className={`flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-700 hover:text-gray-700 ${item.id === activeRoute ? 'bg-gray-700 text-gray-700' : ''}`}
-                to={item.path}
-                onClick={()=>setActiveRoute(item.id)}
-                key={item.id}
-              >
-                {item.icon}
-
-                <span className="mx-2 text-lg text-white font-medium ">
-                  {item.name}
-                </span>
-              </Link>
-            ))}
+            {adminRoutes.map((item) => {
+              if (item.path !== "/admin/admins") {
+                return (
+                  <Link
+                    key={item.id}
+                    className={`flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-700 hover:text-gray-700 ${
+                      activeRoute === item.id ? "bg-gray-700 text-gray-700" : ""
+                    }`}
+                    to={item.path}
+                    onClick={() => setActiveRoute(item.id)}
+                  >
+                    {item.icon}
+                    <span className="mx-2 text-lg font-medium">
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              } else {
+                if (isSuperAdmin) {
+                  return (
+                    <Link
+                      key={item.id}
+                      className={`flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-700 hover:text-gray-700 ${
+                        activeRoute === item.id
+                          ? "bg-gray-700 text-gray-700"
+                          : ""
+                      }`}
+                      to={item.path}
+                      onClick={() => setActiveRoute(item.id)}
+                    >
+                      {item.icon}
+                      <span className="mx-2 text-lg font-medium">
+                        {item.name}
+                      </span>
+                    </Link>
+                  );
+                }
+              }
+            })}
           </div>
 
           <div className="space-y-3 ">
