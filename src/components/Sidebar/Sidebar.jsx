@@ -6,7 +6,7 @@ const Sidebar = () => {
   let username = JSON.parse(localStorage.getItem("username")) || "User";
   const [activeRoute, setActiveRoute] = useState(0);
   const isSuperAdmin =
-  JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
+    JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
   return (
     <aside className="flex flex-col w-[350px] h-screen px-5 py-8 overflow-y-auto bg-gray-800 sidebar">
       <a className="flex gap-4 cursor-pointer" to="/admin/profile">
@@ -33,7 +33,7 @@ const Sidebar = () => {
                 return (
                   <Link
                     key={item.id}
-                    className={`flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-700 hover:text-gray-700 ${
+                    className={`flex items-center px-3 py-2 text-white-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-700 hover:text-gray-700 ${
                       activeRoute === item.id ? "bg-gray-700 text-gray-700" : ""
                     }`}
                     to={item.path}
@@ -50,7 +50,7 @@ const Sidebar = () => {
                   return (
                     <Link
                       key={item.id}
-                      className={`flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-700 hover:text-gray-700 ${
+                      className={`flex items-center px-3 py-2 text-white-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-700 hover:text-gray-700 ${
                         activeRoute === item.id
                           ? "bg-gray-700 text-gray-700"
                           : ""
