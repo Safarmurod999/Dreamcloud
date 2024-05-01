@@ -4,8 +4,9 @@ import { adminRoutes } from "../../data/data";
 
 const Sidebar = () => {
   let username = JSON.parse(localStorage.getItem("username")) || "User";
-  const [activeRoute, setActiveRoute] =
-    useState(JSON.parse(localStorage.getItem("activeRoute"))) || 0;
+  const [activeRoute, setActiveRoute] = useState(
+    JSON.parse(localStorage.getItem("activeRoute")) || 0
+  );
   const isSuperAdmin =
     JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
   return (
@@ -57,7 +58,9 @@ const Sidebar = () => {
                           : ""
                       }`}
                       to={item.path}
-                      onClick={() => localStorage.setItem("activeRoute", item.id)}
+                      onClick={() =>
+                        localStorage.setItem("activeRoute", item.id)
+                      }
                     >
                       {item.icon}
                       <span className="mx-2 text-lg text-white font-medium">
