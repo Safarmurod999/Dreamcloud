@@ -1,22 +1,25 @@
-import { RiHome2Line } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
 import { BiCategory } from "react-icons/bi";
 import { RiProductHuntLine } from "react-icons/ri";
 import { GoTools } from "react-icons/go";
 import { CiLocationOn } from "react-icons/ci";
 import { IoIosStats } from "react-icons/io";
-
+import { GoShieldCheck } from "react-icons/go";
 import { BsCart2 } from "react-icons/bs";
 
 import { lazy } from "react";
-const Orders = lazy(() => import('../pages/Admin/Orders/Orders'));
-const Customers = lazy(() => import('../pages/Admin/Customers/Customers'));
-const Categories = lazy(() => import('../pages/Admin/Categories/Categories'));
-const Products = lazy(() => import('../pages/Admin/Products/Products'));
-const Technologies = lazy(() => import('../pages/Admin/Technologies/Technologies'));
-const Addresses = lazy(() => import('../pages/Admin/Addresses/Addresses'));
-const Dashboard = lazy(() => import('../pages/Admin/Dashboard/Dashboard'));
-export const BASE_URL = 'https://dreamcloud-backend-e4327b791528.herokuapp.com/';
+const Orders = lazy(() => import("../pages/Admin/Orders/Orders"));
+const Customers = lazy(() => import("../pages/Admin/Customers/Customers"));
+const Categories = lazy(() => import("../pages/Admin/Categories/Categories"));
+const Products = lazy(() => import("../pages/Admin/Products/Products"));
+const Technologies = lazy(() =>
+  import("../pages/Admin/Technologies/Technologies")
+);
+const Addresses = lazy(() => import("../pages/Admin/Addresses/Addresses"));
+const Dashboard = lazy(() => import("../pages/Admin/Dashboard/Dashboard"));
+const Admins = lazy(() => import("../pages/Admin/Admins/Admins"));
+export const BASE_URL =
+  "https://dreamcloud-backend-e4327b791528.herokuapp.com/";
 export const features = [
   {
     id: 1,
@@ -97,6 +100,14 @@ export const adminRoutes = [
     name: "Manzil",
     current: false,
     icon: <CiLocationOn />,
-    element: <Addresses />
+    element: <Addresses />,
+  },
+  {
+    id: 7,
+    path: "/admin/admins",
+    name: "Adminlar",
+    current: false,
+    icon: <GoShieldCheck />,
+    element: <Admins />,
   },
 ];
