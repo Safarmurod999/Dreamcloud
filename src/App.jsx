@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route element={<ProtectedRoute />}>
             {adminRoutes.map((route) => {
-              if (route.path !== "admins") {
+              if (route.path !== "/admin/admins") {
                 return (
                   <Route
                     key={route.id}
