@@ -1,32 +1,32 @@
 import { Label, Modal, TextInput } from "flowbite-react";
 import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
-const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
+const CategoryModal = ({ category, openModal, setOpenModal, setCategory }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
   const onChangeHandler = (e) => {
-    setAdminData({ ...admin, [e.target.name]: e.target.value });
+    setCategory({ ...category, [e.target.name]: e.target.value });
   };
   const dispatch = useDispatch();
-  const requestadmin = (e) => {
+  const requestCategory = (e) => {
     e.preventDefault();
-    if (admin.id) {
-      let id = admin.id;
+    if (category.id) {
+      let id = category.id;
       let newData = {
-        username: admin.username,
-        password: admin.password,
-        isSuperAdmin: admin.isSuperAdmin,
+        category_name: category.category_name,
+        isActive: category.isActive,
       };
-      dispatch(updateData({ apiEndpoint: "admin", id, newData, accessToken }));
+      dispatch(
+        updateData({ apiEndpoint: "categories", id, newData, accessToken })
+      );
     } else {
       let newData = {
-        username: admin.username,
-        password: admin.password,
+        category_name: category.category_name,
       };
       console.log(newData);
-      dispatch(addData({ apiEndpoint: "admin", newData }));
+      dispatch(addData({ apiEndpoint: "categories", newData }));
     }
     setOpenModal(false);
-    setAdminData({ username: "", password: "", isSuperAdmin: false });
+    setCategory({ category_name: "", isActive: false });
   };
   return (
     <>
@@ -35,57 +35,40 @@ const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
         show={openModal}
         onClose={() => {
           setOpenModal(false);
-          setAdminData({ username: "", isSuperAdmin: false });
+          setCategory({ category_name: "", isActive: false });
         }}
-        size={"sm"}
       >
-        <Modal.Header>
-          {admin.id ? "Kategoriya tahrirlash" : "Kategoriya qo'shish"}
-        </Modal.Header>
+        <Modal.Header>{category.id ? "Kategoriya tahrirlash":"Kategoriya qo'shish"}</Modal.Header>
         <Modal.Body>
-          <form className="flex w-full flex-col gap-4" onSubmit={requestadmin}>
+          <form
+            className="flex w-full flex-col gap-4"
+            onSubmit={requestCategory}
+          >
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="admin" value="Username" />
+                <Label htmlFor="category" value="Kategoriya nomi" />
               </div>
               <TextInput
-                id="admin"
+                id="category"
                 type="text"
-                placeholder="Aliyev Vali"
-                value={admin.username}
+                placeholder="Model A"
+                value={category.category_name}
                 onChange={onChangeHandler}
-                name="username"
-                required
-              />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="password" value="Password" />
-              </div>
-              <TextInput
-                id="password"
-                type="password"
-                placeholder="******"
-                value={admin.password}
-                onChange={onChangeHandler}
-                name="password"
+                name="category_name"
                 required
               />
             </div>
             <div className="flex items-center justify-between gap-2">
-              <Label htmlFor="super">Super Admin</Label>
+              <Label htmlFor="remember">Holat</Label>
               <label className="inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
-                  value={admin.isSuperAdmin}
+                  value={category.isActive}
                   className="sr-only peer"
-                  checked={admin.isSuperAdmin}
-                  id="super"
+                  checked={category.isActive}
+                  id="remember"
                   onChange={() => {
-                    setAdminData({
-                      ...admin,
-                      isSuperAdmin: !admin.isSuperAdmin,
-                    });
+                    setCategory({ ...category, isActive: !category.isActive });
                   }}
                 />
                 <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700"></div>
@@ -104,4 +87,4 @@ const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
     </>
   );
 };
-export default AdminModal;
+export default CategoryModal;

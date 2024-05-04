@@ -95,7 +95,7 @@ const Addresses = () => {
                         <Table.Cell className="py-1 text-center max-w-[250px] text-ellipsis overflow-hidden">
                           {el?.location}
                         </Table.Cell>
-                        <Table.Cell className="py-1 text-center flex items-center gap-2 px-4">
+                        <Table.Cell className="py-1 text-center flex justify-center gap-2 px-4">
                           {" "}
                           <button
                             type="button"

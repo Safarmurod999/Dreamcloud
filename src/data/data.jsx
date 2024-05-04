@@ -18,6 +18,7 @@ const Technologies = lazy(() =>
 const Addresses = lazy(() => import("../pages/Admin/Addresses/Addresses"));
 const Dashboard = lazy(() => import("../pages/Admin/Dashboard/Dashboard"));
 const Admins = lazy(() => import("../pages/Admin/Admins/Admins"));
+const Profile = lazy(() => import("../pages/Admin/Profile/Profile")); 
 export const BASE_URL =
   "https://dreamcloud-backend-e4327b791528.herokuapp.com/";
 export const features = [
@@ -110,4 +111,12 @@ export const adminRoutes = [
     icon: <GoShieldCheck />,
     element: <Admins />,
   },
+  {
+    id:8,
+    path: "/admin/profile",
+    name: "Profile",
+    current: false,
+    icon: <IoPersonOutline />,
+    element: <Profile />,
+  }
 ];

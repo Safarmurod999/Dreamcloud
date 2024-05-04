@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { adminRoutes } from "../../data/data";
-
+import dreamcloud from "../../assets/images/navbar/download.svg";
 const Sidebar = () => {
   let username = JSON.parse(localStorage.getItem("username")) || "User";
   const [activeRoute, setActiveRoute] = useState(
@@ -14,13 +14,10 @@ const Sidebar = () => {
       <a className="flex gap-4 cursor-pointer" to="/admin/profile">
         {" "}
         <img
-          className="h-12 w-12 rounded-full"
-          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          className="w-[60%] mx-auto rounded-full"
+          src={dreamcloud}
           alt="Your Company"
         />
-        <span className="text-white text-xl mt-3 text-center capitalize">
-          {username}
-        </span>
       </a>
 
       <div className="flex flex-col justify-between border-t border-gray-500 pt-4 flex-1 mt-6">
@@ -39,7 +36,10 @@ const Sidebar = () => {
                       activeRoute === item.id ? "bg-gray-700 text-gray-700" : ""
                     }`}
                     to={item.path}
-                    onClick={() => localStorage.setItem("activeRoute", item.id)}
+                    onClick={() => {
+                      setActiveRoute(item.id);
+                      localStorage.setItem("activeRoute", item.id);
+                    }}
                   >
                     {item.icon}
                     <span className="mx-2 text-lg text-white font-medium">
@@ -58,9 +58,10 @@ const Sidebar = () => {
                           : ""
                       }`}
                       to={item.path}
-                      onClick={() =>
-                        localStorage.setItem("activeRoute", item.id)
-                      }
+                      onClick={() => {
+                        setActiveRoute(item.id);
+                        localStorage.setItem("activeRoute", item.id);
+                      }}
                     >
                       {item.icon}
                       <span className="mx-2 text-lg text-white font-medium">

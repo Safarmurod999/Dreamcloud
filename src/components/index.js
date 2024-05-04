@@ -1,5 +1,5 @@
 export { default as AddressModal } from "./AddressModal/AddressModal";
-export { default as AdminModal } from "./AdminModal/AdminModal";
+export { default as CategoryModal } from "./CategoryModal/CategoryModal";
 export { default as AdminNavbar } from "./AdminNavbar/AdminNavbar";
 export { default as BackTop } from "./BackTop/BackTop";
 export { default as Button } from "./Button/Button";
@@ -10,5 +10,6 @@ export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as ProductModal } from "./ProductModal/ProductModal";
 export { default as Sidebar } from "./Sidebar/Sidebar";
 export { default as TechnologiesModal } from "./TechnologiesModal/TechnologiesModal";
-export {default as AdminAddresses} from "./AdminAddresses/AdminAddresses";
+export { default as AdminAddresses } from "./AdminAddresses/AdminAddresses";
+export { default as AdminModal } from "./AdminModal/AdminModal";
 export { default as Spinner } from "./Spinner/Spinner";

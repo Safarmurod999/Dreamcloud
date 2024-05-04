@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import Spinner from "../../../components/Spinner/Spinner";
-import AdminModal from "../../../components/AdminModal/AdminModal";
 import { Breadcrumb, Button, Table } from "flowbite-react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import { HiHome } from "react-icons/hi";
+import CategoryModal from "../../../components/CategoryModal/CategoryModal";
 const Categories = () => {
   const [openModal, setOpenModal] = useState(false);
   const [category, setCategory] = useState({
@@ -148,7 +148,7 @@ const Categories = () => {
           >
             Qo'shish
           </Button>
-          <AdminModal
+          <CategoryModal
             openModal={openModal}
             setOpenModal={setOpenModal}
             category={category}

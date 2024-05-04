@@ -34,6 +34,7 @@ export const updateData = createAsyncThunk(
   "data/updateData",
   async ({ apiEndpoint, id, newData, accessToken }, thunkAPI) => {
     try {
+      console.log(newData);
       const response = await axios.put(
         `${BASE_URL}${apiEndpoint}/${id}`,
         newData,
@@ -43,6 +44,7 @@ export const updateData = createAsyncThunk(
           },
         }
       );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

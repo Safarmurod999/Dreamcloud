@@ -171,7 +171,7 @@ const Dashboard = () => {
                       Ko'rish <FaChevronRight className="text-sm" />
                     </Link>
                   </div>
-                  <div className="mt-4 p-4 h-[430px] rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+                  <div className="mt-4 p-4 h-[390px] rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
                     <Timeline className="ml-6 mt-2">
                       <Timeline.Item>
                         <Timeline.Point icon={HiCalendar} />

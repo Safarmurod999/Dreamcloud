@@ -76,7 +76,7 @@ const Customers = () => {
                       >
                         <TableCell className="py-1 text-center">{el.id}</TableCell>
                         <TableCell className="py-1 text-center">
-                          {el.createdAt}
+                          {el?.createdAt.slice(0,10)}
                         </TableCell>
                         <TableCell className="py-1 text-center">
                           {el.mobile_phone}
