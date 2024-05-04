@@ -54,6 +54,7 @@ function Login() {
     <section className="login">
       <form className="login__form">
         <div className="login__form--title">Kirish</div>
+        <p>Login : Safarmurod Parol : sss</p>
         <div className="login__form--name">
           {" "}
           <input
