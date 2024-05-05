@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fancyapps/ui": "^5.0.36",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@reduxjs/toolkit": "^2.2.3",

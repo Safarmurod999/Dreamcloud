@@ -3,11 +3,13 @@ import Spinner from "../../../components/Spinner/Spinner";
 import { Breadcrumb, Label, TextInput } from "flowbite-react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData, updateData } from "../../../utils/slice";
+
 import { HiHome } from "react-icons/hi";
 const Profile = () => {
   const [data, setData] = useState({
     username: null,
     password: null,
+    email: null,
   });
 
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
@@ -20,15 +22,19 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchData(`admin/${username}`));
-  }, [dispatch,username]);
+  }, [dispatch, username]);
 
   const updateAdmin = (e) => {
     e.preventDefault();
     let id = admin.data[0]?.id;
     let newData = data;
-    console.log(accessToken);
+
+    if (data.username) {
+      localStorage.setItem("username", JSON.stringify(data.username));
+    }
     dispatch(updateData({ apiEndpoint: `admin`, id, newData, accessToken }));
   };
+
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
@@ -73,6 +79,20 @@ const Profile = () => {
                         }
                         required
                       />
+                      <div className="mb-2 block">
+                        <Label htmlFor="email" value="Email" />
+                      </div>
+                      <TextInput
+                        id="email"
+                        className="w-full border rounded-md"
+                        type="text"
+                        placeholder="safarmurodurinov@gmail.com"
+                        value={data.email ?? admin.data[0].email}
+                        onChange={(e) =>
+                          setData({ ...data, email: e.target.value })
+                        }
+                        required
+                      />
                     </div>
                     <div>
                       <div className="mb-2 block">
@@ -99,8 +119,12 @@ const Profile = () => {
                 </div>
                 <img
                   className="h-[200px] w-[200px] rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt="Your Company"
+                  src={
+                    admin.data[0]?.image
+                      ? `https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/avatar/${admin.data[0]?.image}`
+                      : "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80  "
+                  }
+                  alt="Profile image"
                 />
               </div>
             </div>

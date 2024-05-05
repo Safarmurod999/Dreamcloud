@@ -1,6 +1,7 @@
 import "./ProductCard.scss";
 import cart from "../../assets/icons/shopping_cart.svg";
 import Button from "../Button/Button";
+import Fancybox from "../Fancybox/Fancybox";
 function ProductCard({
   id,
   image,
@@ -16,12 +17,39 @@ function ProductCard({
 }) {
   return (
     <li className="catalog__tab--panel--item card">
-      {discount>0 && <div className="card--status">{discount}</div>}
+      {discount > 0 && <div className="card--status">{discount}</div>}
       <div className="card--img">
-        <img
-          src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/products/${image}`}
-          alt={image}
-        />
+        <Fancybox
+          options={{
+            Toolbar: {
+              display: {
+                left: ["infobar"],
+                middle: [
+                  "zoomIn",
+                  "zoomOut",
+                  "toggle1to1",
+                  "rotateCCW",
+                  "rotateCW",
+                  "flipX",
+                  "flipY",
+                ],
+                right: [ "download", "close"],
+              },
+            },
+          }}
+        >
+          {" "}
+          <a
+            data-fancybox="photo"
+            data-download-src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/products/${image}`}
+            href={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/products/${image}`}
+          >
+            <img
+              src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/products/${image}`}
+              alt={image}
+            />
+          </a>
+        </Fancybox>
       </div>
       <div className="card--content">
         <div className="card--title title">{product_name}</div>

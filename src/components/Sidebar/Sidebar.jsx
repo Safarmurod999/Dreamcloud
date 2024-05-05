@@ -5,7 +5,7 @@ import dreamcloud from "../../assets/images/navbar/download.svg";
 const Sidebar = () => {
   let username = JSON.parse(localStorage.getItem("username")) || "User";
   const [activeRoute, setActiveRoute] = useState(
-    JSON.parse(localStorage.getItem("activeRoute")) || 0
+    JSON.parse(sessionStorage.getItem("activeRoute")) || 0
   );
   const isSuperAdmin =
     JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
@@ -38,7 +38,7 @@ const Sidebar = () => {
                     to={item.path}
                     onClick={() => {
                       setActiveRoute(item.id);
-                      localStorage.setItem("activeRoute", item.id);
+                      sessionStorage.setItem("activeRoute", item.id);
                     }}
                   >
                     {item.icon}
@@ -60,7 +60,7 @@ const Sidebar = () => {
                       to={item.path}
                       onClick={() => {
                         setActiveRoute(item.id);
-                        localStorage.setItem("activeRoute", item.id);
+                        sessionStorage.setItem("activeRoute", item.id);
                       }}
                     >
                       {item.icon}
