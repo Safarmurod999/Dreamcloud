@@ -6,6 +6,7 @@ import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import { Breadcrumb, Button, Table } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import { AdminAddresses } from "../../../components";
+import ExportButton from "../../../components/ExportButton/ExportButton";
 const Addresses = () => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
   const [address, setAddress] = useState({
@@ -15,11 +16,17 @@ const Addresses = () => {
     image: "",
     state: true,
   });
+
   const [openModal, setOpenModal] = useState(false);
   const dispatch = useDispatch();
   const addresses = useSelector((state) => state.data.data);
   const isLoading = useSelector((state) => state.data.isLoading);
   const error = useSelector((state) => state.data.error);
+
+  let filteredArray = addresses?.data.map((obj) => {
+    let { id, address, location, description } = obj;
+    return { id, address, location, description };
+  });
 
   useEffect(() => {
     dispatch(fetchData("addresses"));
@@ -140,13 +147,15 @@ const Addresses = () => {
               </Table>
             </div>
           </div>
-          <Button
-            color={"default"}
-            className="ml-[48px] focus:outline-none border border-gray-700 bg-[#E6ECEE]  hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
-            onClick={() => setOpenModal(true)}
-          >
-            Qo'shish
-          </Button>
+          <div className="flex gap-3">
+            <button
+              className="ml-[48px] w-[150px] justify-center text-white p-3 mt-4 bg-gray-700 rounded-md flex items-center"
+              onClick={() => setOpenModal(true)}
+            >
+              Qo'shish
+            </button>
+            <ExportButton data={filteredArray} filename={"Addresses"} />
+          </div>
           <AdminAddresses
             address={address}
             openModal={openModal}

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import { HiHome } from "react-icons/hi";
 import CategoryModal from "../../../components/CategoryModal/CategoryModal";
+import ExportButton from "../../../components/ExportButton/ExportButton";
 const Categories = () => {
   const [openModal, setOpenModal] = useState(false);
   const [category, setCategory] = useState({
@@ -19,6 +20,10 @@ const Categories = () => {
   const isLoading = useSelector((state) => state.data.isLoading);
   const error = useSelector((state) => state.data.error);
 
+  let filteredArray = categories?.data.map((obj) => {
+    let { id, category_name, isActive } = obj;
+    return { id, category_name, isActive };
+  });
   useEffect(() => {
     dispatch(fetchData("categories"));
   }, [dispatch]);
@@ -51,7 +56,7 @@ const Categories = () => {
           </Breadcrumb>
           <h1 className="text-3xl font-medium ml-[50px]">Kategoriyalar</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
-          <div className="border mb-6"></div>
+            <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg shadow-lg">
               <Table hoverable className="rounded-lg">
                 <Table.Head className="border-gray-800">
@@ -141,13 +146,15 @@ const Categories = () => {
               </Table>
             </div>
           </div>
-          <Button
-            color={"primary"}
-            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
-            onClick={() => setOpenModal(true)}
-          >
-            Qo'shish
-          </Button>
+          <div className="flex gap-3">
+            <button
+              className="ml-[48px] w-[150px] justify-center text-white p-3 mt-4 bg-gray-700 rounded-md flex items-center"
+              onClick={() => setOpenModal(true)}
+            >
+              Qo'shish
+            </button>
+            <ExportButton data={filteredArray} filename={"Categories"} />
+          </div>
           <CategoryModal
             openModal={openModal}
             setOpenModal={setOpenModal}

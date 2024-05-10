@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
+import ExportButton from "../../../components/ExportButton/ExportButton";
 const Customers = () => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
 
@@ -20,6 +21,11 @@ const Customers = () => {
   const orders = useSelector((state) => state.data.data);
   const isLoading = useSelector((state) => state.data.isLoading);
   const error = useSelector((state) => state.data.error);
+
+  let filteredArray = orders?.data.map((obj) => {
+    let { id, createdAt, mobile_phone, recall } = obj;
+    return { id, createdAt, mobile_phone, recall };
+  });
 
   useEffect(() => {
     dispatch(fetchData("orders"));
@@ -44,27 +50,33 @@ const Customers = () => {
     orders && (
       <main>
         <div className="flex-1 py-6">
-        <Breadcrumb aria-label="Customers page" className="ml-[48px] mb-4">
+          <Breadcrumb aria-label="Customers page" className="ml-[48px] mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Mijozlar</Breadcrumb.Item>
           </Breadcrumb>
-        <h1 className="text-3xl font-medium ml-[50px]">Mijozlar</h1>
+          <h1 className="text-3xl font-medium ml-[50px]">Mijozlar</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
-          <div className="border mb-6"></div>
+            <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg shadow-lg">
               <Table hoverable className="table-auto w-full rounded-lg">
                 <TableHead className="border-gray-800">
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">Id</TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">Sana</TableHeadCell>
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                    Id
+                  </TableHeadCell>
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                    Sana
+                  </TableHeadCell>
                   <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Telefon Raqami
                   </TableHeadCell>
                   <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Qayta Aloqa
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">Delete</TableHeadCell>
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                    Delete
+                  </TableHeadCell>
                 </TableHead>
                 <TableBody>
                   {[...orders.data]
@@ -74,9 +86,11 @@ const Customers = () => {
                         key={el.id}
                         className=" border-b border-gray-200"
                       >
-                        <TableCell className="py-1 text-center">{el.id}</TableCell>
                         <TableCell className="py-1 text-center">
-                          {el?.createdAt.slice(0,10)}
+                          {el.id}
+                        </TableCell>
+                        <TableCell className="py-1 text-center">
+                          {el?.createdAt.slice(0, 10)}
                         </TableCell>
                         <TableCell className="py-1 text-center">
                           {el.mobile_phone}
@@ -110,6 +124,7 @@ const Customers = () => {
                 </TableBody>
               </Table>
             </div>
+            <ExportButton data={filteredArray} filename={"Customers"} />
           </div>
         </div>
       </main>

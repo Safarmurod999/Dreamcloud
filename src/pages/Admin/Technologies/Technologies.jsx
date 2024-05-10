@@ -15,6 +15,7 @@ import {
   TableRow,
 } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
+import ExportButton from "../../../components/ExportButton/ExportButton";
 const Technologies = () => {
   const [technology, setTechnology] = useState({
     name: "",
@@ -29,7 +30,10 @@ const Technologies = () => {
   const technologies = useSelector((state) => state.data.data);
   const isLoading = useSelector((state) => state.data.isLoading);
   const error = useSelector((state) => state.data.error);
-
+  let filteredArray = technologies?.data.map((obj) => {
+    let { id, name, video, description } = obj;
+    return { id, name, video, description };
+  });
   useEffect(() => {
     dispatch(fetchData("technologies"));
   }, [dispatch]);
@@ -144,13 +148,15 @@ const Technologies = () => {
               </Table>
             </div>
           </div>
-          <Button
-            color={"primary"}
-            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
-            onClick={() => setOpenModal(true)}
-          >
-            Qo'shish
-          </Button>
+          <div className="flex gap-3">
+            <button
+              className="ml-[48px] w-[150px] justify-center text-white p-3 mt-4 bg-gray-700 rounded-md flex items-center"
+              onClick={() => setOpenModal(true)}
+            >
+              Qo'shish
+            </button>
+            <ExportButton data={filteredArray} filename={"Technologies"} />
+          </div>
           <TechnologiesModal
             technology={technology}
             openModal={openModal}

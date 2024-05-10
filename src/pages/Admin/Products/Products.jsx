@@ -16,6 +16,7 @@ import {
 } from "flowbite-react";
 import { ProductModal } from "../../../components";
 import { HiHome } from "react-icons/hi";
+import ExportButton from "../../../components/ExportButton/ExportButton";
 const Products = () => {
   const { data: categories, loading } = useFetch("categories");
   const [product, setProduct] = useState({
@@ -40,6 +41,40 @@ const Products = () => {
   const products = useSelector((state) => state.data.data);
   const isLoading = useSelector((state) => state.data.isLoading);
   const error = useSelector((state) => state.data.error);
+
+  console.log(products);
+  let filteredArray = products?.data.map((obj) => {
+    let {
+      id,
+      category_id,
+      product_name,
+      count,
+      price,
+      overweight,
+      capacity,
+      size,
+      discount,
+      guarantee,
+      description,
+      image,
+      status,
+    } = obj;
+    return {
+      id,
+      category_id,
+      product_name,
+      count,
+      price,
+      overweight,
+      capacity,
+      size,
+      discount,
+      guarantee,
+      description,
+      image,
+      status,
+    };
+  });
 
   useEffect(() => {
     dispatch(fetchData("products"));
@@ -111,7 +146,9 @@ const Products = () => {
                   <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Status
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">Actions</TableHeadCell>
+                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                    Actions
+                  </TableHeadCell>
                 </TableHead>
                 <TableBody>
                   {productsArr
@@ -199,13 +236,15 @@ const Products = () => {
               </Table>
             </div>
           </div>
-          <Button
-            color={"primary"}
-            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
-            onClick={() => setProductModal(true)}
-          >
-            Qo'shish
-          </Button>
+          <div className="flex gap-3">
+            <button
+              className="ml-[48px] w-[150px] justify-center text-white p-3 mt-4 bg-gray-700 rounded-md flex items-center"
+              onClick={() => setProductModal(true)}
+            >
+              Qo'shish
+            </button>
+            <ExportButton data={filteredArray} filename={"Products"} />
+          </div>
           <ProductModal
             product={product}
             categories={categories}

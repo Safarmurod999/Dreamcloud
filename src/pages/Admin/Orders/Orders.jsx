@@ -7,15 +7,20 @@ import {
   Breadcrumb,
   Table,
   TableBody,
+  TableCell,
   TableHead,
   TableHeadCell,
+  TableRow,
 } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
+import ExportButton from "../../../components/ExportButton/ExportButton";
+
 const Orders = () => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.data.data);
   const isLoading = useSelector((state) => state.data.isLoading);
   const error = useSelector((state) => state.data.error);
+
   useEffect(() => {
     dispatch(fetchData("orders"));
   }, [dispatch]);
@@ -23,10 +28,14 @@ const Orders = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
-
+  let filteredArray = orders?.data.map((obj) => {
+    let { id, customer_name, product_name, mobile_phone, count, recall } = obj;
+    return { id, customer_name, product_name, mobile_phone, count, recall };
+  });
   if (error) {
     console.log(error);
   }
+  
   return (
     orders && (
       <main>
@@ -38,6 +47,7 @@ const Orders = () => {
             <Breadcrumb.Item href="/admin/orders">Buyurtmalar</Breadcrumb.Item>
           </Breadcrumb>
           <h1 className="text-3xl font-medium ml-[50px]">Buyurtmalar</h1>
+
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg shadow-lg">
@@ -62,7 +72,7 @@ const Orders = () => {
                     Qayta Aloqa
                   </TableHeadCell>
                   <TableHeadCell className="text-center bg-gray-700 text-white py-4">
-                    Delete
+                    Actions
                   </TableHeadCell>
                 </TableHead>
                 <TableBody>
@@ -74,6 +84,7 @@ const Orders = () => {
                 </TableBody>
               </Table>
             </div>
+            <ExportButton data={filteredArray} filename={"Orders"} />
           </div>
         </div>
       </main>
