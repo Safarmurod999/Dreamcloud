@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import Spinner from "../../../components/Spinner/Spinner";
-import { Breadcrumb, Button, Table } from "flowbite-react";
+import { Breadcrumb, Button, Pagination, Table } from "flowbite-react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import { HiHome } from "react-icons/hi";
@@ -14,7 +14,9 @@ const Categories = () => {
     isActive: false,
   });
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const onPageChange = (page) => setCurrentPage(page);
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.data.data);
   const isLoading = useSelector((state) => state.data.isLoading);
@@ -25,8 +27,8 @@ const Categories = () => {
     return { id, category_name, isActive };
   });
   useEffect(() => {
-    dispatch(fetchData("categories"));
-  }, [dispatch]);
+    dispatch(fetchData(`categories?page=${currentPage}&limit=8`));
+  }, [dispatch,currentPage]);
 
   const deleteCategory = (id) => {
     dispatch(deleteData({ apiEndpoint: "categories", id }));
@@ -46,7 +48,7 @@ const Categories = () => {
   }
   return (
     categories && (
-      <main>
+      <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Categories page" className="ml-[48px] mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>
@@ -142,6 +144,16 @@ const Categories = () => {
                         </Table.Cell>
                       </Table.Row>
                     ))}
+                  <Table.Row className="border-b border-gray-200">
+                    <Table.Cell className="py-1 text-center" colSpan={4}>
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={categories?.pagination?.totalPages}
+                        onPageChange={onPageChange}
+                        showIcons
+                      />
+                    </Table.Cell>
+                  </Table.Row>
                 </Table.Body>
               </Table>
             </div>

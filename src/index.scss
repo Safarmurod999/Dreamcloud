@@ -28,9 +28,6 @@
 :root {
   scroll-behavior: smooth;
 }
-// body{
-//   overflow: hidden;
-// }
 .title {
   text-align: center;
   color: var(--primary-color, #01384d);
@@ -98,7 +95,9 @@ button {
     fill: #ffffff !important;
   }
 }
-
+.layout {
+  width: calc(100% - 350px) !important;
+}
 @mixin flex-box($direction, $align, $justify, $gap) {
   display: flex;
   flex-direction: $direction;

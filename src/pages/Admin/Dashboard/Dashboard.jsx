@@ -93,7 +93,7 @@ const Dashboard = () => {
   }
   return (
     orders && (
-      <main>
+      <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Orders page" className="ml-[40px] mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>

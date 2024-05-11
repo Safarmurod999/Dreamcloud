@@ -3,7 +3,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import Spinner from "../../../components/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteData, fetchData, updateData } from "../../../utils/slice";
-import { Breadcrumb, Button, Table } from "flowbite-react";
+import { Breadcrumb, Button, Pagination, Table } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import { AdminAddresses } from "../../../components";
 import ExportButton from "../../../components/ExportButton/ExportButton";
@@ -16,7 +16,9 @@ const Addresses = () => {
     image: "",
     state: true,
   });
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const onPageChange = (page) => setCurrentPage(page);
   const [openModal, setOpenModal] = useState(false);
   const dispatch = useDispatch();
   const addresses = useSelector((state) => state.data.data);
@@ -29,8 +31,8 @@ const Addresses = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchData("addresses"));
-  }, [dispatch]);
+    dispatch(fetchData(`addresses?page=${currentPage}&limit=8`));
+  }, [dispatch,currentPage]);
 
   const deleteAddress = (id) => {
     dispatch(deleteData({ apiEndpoint: "addresses", id }));
@@ -52,7 +54,7 @@ const Addresses = () => {
   }
   return (
     addresses && (
-      <main>
+      <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Orders page" className="ml-[48px] mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>
@@ -88,7 +90,7 @@ const Addresses = () => {
                     .map((el) => (
                       <Table.Row
                         key={el.id}
-                        className="dark:bg-gray-800  border-gray-800"
+                        className="dark:bg-gray-800 border-b border-gray-200"
                       >
                         <Table.Cell className="py-1 text-center whitespace-nowrap font-medium text-gray-900">
                           {el.id}
@@ -143,6 +145,16 @@ const Addresses = () => {
                         </Table.Cell>
                       </Table.Row>
                     ))}
+                  <Table.Row className="border-b border-gray-200">
+                    <Table.Cell className="py-1 text-center" colSpan={5}>
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={addresses?.pagination?.totalPages}
+                        onPageChange={onPageChange}
+                        showIcons
+                      />
+                    </Table.Cell>
+                  </Table.Row>
                 </Table.Body>
               </Table>
             </div>

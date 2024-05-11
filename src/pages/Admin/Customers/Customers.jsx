@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import {
   Breadcrumb,
+  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -16,7 +17,9 @@ import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
 const Customers = () => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const onPageChange = (page) => setCurrentPage(page);
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.data.data);
   const isLoading = useSelector((state) => state.data.isLoading);
@@ -28,8 +31,8 @@ const Customers = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchData("orders"));
-  }, [dispatch]);
+    dispatch(fetchData(`orders?page=${currentPage}&limit=8`));
+  }, [dispatch, currentPage]);
 
   const deleteCustomer = (id) => {
     dispatch(deleteData({ apiEndpoint: "orders", id }));
@@ -48,7 +51,7 @@ const Customers = () => {
   }
   return (
     orders && (
-      <main>
+      <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Customers page" className="ml-[48px] mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>
@@ -121,10 +124,22 @@ const Customers = () => {
                         </TableCell>
                       </TableRow>
                     ))}
+                  <TableRow className="border-b border-gray-200">
+                    <TableCell className="py-1 text-center" colSpan={6}>
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={orders?.pagination?.totalPages}
+                        onPageChange={onPageChange}
+                        showIcons
+                      />
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </div>
-            <ExportButton data={filteredArray} filename={"Customers"} />
+            <div className="flex items-center justify-between">
+              <ExportButton data={filteredArray} filename={"Customers"} />
+            </div>
           </div>
         </div>
       </main>

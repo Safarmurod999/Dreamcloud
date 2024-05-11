@@ -7,6 +7,7 @@ import { TechnologiesModal } from "../../../components";
 import {
   Breadcrumb,
   Button,
+  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -17,6 +18,9 @@ import {
 import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
 const Technologies = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const onPageChange = (page) => setCurrentPage(page);
   const [technology, setTechnology] = useState({
     name: "",
     video: {},
@@ -35,8 +39,8 @@ const Technologies = () => {
     return { id, name, video, description };
   });
   useEffect(() => {
-    dispatch(fetchData("technologies"));
-  }, [dispatch]);
+    dispatch(fetchData(`technologies?page=${currentPage}&limit=8`));
+  }, [dispatch, currentPage]);
 
   const deleteTechnology = (id) => {
     dispatch(deleteData({ apiEndpoint: "technologies", id }));
@@ -51,7 +55,7 @@ const Technologies = () => {
   }
   return (
     technologies && (
-      <main>
+      <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Technologies page" className="ml-[48px] mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>
@@ -144,6 +148,16 @@ const Technologies = () => {
                         </TableCell>
                       </TableRow>
                     ))}
+                  <TableRow className="border-b border-gray-200">
+                    <TableCell className="py-1 text-center" colSpan={9}>
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={technologies?.pagination?.totalPages}
+                        onPageChange={onPageChange}
+                        showIcons
+                      />
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </div>

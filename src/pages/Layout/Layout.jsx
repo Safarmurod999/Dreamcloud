@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
       ) : route.pathname.startsWith("/admin") ? (
         <div className="flex flex-row min-h-full flex-1 w-full">
           <Sidebar />
-          <div className="min-h-full w-full">
+          <div className="min-h-full absolute right-0 layout">
             <AdminNavbar />
             {children}
           </div>

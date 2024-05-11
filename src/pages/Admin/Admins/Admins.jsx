@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import {
   Breadcrumb,
-  Button,
+  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -16,6 +16,7 @@ import {
 } from "flowbite-react";
 import { HiCheck, HiHome, HiX } from "react-icons/hi";
 import { AdminModal } from "../../../components";
+import ExportButton from "../../../components/ExportButton/ExportButton";
 const Admins = () => {
   const [update, setUpdate] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -26,7 +27,9 @@ const Admins = () => {
     password: "",
     isSuperAdmin: true,
   });
-  
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const onPageChange = (page) => setCurrentPage(page);
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
 
   const dispatch = useDispatch();
@@ -35,8 +38,8 @@ const Admins = () => {
   const error = useSelector((state) => state.data.error);
 
   useEffect(() => {
-    dispatch(fetchData("admin"));
-  }, [dispatch]);
+    dispatch(fetchData(`admin?page=${currentPage}&limit=10`));
+  }, [dispatch, currentPage]);
 
   const deleteAdmin = (id) => {
     dispatch(deleteData({ apiEndpoint: "admin", id }));
@@ -59,13 +62,16 @@ const Admins = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
-  console.log(admin);
+  let filteredArray = admin?.data.map((obj) => {
+    let { id, username, password, createdAt, isSuperAdmin } = obj;
+    return { id, username, password, createdAt, isSuperAdmin };
+  });
   if (error) {
     console.log(error);
   }
   return (
     admin && (
-      <main>
+      <main className="pt-[90px]">
         <Toast
           className={`hidden absolute bottom-[30px] right-[40px] ${
             update ? "flex" : ""
@@ -116,7 +122,7 @@ const Admins = () => {
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg shadow-lg">
-              <Table hoverable className="table-auto w-full rounded-lg">
+              <Table hoverable className="rounded-lg">
                 <TableHead className="border-gray-800">
                   <TableHeadCell className="text-center bg-gray-700 text-white py-4">
                     Id
@@ -212,17 +218,31 @@ const Admins = () => {
                         </TableCell>
                       </TableRow>
                     ))}
+                  <TableRow className="border-b border-gray-200">
+                    <TableCell className="py-1 text-center" colSpan={6}>
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={admin?.pagination?.totalPages}
+                        onPageChange={onPageChange}
+                        showIcons
+                      />
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </div>
+            <div className="flex items-center justify-between">
+              <button
+                className="p-3 w-[150px] text-white mt-4 bg-gray-700 rounded-md flex items-center justify-center"
+                onClick={() => setOpenModal(true)}
+              >
+                Qo'shish
+              </button>
+
+              <ExportButton data={filteredArray} filename={"Admins"} />
+            </div>
           </div>
-          <Button
-            color={"primary"}
-            className="ml-[48px] focus:outline-none border-none text-white bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 px-4 py-2"
-            onClick={() => setOpenModal(true)}
-          >
-            Qo'shish
-          </Button>
+
           <AdminModal
             admin={adminData}
             setAdminData={setAdminData}

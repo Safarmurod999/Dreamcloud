@@ -10,7 +10,7 @@ const Sidebar = () => {
   const isSuperAdmin =
     JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
   return (
-    <aside className="flex flex-col w-[350px] h-screen px-5 py-8 overflow-y-auto bg-gray-800 sidebar">
+    <aside className="flex flex-col w-[350px] fixed top-0 left-0 h-screen px-5 py-8 overflow-y-auto bg-gray-800 sidebar">
       <a className="flex gap-4 cursor-pointer" to="/admin/profile">
         {" "}
         <img

@@ -42,7 +42,7 @@ const AdminNavbar = () => {
     admin && (
       <Disclosure
         as="nav"
-        className="bg-white-800 shadow shadow-gray-300 admin-navbar"
+        className="bg-white-800 shadow fixed layout grow shadow-gray-300 admin-navbar"
       >
         {({ open }) => (
           <>
@@ -204,7 +204,7 @@ const AdminNavbar = () => {
                 <div className="flex items-center px-5">
                   <div className="flex-shrink-0">
                     <img
-                      className="h-10 w-10 rounded-full"
+                      className="h-12 w-12 rounded-full"
                       src={user.imageUrl}
                       alt=""
                     />

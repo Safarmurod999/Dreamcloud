@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   Breadcrumb,
   Button,
+  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -19,6 +20,9 @@ import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
 const Products = () => {
   const { data: categories, loading } = useFetch("categories");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const onPageChange = (page) => setCurrentPage(page);
   const [product, setProduct] = useState({
     image: "",
     product_name: "",
@@ -42,7 +46,22 @@ const Products = () => {
   const isLoading = useSelector((state) => state.data.isLoading);
   const error = useSelector((state) => state.data.error);
 
-  console.log(products);
+  useEffect(() => {
+    dispatch(fetchData(`products?page=${currentPage}&limit=8`));
+  }, [dispatch, currentPage]);
+
+  const deleteProduct = (id) => {
+    dispatch(deleteData({ apiEndpoint: "products", id }));
+  };
+
+  const updateProduct = (data, id) => {
+    let newData = { status: data };
+    dispatch(updateData({ apiEndpoint: "products", id, newData, accessToken }));
+  };
+
+  if (isLoading || loading) {
+    return <Spinner position={"relative"} />;
+  }
   let filteredArray = products?.data.map((obj) => {
     let {
       id,
@@ -76,23 +95,6 @@ const Products = () => {
     };
   });
 
-  useEffect(() => {
-    dispatch(fetchData("products"));
-  }, [dispatch]);
-
-  const deleteProduct = (id) => {
-    dispatch(deleteData({ apiEndpoint: "products", id }));
-  };
-
-  const updateProduct = (data, id) => {
-    let newData = { status: data };
-    dispatch(updateData({ apiEndpoint: "products", id, newData, accessToken }));
-    console.log({ apiEndpoint: "products", id, newData, accessToken });
-  };
-
-  if (isLoading || loading) {
-    return <Spinner position={"relative"} />;
-  }
   if (error) {
     console.log(error);
   }
@@ -108,7 +110,7 @@ const Products = () => {
   return (
     products &&
     productsArr && (
-      <main>
+      <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Products page" className="ml-[48px] mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>
@@ -232,6 +234,16 @@ const Products = () => {
                         </TableCell>
                       </TableRow>
                     ))}
+                  <TableRow className="border-b border-gray-200">
+                    <TableCell className="py-1 text-center" colSpan={9}>
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={products?.pagination?.totalPages}
+                        onPageChange={onPageChange}
+                        showIcons
+                      />
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </div>
