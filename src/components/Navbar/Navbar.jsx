@@ -84,7 +84,7 @@ function Navbar() {
               <a href="tel:+998901234567">
                 <img src={call} alt="call" /> +998 90 123 45 67
               </a>
-              <Link to="/login" className="button">Kirish</Link>
+              <Link to="/login" className="button-main">Kirish</Link>
             </div>
           </div>
         </div>

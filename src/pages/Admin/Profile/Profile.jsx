@@ -21,12 +21,12 @@ const Profile = () => {
   const error = useSelector((state) => state.data.error);
 
   useEffect(() => {
-    dispatch(fetchData(`admin/${username}`));
-  }, [dispatch, username]);
+    dispatch(fetchData(`admin`));
+  }, [dispatch]);
 
   const updateAdmin = (e) => {
     e.preventDefault();
-    let id = admin.data[0]?.id;
+    let id = adminData[0]?.id;
     let newData = data;
 
     if (data.username) {
@@ -38,7 +38,7 @@ const Profile = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
-
+  const adminData = admin?.data.filter((data) => data.username === username);
   console.log(admin);
   if (error) {
     console.log(error);
@@ -59,7 +59,7 @@ const Profile = () => {
             <div className="overflow-x-auto w-full rounded-lg">
               <div className="flex justify-between gap-4">
                 <div className="flex grow-[0.4] flex-col">
-                  <p>Joined {admin.data[0]?.createdAt.slice(0, 10)}</p>
+                  <p>Joined {adminData[0]?.createdAt.slice(0, 10)}</p>
                   <form
                     className="flex mt-4 flex-col gap-4"
                     onSubmit={updateAdmin}
@@ -73,7 +73,7 @@ const Profile = () => {
                         className="w-full border rounded-md"
                         type="text"
                         placeholder="Safarmurod Urinov"
-                        value={data.username ?? admin.data[0].username}
+                        value={data.username ?? adminData[0].username}
                         onChange={(e) =>
                           setData({ ...data, username: e.target.value })
                         }
@@ -87,7 +87,7 @@ const Profile = () => {
                         className="w-full border rounded-md"
                         type="text"
                         placeholder="safarmurodurinov@gmail.com"
-                        value={data.email ?? admin.data[0].email}
+                        value={data.email ?? adminData[0].email}
                         onChange={(e) =>
                           setData({ ...data, email: e.target.value })
                         }
@@ -102,7 +102,7 @@ const Profile = () => {
                         id="password"
                         className="w-full border rounded-md"
                         type="password"
-                        value={data.password ?? admin.data[0].password}
+                        value={data.password ?? adminData[0].password}
                         onChange={(e) =>
                           setData({ ...data, password: e.target.value })
                         }
@@ -120,8 +120,8 @@ const Profile = () => {
                 <img
                   className="h-[200px] w-[200px] rounded-full"
                   src={
-                    admin.data[0]?.image
-                      ? `https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/avatar/${admin.data[0]?.image}`
+                    adminData[0]?.image
+                      ? `https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/avatar/${adminData[0]?.image}`
                       : "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80  "
                   }
                   alt="Profile image"

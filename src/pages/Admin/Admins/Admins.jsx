@@ -20,7 +20,6 @@ import ExportButton from "../../../components/ExportButton/ExportButton";
 const Admins = () => {
   const [update, setUpdate] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  const [create, setCreate] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [adminData, setAdminData] = useState({
     username: "",
@@ -33,13 +32,12 @@ const Admins = () => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
 
   const dispatch = useDispatch();
-  const admin = useSelector((state) => state.data.data);
-  const isLoading = useSelector((state) => state.data.isLoading);
-  const error = useSelector((state) => state.data.error);
-
   useEffect(() => {
     dispatch(fetchData(`admin?page=${currentPage}&limit=10`));
   }, [dispatch, currentPage]);
+  const admin = useSelector((state) => state.data.data);
+  const isLoading = useSelector((state) => state.data.isLoading);
+  const error = useSelector((state) => state.data.error);
 
   const deleteAdmin = (id) => {
     dispatch(deleteData({ apiEndpoint: "admin", id }));
@@ -66,11 +64,13 @@ const Admins = () => {
     let { id, username, password, createdAt, isSuperAdmin } = obj;
     return { id, username, password, createdAt, isSuperAdmin };
   });
+  console.log(admin);
   if (error) {
     console.log(error);
   }
   return (
-    admin && (
+    admin &&
+    filteredArray && (
       <main className="pt-[90px]">
         <Toast
           className={`hidden absolute bottom-[30px] right-[40px] ${

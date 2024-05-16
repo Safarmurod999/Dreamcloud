@@ -107,9 +107,11 @@ const Products = () => {
       return { ...product, category_name };
     });
   }
+  console.log(products);
   return (
     products &&
-    productsArr && (
+    productsArr &&
+    filteredArray && (
       <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Products page" className="ml-[48px] mb-4">

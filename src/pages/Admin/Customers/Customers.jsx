@@ -46,11 +46,13 @@ const Customers = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
+  console.log(orders);
   if (error) {
     console.log(error);
   }
   return (
-    orders && (
+    orders &&
+    filteredArray && (
       <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Customers page" className="ml-[48px] mb-4">

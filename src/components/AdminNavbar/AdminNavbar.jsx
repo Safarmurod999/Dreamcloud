@@ -24,7 +24,6 @@ const AdminNavbar = () => {
   if (loading) {
     return <Spinner position={"relative"} />;
   }
-  console.log(admin);
   if (error) {
     console.log(error);
   }

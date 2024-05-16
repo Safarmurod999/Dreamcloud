@@ -54,7 +54,8 @@ const Technologies = () => {
     console.log(error);
   }
   return (
-    technologies && (
+    technologies &&
+    filteredArray && (
       <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Technologies page" className="ml-[48px] mb-4">

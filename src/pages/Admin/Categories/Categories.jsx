@@ -28,7 +28,7 @@ const Categories = () => {
   });
   useEffect(() => {
     dispatch(fetchData(`categories?page=${currentPage}&limit=8`));
-  }, [dispatch,currentPage]);
+  }, [dispatch, currentPage]);
 
   const deleteCategory = (id) => {
     dispatch(deleteData({ apiEndpoint: "categories", id }));
@@ -43,11 +43,13 @@ const Categories = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
+  console.log(categories);
   if (error) {
     console.log(error);
   }
   return (
-    categories && (
+    categories &&
+    filteredArray && (
       <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Categories page" className="ml-[48px] mb-4">

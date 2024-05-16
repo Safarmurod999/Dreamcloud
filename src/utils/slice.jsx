@@ -11,6 +11,7 @@ const initialState = {
 export const fetchData = createAsyncThunk(
   "data/fetchData",
   async (apiEndpoint, thunkAPI) => {
+    console.log(apiEndpoint);
     try {
       const response = await axios.get(`${BASE_URL}${apiEndpoint}`);
       return response.data;

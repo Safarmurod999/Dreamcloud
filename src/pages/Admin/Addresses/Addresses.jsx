@@ -32,7 +32,7 @@ const Addresses = () => {
 
   useEffect(() => {
     dispatch(fetchData(`addresses?page=${currentPage}&limit=8`));
-  }, [dispatch,currentPage]);
+  }, [dispatch, currentPage]);
 
   const deleteAddress = (id) => {
     dispatch(deleteData({ apiEndpoint: "addresses", id }));
@@ -49,11 +49,13 @@ const Addresses = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
+  console.log(addresses);
   if (error) {
     console.log(error);
   }
   return (
-    addresses && (
+    addresses &&
+    filteredArray && (
       <main className="pt-[90px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Orders page" className="ml-[48px] mb-4">

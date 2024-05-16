@@ -22,7 +22,6 @@ const Orders = () => {
   const onPageChange = (page) => setCurrentPage(page);
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.data.data);
-  console.log(orders);
   const isLoading = useSelector((state) => state.data.isLoading);
   const error = useSelector((state) => state.data.error);
 
@@ -37,12 +36,14 @@ const Orders = () => {
     let { id, customer_name, product_name, mobile_phone, count, recall } = obj;
     return { id, customer_name, product_name, mobile_phone, count, recall };
   });
+  console.log(filteredArray);
   if (error) {
     console.log(error);
   }
 
   return (
-    orders && (
+    orders &&
+    filteredArray && (
       <main className="pt-[60px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="Orders page" className="ml-[48px] mb-4">
@@ -88,7 +89,7 @@ const Orders = () => {
                     ))}
                   <TableRow className="border-b border-gray-200">
                     <TableCell className="py-1 text-center" colSpan={6}>
-                      <Pagination 
+                      <Pagination
                         currentPage={currentPage}
                         totalPages={orders?.pagination?.totalPages}
                         onPageChange={onPageChange}
@@ -100,12 +101,6 @@ const Orders = () => {
               </Table>
             </div>
             <div className="flex items-center justify-between">
-              <Pagination
-                currentPage={currentPage}
-                totalPages={orders?.pagination?.totalPages}
-                onPageChange={onPageChange}
-                showIcons
-              />
               <ExportButton data={filteredArray} filename={"Orders"} />
             </div>
           </div>
