@@ -120,7 +120,19 @@ const Products = () => {
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Mahsulotlar</Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="text-3xl font-medium ml-[50px]">Mahsulotlar</h1>
+        
+          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+            <h1 className="text-3xl font-medium">Mahsulotlar</h1>
+            <div className="flex gap-3">
+              <button
+                className="text-white px-3 bg-gray-700 rounded-md"
+                onClick={() => setProductModal(true)}
+              >
+                Qo'shish
+              </button>
+              <ExportButton data={filteredArray} filename={"Products"} />
+            </div>
+          </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg shadow-lg">
@@ -249,15 +261,6 @@ const Products = () => {
                 </TableBody>
               </Table>
             </div>
-          </div>
-          <div className="flex gap-3">
-            <button
-              className="ml-[48px] w-[150px] justify-center text-white p-3 mt-4 bg-gray-700 rounded-md flex items-center"
-              onClick={() => setProductModal(true)}
-            >
-              Qo'shish
-            </button>
-            <ExportButton data={filteredArray} filename={"Products"} />
           </div>
           <ProductModal
             product={product}

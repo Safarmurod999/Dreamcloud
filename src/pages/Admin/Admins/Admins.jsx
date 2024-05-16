@@ -118,7 +118,18 @@ const Admins = () => {
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Adminlar</Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="text-3xl font-medium ml-[50px]">Adminlar</h1>
+          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+            <h1 className="text-3xl font-medium">Kategoriyalar </h1>
+            <div className="flex gap-3">
+              <button
+                className="text-white px-3 bg-gray-700 rounded-md"
+                onClick={() => setOpenModal(true)}
+              >
+                Qo'shish
+              </button>
+              <ExportButton data={filteredArray} filename={"Admins"} />
+            </div>
+          </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg shadow-lg">
@@ -230,16 +241,6 @@ const Admins = () => {
                   </TableRow>
                 </TableBody>
               </Table>
-            </div>
-            <div className="flex items-center justify-between">
-              <button
-                className="p-3 w-[150px] text-white mt-4 bg-gray-700 rounded-md flex items-center justify-center"
-                onClick={() => setOpenModal(true)}
-              >
-                Qo'shish
-              </button>
-
-              <ExportButton data={filteredArray} filename={"Admins"} />
             </div>
           </div>
 

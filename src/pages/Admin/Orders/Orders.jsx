@@ -52,8 +52,12 @@ const Orders = () => {
             </Breadcrumb.Item>
             <Breadcrumb.Item href="/admin/orders">Buyurtmalar</Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="text-3xl font-medium ml-[50px]">Buyurtmalar</h1>
-
+          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+            <h1 className="text-3xl font-medium">Buyurtmalar</h1>
+            <div className="flex gap-3">
+              <ExportButton data={filteredArray} filename={"Orders"} />
+            </div>
+          </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg shadow-lg">
@@ -99,9 +103,6 @@ const Orders = () => {
                   </TableRow>
                 </TableBody>
               </Table>
-            </div>
-            <div className="flex items-center justify-between">
-              <ExportButton data={filteredArray} filename={"Orders"} />
             </div>
           </div>
         </div>
