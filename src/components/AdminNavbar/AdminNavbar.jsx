@@ -1,8 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../utils/slice";
+import { IoMenuSharp } from "react-icons/io5";
+import { IoCloseSharp } from "react-icons/io5";
+
 import Spinner from "../Spinner/Spinner";
 import useFetch from "../../hooks/useFetch";
 
@@ -15,11 +16,11 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-const AdminNavbar = () => {
+const AdminNavbar = ({ toggle, setToggle }) => {
   const [username, setUsername] = useState(
     JSON.parse(localStorage.getItem("username")) || "User"
   );
-  const {data:admin ,loading,error} = useFetch(`admin/${username}`);
+  const { data: admin, loading, error } = useFetch(`admin/${username}`);
 
   if (loading) {
     return <Spinner position={"relative"} />;
@@ -41,7 +42,9 @@ const AdminNavbar = () => {
     admin && (
       <Disclosure
         as="nav"
-        className="bg-white-800 shadow fixed layout grow shadow-gray-300 admin-navbar"
+        className={`bg-white-800 shadow fixed layout grow shadow-gray-300 admin-navbar ${
+          toggle ? "toggle" : "layout "
+        }`}
       >
         {({ open }) => (
           <>
@@ -49,6 +52,14 @@ const AdminNavbar = () => {
               <div className="flex h-16 items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-shrink-0"></div>
+                  <div
+                    className="cursor-pointer admin-toggle"
+                    onClick={() => {
+                      setToggle(!toggle);
+                    }}
+                  >
+                    {toggle ? <IoMenuSharp/> : <IoCloseSharp />}
+                  </div>
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       <form className="w-[400px] mx-auto">

@@ -17,12 +17,12 @@ const OrderItem = ({ el }) => {
   };
   return (
     <TableRow key={el.id} className="border-b border-gray-200 bg-white">
-      <TableCell className="py-1 text-center">{el.id}</TableCell>
-      <TableCell className="py-1 text-center">{el.customer_name}</TableCell>
-      <TableCell className="py-1 text-center">{el.mobile_phone}</TableCell>
-      <TableCell className="py-1 text-center">{el.product_name}</TableCell>
-      <TableCell className="py-1 text-center">{el.count}</TableCell>
-      <TableCell className="py-1 px-4 text-center">
+      <TableCell className="py-1 text-center whitespace-nowrap">{el.id}</TableCell>
+      <TableCell className="py-1 text-center whitespace-nowrap">{el.customer_name}</TableCell>
+      <TableCell className="py-1 text-center whitespace-nowrap">{el.mobile_phone}</TableCell>
+      <TableCell className="py-1 text-center whitespace-nowrap">{el.product_name}</TableCell>
+      <TableCell className="py-1 text-center whitespace-nowrap">{el.count}</TableCell>
+      <TableCell className="py-1 px-4 text-center whitespace-nowrap">
         <label className="inline-flex items-center cursor-pointer">
           <input
             type="checkbox"

@@ -88,7 +88,8 @@ button {
   }
 }
 .sidebar {
-  svg{
+  transition: .3s;
+  svg {
     font-size: 20px;
   }
   path {
@@ -96,7 +97,21 @@ button {
   }
 }
 .layout {
+  transition: 0.3s;
   width: calc(100% - 350px) !important;
+}
+.toggle {
+  transition: 0.3s;
+  width: calc(100% - 80px) !important;
+}
+.admin-toggle {
+  display: none;
+  @media screen and (max-width: 1245px) {
+    display: flex;
+  }
+  svg {
+    font-size: 25px;
+  }
 }
 @mixin flex-box($direction, $align, $justify, $gap) {
   display: flex;
