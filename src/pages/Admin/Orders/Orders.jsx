@@ -46,7 +46,7 @@ const Orders = () => {
     filteredArray && (
       <main className="pt-[60px]">
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="Orders page" className="ml-[48px] mb-4">
+          <Breadcrumb aria-label="Orders page" className="sm:px-2 lg:px-12 mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
@@ -60,7 +60,7 @@ const Orders = () => {
           </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+            <div className="overflow-x-auto w-full shadow-lg">
               <Table hoverable className="table-auto min-w-full rounded-lg">
                 <TableHead className="border-gray-800">
                   <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
