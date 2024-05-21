@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
         </>
       ) : route.pathname.startsWith("/admin") ? (
         <div className="flex flex-row min-h-full flex-1 w-full">
-          <Sidebar toggle={toggle} />
+          <Sidebar toggle={toggle} setToggle={setToggle}/>
           <div
             className={`min-h-full absolute right-0 ${
               toggle ? "toggle" : "layout "

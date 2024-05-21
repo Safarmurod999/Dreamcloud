@@ -88,7 +88,11 @@ button {
   }
 }
 .sidebar {
-  transition: .3s;
+  transition: 0.3s;
+  left: 0;
+  @media screen and (max-width: 1245px) {
+    left: -100%;
+  }
   svg {
     font-size: 20px;
   }
@@ -96,19 +100,27 @@ button {
     fill: #ffffff !important;
   }
 }
+.toggle-sidebar {
+  left: 0;
+  @media screen and (min-width:1245px) {
+    left: -100%;
+  }
+}
 .layout {
   transition: 0.3s;
-  width: calc(100% - 350px) !important;
+  width: calc(100% - 300px) !important;
+  @media screen and (max-width: 1245px) {
+    width: 100% !important;
+  }
 }
 .toggle {
   transition: 0.3s;
-  width: calc(100% - 50px) !important;
+  width: 100% !important;
+  .sidebar {
+    left: 0 !important;
+  }
 }
 .admin-toggle {
-  display: none;
-  @media screen and (max-width: 1245px) {
-    display: flex;
-  }
   svg {
     font-size: 25px;
   }

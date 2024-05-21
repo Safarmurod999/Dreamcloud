@@ -1,6 +1,5 @@
 import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { IoMenuSharp } from "react-icons/io5";
 import { IoCloseSharp } from "react-icons/io5";
 
@@ -42,14 +41,14 @@ const AdminNavbar = ({ toggle, setToggle }) => {
     admin && (
       <Disclosure
         as="nav"
-        className={`bg-white-800 shadow fixed layout grow shadow-gray-300 admin-navbar ${
+        className={`bg-white-800 h-[68px] shadow fixed layout grow shadow-gray-300 admin-navbar ${
           toggle ? "toggle" : "layout "
-        }`}
+        } flex items-center justify-between`}
       >
         {({ open }) => (
           <>
-            <div className={`mx-auto px-1 sm:px-3 md:px-4 lg-px-6 xl:px-8 `}>
-              <div className="flex h-16 items-center justify-between">
+            <div className={`w-full mx-auto px-3 sm:px-4 lg:px-6 xl:px-8`}>
+              <div className="flex py-2 items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-shrink-0"></div>
                   <div
@@ -58,7 +57,7 @@ const AdminNavbar = ({ toggle, setToggle }) => {
                       setToggle(!toggle);
                     }}
                   >
-                    {toggle ? <IoMenuSharp/> : <IoCloseSharp />}
+                    <IoMenuSharp />
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-5 flex items-baseline space-x-4">

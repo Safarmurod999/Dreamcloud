@@ -46,19 +46,22 @@ const Orders = () => {
     filteredArray && (
       <main className="pt-[60px]">
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="Orders page" className="sm:px-2 lg:px-12 mb-4">
+          <Breadcrumb
+            aria-label="Orders page"
+            className="px-4 sm:px-2 lg:px-6 xl:px-12  mb-4"
+          >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="/admin/orders">Buyurtmalar</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+          <div className="w-full px-4 sm:px-2 lg:px-6 xl:px-12 flex justify-between items-center">
             <h1 className="text-3xl font-medium">Buyurtmalar</h1>
             <div className="flex gap-3">
               <ExportButton data={filteredArray} filename={"Orders"} />
             </div>
           </div>
-          <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
+          <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-6 xl:px-12 ">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full shadow-lg">
               <Table hoverable className="table-auto min-w-full rounded-lg">
@@ -91,18 +94,18 @@ const Orders = () => {
                     .map((el) => (
                       <OrderItem el={el} key={el.id} />
                     ))}
-                  <TableRow className="border-b border-gray-200">
-                    <TableCell className="py-1 text-center" colSpan={6}>
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={orders?.pagination?.totalPages}
-                        onPageChange={onPageChange}
-                        showIcons
-                      />
-                    </TableCell>
-                  </TableRow>
                 </TableBody>
               </Table>
+            </div>
+            <div className="mx-auto flex justify-center mt-3">
+              <Pagination
+              className="text-center"
+                layout="table"
+                currentPage={currentPage}
+                totalPages={orders?.pagination?.totalPages}
+                onPageChange={onPageChange}
+                showIcons
+              />
             </div>
           </div>
         </div>
