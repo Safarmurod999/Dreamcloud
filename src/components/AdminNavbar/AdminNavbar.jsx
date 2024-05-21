@@ -48,7 +48,7 @@ const AdminNavbar = ({ toggle, setToggle }) => {
       >
         {({ open }) => (
           <>
-            <div className="mx-auto px-1 sm:px-3 lg:px-8">
+            <div className={`mx-auto px-1 sm:px-3 md:px-4 lg-px-6 xl:px-8 `}>
               <div className="flex h-16 items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-shrink-0"></div>

@@ -12,9 +12,9 @@ const Sidebar = ({ toggle }) => {
     JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
   return (
     <aside
-      className={`flex flex-col ${
-        toggle ? "w-[80px]" : "w-[350px] "
-      } fixed top-0 left-0 z-3 h-screen px-5 py-8 overflow-y-auto bg-gray-800 sidebar`}
+      className={`flex flex-col fixed top-0 left-0 z-3 h-screen px-2 py-8 overflow-y-auto bg-gray-800 sidebar ${
+        toggle ? "w-[50px] px-1" : "w-[350px] "
+      } `}
     >
       <a className="flex gap-4 cursor-pointer" to="/admin/profile">
         {" "}
@@ -34,7 +34,7 @@ const Sidebar = ({ toggle }) => {
       </a>
 
       <div className="flex flex-col justify-between border-t border-gray-500 pt-4 flex-1 mt-6">
-        <nav className="-mx-3 space-y-6 ">
+        <nav className="space-y-6 ">
           <div className="space-y-3 ">
             <label
               className={`px-3 text-xs text-gray-500 uppercase ${
@@ -51,7 +51,7 @@ const Sidebar = ({ toggle }) => {
                     key={item.id}
                     className={`flex items-center px-3 py-2 text-white-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-700 hover:text-gray-700 ${
                       activeRoute === item.id ? "bg-gray-700 text-gray-700" : ""
-                    } ${toggle ? "justify-center" : "justify-start"}`}
+                    } ${toggle ? "justify-center px-[5px] py-1" : "justify-start"}`}
                     to={item.path}
                     onClick={() => {
                       setActiveRoute(item.id);
