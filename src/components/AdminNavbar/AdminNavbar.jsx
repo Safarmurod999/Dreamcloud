@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { IoMenuSharp } from "react-icons/io5";
-import { IoCloseSharp } from "react-icons/io5";
 
 import Spinner from "../Spinner/Spinner";
 import useFetch from "../../hooks/useFetch";
