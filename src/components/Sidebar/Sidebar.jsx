@@ -18,11 +18,19 @@ const Sidebar = ({ toggle }) => {
     >
       <a className="flex gap-4 cursor-pointer" to="/admin/profile">
         {" "}
-        <img
-          className={`${toggle ? "w-full" : "w-[60%]"} mx-auto rounded-full delay-0`}
-          src={toggle ? toggle_nav : dreamcloud}
-          alt="Your Company"
-        />
+        {toggle ? (
+          <img
+            className={`w-full max-w-[40px] mx-auto rounded-full delay-0`}
+            src={toggle_nav}
+            alt="Your Company"
+          />
+        ) : (
+          <img
+            className={`w-[60%] mx-auto rounded-full delay-0`}
+            src={dreamcloud}
+            alt="Your Company"
+          />
+        )}
       </a>
 
       <div className="flex flex-col justify-between border-t border-gray-500 pt-4 flex-1 mt-6">
