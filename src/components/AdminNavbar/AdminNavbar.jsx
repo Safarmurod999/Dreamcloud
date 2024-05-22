@@ -138,7 +138,7 @@ const AdminNavbar = ({ toggle, setToggle }) => {
                             src={user.imageUrl}
                             alt=""
                           />
-                          <span className="ml-3">{user.name}</span>
+                          <span className="hidden md:flex ml-3">{user.name}</span>
                         </Menu.Button>
                       </div>
                       <Transition

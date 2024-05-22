@@ -18,6 +18,7 @@ import {
 } from "chart.js";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa6";
+import useFetch from "../../../hooks/useFetch";
 
 Chart.register(
   CategoryScale,
@@ -163,7 +164,9 @@ const Dashboard = () => {
                 </div>
                 <div className="mt-2 p-4">
                   <div className="flex justify-between items-center pt-3">
-                    <p className="texm-sm xl:text-xl font-medium">Oxirgi buyurtmalar </p>
+                    <p className="texm-sm xl:text-xl font-medium">
+                      Oxirgi buyurtmalar{" "}
+                    </p>
                     <Link
                       to={"/admin/orders"}
                       className="flex items-center font-bold hover:text-gray-600"
@@ -171,44 +174,21 @@ const Dashboard = () => {
                       Ko'rish <FaChevronRight className="text-sm" />
                     </Link>
                   </div>
-                  <div className="mt-4 p-4 h-[390px] rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+                  <div className="mt-4 p-4 rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
                     <Timeline className="ml-6 mt-2">
-                      <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar} />
-                        <Timeline.Content>
-                          <Timeline.Time>February 2022</Timeline.Time>
-                          <Timeline.Title>
-                            Application UI code in Tailwind CSS
-                          </Timeline.Title>
-                        </Timeline.Content>
-                      </Timeline.Item>
-                      <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar} />
-                        <Timeline.Content>
-                          <Timeline.Time>March 2022</Timeline.Time>
-                          <Timeline.Title>
-                            Marketing UI design in Figma
-                          </Timeline.Title>
-                        </Timeline.Content>
-                      </Timeline.Item>
-                      <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar} />
-                        <Timeline.Content>
-                          <Timeline.Time>April 2022</Timeline.Time>
-                          <Timeline.Title>
-                            E-Commerce UI code in Tailwind CSS
-                          </Timeline.Title>
-                        </Timeline.Content>
-                      </Timeline.Item>
-                      <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar} />
-                        <Timeline.Content>
-                          <Timeline.Time>February 2022</Timeline.Time>
-                          <Timeline.Title>
-                            Application UI code in Tailwind CSS
-                          </Timeline.Title>
-                        </Timeline.Content>
-                      </Timeline.Item>
+                      {orders.data.slice(-5).map((order) => {
+                       return <Timeline.Item key={order.id}>
+                          <Timeline.Point icon={HiCalendar} />
+                          <Timeline.Content>
+                            <Timeline.Time>
+                              {order?.createdAt.slice(0, 10)}
+                            </Timeline.Time>
+                            <Timeline.Title>
+                              {order.product_name.toUpperCase()}
+                            </Timeline.Title>
+                          </Timeline.Content>
+                        </Timeline.Item>;
+                      })}
                     </Timeline>
                   </div>
                 </div>
@@ -226,7 +206,7 @@ const Dashboard = () => {
                   </div>
                   <div className="p-5 mt-4 w-full rounded shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
                     <Bar
-                      className="w-full h-full mx-auto" 
+                      className="w-full h-full mx-auto"
                       data={chartData}
                       // options={{
                       //   scales: {
