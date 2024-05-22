@@ -40,7 +40,7 @@ const AdminNavbar = ({ toggle, setToggle }) => {
     admin && (
       <Disclosure
         as="nav"
-        className={`bg-white h-[68px] fixed layout grow shadow shadow-gray-300 admin-navbar ${
+        className={`bg-white h-[68px] fixed z-10 layout grow shadow shadow-gray-300 admin-navbar ${
           toggle ? "toggle" : "layout "
         } flex items-center justify-between`}
       >

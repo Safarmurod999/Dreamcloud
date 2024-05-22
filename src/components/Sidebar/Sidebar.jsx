@@ -12,7 +12,7 @@ const Sidebar = ({ toggle, setToggle }) => {
     JSON.parse(localStorage.getItem("isSuperAdmin")) || false;
   return (
     <aside
-      className={`flex flex-col w-full  sm:w-[300px] fixed top-0 left-0 z-10 h-screen px-2 py-3 overflow-y-auto bg-gray-800 sidebar ${
+      className={`flex flex-col w-full  sm:w-[300px] fixed top-0 left-0 z-20 h-screen px-2 py-3 overflow-y-auto bg-gray-800 sidebar ${
         toggle ? "toggle-sidebar" : ""
       } `}
     >
