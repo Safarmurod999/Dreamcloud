@@ -104,7 +104,7 @@ const Dashboard = () => {
           <h1 className="text-3xl font-medium ml-[40px]">Buyurtmalar</h1>
           <div className="w-full mx-auto py-6 sm:px-2 lg:px-6">
             <div className="overflow-x-auto w-full rounded-lg">
-              <div className="grid grid-cols-3 gap-4 px-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4">
                 <div className="p-4 m-1 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-lg flex flex-col items-center">
                   <IoLayersSharp className="text-4xl" />
                   <h1 className="text-3xl font-medium text-center mt-2">
@@ -133,10 +133,10 @@ const Dashboard = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-stretch">
-                <div className="mt-2 w-1/3 p-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div className="mt-2 p-4">
                   <div className="flex justify-between items-center pt-3">
-                    <p className="text-xl font-medium">
+                    <p className="texm-sm xl:text-xl font-medium">
                       Kunlik buyurtmalar statisikasi{" "}
                     </p>
                     <Link
@@ -161,9 +161,9 @@ const Dashboard = () => {
                     />
                   </div>
                 </div>
-                <div className="mt-2 w-1/3 p-4">
+                <div className="mt-2 p-4">
                   <div className="flex justify-between items-center pt-3">
-                    <p className="text-xl font-medium">Oxirgi buyurtmalar </p>
+                    <p className="texm-sm xl:text-xl font-medium">Oxirgi buyurtmalar </p>
                     <Link
                       to={"/admin/orders"}
                       className="flex items-center font-bold hover:text-gray-600"
@@ -212,9 +212,9 @@ const Dashboard = () => {
                     </Timeline>
                   </div>
                 </div>
-                <div className="mt-2 w-1/3 p-4">
+                <div className="mt-2 p-4">
                   <div className="flex justify-between items-center pt-3">
-                    <p className="text-xl font-medium">
+                    <p className="texm-sm xl:text-xl font-medium">
                       Kunlik buyurtmalar statisikasi{" "}
                     </p>
                     <Link
@@ -226,7 +226,7 @@ const Dashboard = () => {
                   </div>
                   <div className="p-5 mt-4 w-full rounded shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
                     <Bar
-                      className="w-full h-full mx-auto"
+                      className="w-full h-full mx-auto" 
                       data={chartData}
                       // options={{
                       //   scales: {
