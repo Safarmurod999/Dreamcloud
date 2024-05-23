@@ -7,7 +7,6 @@ import useFetch from "../../hooks/useFetch";
 
 const userNavigation = [
   { name: "Your Profile", path: "/admin/profile" },
-  { name: "Settings", path: "/admin/settings" },
   { name: "Sign out", path: "/admin" },
 ];
 
@@ -107,7 +106,7 @@ const AdminNavbar = ({ toggle, setToggle }) => {
                   <div className="ml-4 flex items-center md:ml-6">
                     <button
                       type="button"
-                      className="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-none"
                     >
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">View notifications</span>
