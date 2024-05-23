@@ -50,15 +50,18 @@ const Categories = () => {
   return (
     categories &&
     filteredArray && (
-      <main className="pt-[90px]">
+      <main className="pt-[60px]">
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="Categories page" className="ml-[48px] mb-4">
+          <Breadcrumb
+            aria-label="Categories page"
+            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
+          >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Kategoriyalar</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+          <div className="w-full px-4 sm:px-2 lg:px-12 flex flex-col sm:flex-row gap-y-3 justify-between items-start sm:items-center">
             <h1 className="text-3xl font-medium">Kategoriyalar </h1>
             <div className="flex gap-3">
               <button
@@ -72,19 +75,19 @@ const Categories = () => {
           </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+            <div className="overflow-x-auto w-full shadow-lg">
               <Table hoverable className="rounded-lg">
                 <Table.Head className="border-gray-800">
-                  <Table.HeadCell className="text-center bg-gray-700 text-white py-4">
+                  <Table.HeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Id
                   </Table.HeadCell>
-                  <Table.HeadCell className="text-center bg-gray-700 text-white py-4">
+                  <Table.HeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Kategoriyalar
                   </Table.HeadCell>
-                  <Table.HeadCell className="text-center bg-gray-700 text-white py-4">
+                  <Table.HeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Aktiv
                   </Table.HeadCell>
-                  <Table.HeadCell className="text-center bg-gray-700 text-white py-4">
+                  <Table.HeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Actions
                   </Table.HeadCell>
                 </Table.Head>
@@ -96,13 +99,13 @@ const Categories = () => {
                         key={el.id}
                         className="dark:bg-gray-800 border-b border-gray-200"
                       >
-                        <Table.Cell className="py-1 text-center">
+                        <Table.Cell className="py-1 text-center whitespace-nowrap">
                           {index + 1}
                         </Table.Cell>
-                        <Table.Cell className="py-1 text-center">
+                        <Table.Cell className="py-1 text-center whitespace-nowrap">
                           {el.category_name}
                         </Table.Cell>
-                        <Table.Cell className="py-1 text-center">
+                        <Table.Cell className="py-1 text-center whitespace-nowrap">
                           <label className="inline-flex items-center cursor-pointer">
                             <input
                               type="checkbox"
@@ -116,7 +119,7 @@ const Categories = () => {
                             <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700"></div>
                           </label>
                         </Table.Cell>
-                        <Table.Cell className="px-4 py-1 flex gap-x-2 justify-center text-center">
+                        <Table.Cell className="px-4 py-1 flex gap-x-2 justify-center text-center whitespace-nowrap">
                           {" "}
                           <button
                             type="button"
@@ -157,18 +160,18 @@ const Categories = () => {
                         </Table.Cell>
                       </Table.Row>
                     ))}
-                  <Table.Row className="border-b border-gray-200">
-                    <Table.Cell className="py-1 text-center" colSpan={4}>
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={categories?.pagination?.totalPages}
-                        onPageChange={onPageChange}
-                        showIcons
-                      />
-                    </Table.Cell>
-                  </Table.Row>
                 </Table.Body>
               </Table>
+            </div>
+            <div className="mx-auto flex justify-center mt-3">
+              <Pagination
+                className="text-center"
+                layout="table"
+                currentPage={currentPage}
+                totalPages={categories?.pagination?.totalPages}
+                onPageChange={onPageChange}
+                showIcons
+              />
             </div>
           </div>
 

@@ -8,10 +8,8 @@ import {
   Pagination,
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeadCell,
-  TableRow,
 } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
@@ -48,12 +46,12 @@ const Orders = () => {
         <div className="flex-1 py-6">
           <Breadcrumb
             aria-label="Orders page"
-            className="px-4 sm:px-2 lg:px-6 xl:px-12  mb-4"
+            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
           >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
-            <Breadcrumb.Item href="/admin/orders">Buyurtmalar</Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Buyurtmalar</Breadcrumb.Item>
           </Breadcrumb>
           <div className="w-full px-4 sm:px-2 lg:px-6 xl:px-12 flex justify-between items-center">
             <h1 className="text-3xl font-medium">Buyurtmalar</h1>

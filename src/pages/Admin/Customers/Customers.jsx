@@ -53,9 +53,12 @@ const Customers = () => {
   return (
     orders &&
     filteredArray && (
-      <main className="pt-[90px]">
+      <main className="pt-[60px]">
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="Customers page" className="ml-[48px] mb-4">
+          <Breadcrumb
+            aria-label="Customers page"
+            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
+          >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
@@ -69,22 +72,22 @@ const Customers = () => {
           </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+            <div className="overflow-x-auto w-full shadow-lg">
               <Table hoverable className="table-auto w-full rounded-lg">
                 <TableHead className="border-gray-800">
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Id
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Sana
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Telefon Raqami
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Qayta Aloqa
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Delete
                   </TableHeadCell>
                 </TableHead>
@@ -96,16 +99,16 @@ const Customers = () => {
                         key={el.id}
                         className=" border-b border-gray-200"
                       >
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.id}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el?.createdAt.slice(0, 10)}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.mobile_phone}
                         </TableCell>
-                        <TableCell className="py-1 px-4 text-center">
+                        <TableCell className="py-1 px-4 text-center whitespace-nowrap">
                           <label className="inline-flex items-center cursor-pointer">
                             <input
                               type="checkbox"
@@ -117,7 +120,7 @@ const Customers = () => {
                             <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700"></div>
                           </label>
                         </TableCell>
-                        <TableCell className="py-1 px-4 text-center">
+                        <TableCell className="py-1 px-4 text-center whitespace-nowrap">
                           {" "}
                           <button
                             type="button"
@@ -131,18 +134,18 @@ const Customers = () => {
                         </TableCell>
                       </TableRow>
                     ))}
-                  <TableRow className="border-b border-gray-200">
-                    <TableCell className="py-1 text-center" colSpan={6}>
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={orders?.pagination?.totalPages}
-                        onPageChange={onPageChange}
-                        showIcons
-                      />
-                    </TableCell>
-                  </TableRow>
                 </TableBody>
               </Table>
+            </div>
+            <div className="mx-auto flex justify-center mt-3">
+              <Pagination
+              className="text-center"
+                layout="table"
+                currentPage={currentPage}
+                totalPages={orders?.pagination?.totalPages}
+                onPageChange={onPageChange}
+                showIcons
+              />
             </div>
           </div>
         </div>
