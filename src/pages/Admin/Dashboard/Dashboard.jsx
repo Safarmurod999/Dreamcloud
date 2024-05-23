@@ -18,7 +18,6 @@ import {
 } from "chart.js";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa6";
-import useFetch from "../../../hooks/useFetch";
 
 Chart.register(
   CategoryScale,
@@ -96,16 +95,16 @@ const Dashboard = () => {
     orders && (
       <main className="pt-[90px]">
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="Orders page" className="ml-[40px] mb-4">
+          <Breadcrumb aria-label="Orders page" className="px-4 sm:px-2 lg:px-6 xl:px-10 mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#"></Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="text-3xl font-medium ml-[40px]">Buyurtmalar</h1>
-          <div className="w-full mx-auto py-6 sm:px-2 lg:px-6">
+          <h1 className="text-3xl font-medium px-4 sm:px-2 lg:px-6 xl:px-10">Buyurtmalar</h1>
+          <div className="w-full mx-auto py-6 px-4 sm:px-2 lg:px-6 xl:px-10">
             <div className="overflow-x-auto w-full rounded-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div className="p-4 m-1 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-lg flex flex-col items-center">
                   <IoLayersSharp className="text-4xl" />
                   <h1 className="text-3xl font-medium text-center mt-2">
@@ -134,8 +133,8 @@ const Dashboard = () => {
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                <div className="mt-2 p-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                <div className="mt-2 py-4 m-1">
                   <div className="flex justify-between items-center pt-3">
                     <p className="texm-sm xl:text-xl font-medium">
                       Kunlik buyurtmalar statisikasi{" "}
@@ -162,7 +161,7 @@ const Dashboard = () => {
                     />
                   </div>
                 </div>
-                <div className="mt-2 p-4">
+                <div className="mt-2 py-4 m-1">
                   <div className="flex justify-between items-center pt-3">
                     <p className="texm-sm xl:text-xl font-medium">
                       Oxirgi buyurtmalar{" "}
@@ -177,14 +176,14 @@ const Dashboard = () => {
                   <div className="mt-4 p-4 rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
                     <Timeline className="ml-6 mt-2">
                       {orders.data.slice(-5).map((order) => {
-                       return <Timeline.Item key={order.id}>
+                       return <Timeline.Item key={order.id} className="mb-5">
                           <Timeline.Point icon={HiCalendar} />
                           <Timeline.Content>
                             <Timeline.Time>
                               {order?.createdAt.slice(0, 10)}
                             </Timeline.Time>
                             <Timeline.Title>
-                              {order.product_name.toUpperCase()}
+                              {order?.product_name.charAt(0).toUpperCase()+order?.product_name.slice(1, order?.product_name.length)}
                             </Timeline.Title>
                           </Timeline.Content>
                         </Timeline.Item>;
@@ -192,7 +191,7 @@ const Dashboard = () => {
                     </Timeline>
                   </div>
                 </div>
-                <div className="mt-2 p-4">
+                <div className="mt-2 py-4 m-1">
                   <div className="flex justify-between items-center pt-3">
                     <p className="texm-sm xl:text-xl font-medium">
                       Kunlik buyurtmalar statisikasi{" "}
