@@ -94,13 +94,13 @@ const ProductModal = ({
       <Modal.Body>
         <form
           encType="multipart/form-data"
-          className="grid grid-cols-4 w-full gap-[50px]"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-[30px]"
           onSubmit={requestProduct}
         >
-          <div className="max-w-md">
+          <div className="max-w-full md:max-w-md">
             <Label
               htmlFor="dropzone-file"
-              className="flex w-[230px] h-[230px] relative cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+              className="flex w-full relative cursor-pointer flex-col items-center  justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
             >
               <div className="flex flex-col items-center justify-center pb-6 pt-5">
                 <svg
@@ -118,11 +118,11 @@ const ProductModal = ({
                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                   />
                 </svg>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mb-2 text-sm text-center text-gray-500 dark:text-gray-400">
                   <span className="font-semibold">Click to upload</span> or drag
                   and drop
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                   SVG, PNG, JPG
                 </p>
                 {product.image?.type && (
@@ -145,7 +145,7 @@ const ProductModal = ({
             </Label>
             <p className="text-center">{product.image.name}</p>
           </div>
-          <div className="max-w-md">
+          <div className="max-w-full md:max-w-md">
             <div className="mb-2 block">
               <Label htmlFor="categories" value="Toifalar" />
             </div>
@@ -204,7 +204,7 @@ const ProductModal = ({
               onChange={onChangeNumber}
             />
           </div>
-          <div className="max-w-md">
+          <div className="max-w-full md:max-w-md">
             <div className="mb-2 block">
               <Label htmlFor="size" value="O'lchami" />
             </div>
@@ -258,7 +258,7 @@ const ProductModal = ({
               onChange={onChangeNumber}
             />
           </div>
-          <div className="max-w-md">
+          <div className="max-w-full md:max-w-md">
             <div className="mb-2 block">
               <Label htmlFor="count" value="Soni" />
             </div>

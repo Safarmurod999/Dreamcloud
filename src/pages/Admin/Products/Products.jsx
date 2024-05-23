@@ -112,16 +112,19 @@ const Products = () => {
     products &&
     productsArr &&
     filteredArray && (
-      <main className="pt-[90px]">
+      <main className="pt-[60px]">
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="Products page" className="ml-[48px] mb-4">
+          <Breadcrumb
+            aria-label="Products page"
+            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
+          >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Mahsulotlar</Breadcrumb.Item>
           </Breadcrumb>
-        
-          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+
+          <div className="w-full px-4 sm:px-2 lg:px-12 flex flex-col sm:flex-row gap-y-3 justify-between items-start sm:items-center">
             <h1 className="text-3xl font-medium">Mahsulotlar</h1>
             <div className="flex gap-3">
               <button
@@ -135,34 +138,34 @@ const Products = () => {
           </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
-              <Table hoverable className="table-auto w-full rounded-lg">
+            <div className="overflow-x-auto w-full shadow-lg">
+              <Table hoverable className="rounded-lg">
                 <TableHead className="border-gray-800">
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Id
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Mahsulot nomi
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Kategoriyasi
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Narxi
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Yuklama
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     O'lchami
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Miqdori
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Status
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Actions
                   </TableHeadCell>
                 </TableHead>
@@ -172,30 +175,30 @@ const Products = () => {
                     .map((el, index) => (
                       <TableRow
                         key={el.id}
-                        className="border-b border-gray-200"
+                        className="dark:bg-gray-800 border-b border-gray-200"
                       >
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {index + 1}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.product_name}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.category_name}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.price}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.overweight}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.size}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.count}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           <label className="inline-flex items-center cursor-pointer">
                             <input
                               type="checkbox"
@@ -207,7 +210,7 @@ const Products = () => {
                             <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700"></div>
                           </label>
                         </TableCell>
-                        <TableCell className="py-1 px-4 py-1 flex gap-x-2 justify-center text-center">
+                        <TableCell className="py-1 px-4 py-1 flex gap-x-2 justify-center text-center whitespace-nowrap">
                           {" "}
                           <button
                             type="button"
@@ -248,18 +251,18 @@ const Products = () => {
                         </TableCell>
                       </TableRow>
                     ))}
-                  <TableRow className="border-b border-gray-200">
-                    <TableCell className="py-1 text-center" colSpan={9}>
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={products?.pagination?.totalPages}
-                        onPageChange={onPageChange}
-                        showIcons
-                      />
-                    </TableCell>
-                  </TableRow>
                 </TableBody>
               </Table>
+            </div>
+            <div className="mx-auto flex justify-center mt-3">
+              <Pagination
+                className="text-center whitespace-nowrap"
+                layout="table"
+                currentPage={currentPage}
+                totalPages={products?.pagination?.totalPages}
+                onPageChange={onPageChange}
+                showIcons
+              />
             </div>
           </div>
           <ProductModal
