@@ -53,7 +53,7 @@ const Profile = () => {
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Profile</Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="text-3xl font-medium ml-[50px]">Profile</h1>
+          <h1 className="text-3xl font-medium px-4 sm:px-2 lg:px-6 xl:px-12">Profile</h1>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg">
