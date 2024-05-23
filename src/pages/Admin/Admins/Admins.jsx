@@ -71,7 +71,7 @@ const Admins = () => {
   return (
     admin &&
     filteredArray && (
-      <main className="pt-[90px]">
+      <main className="pt-[60px]">
         <Toast
           className={`hidden absolute bottom-[30px] right-[40px] ${
             update ? "flex" : ""
@@ -112,14 +112,17 @@ const Admins = () => {
           <Toast.Toggle onDismiss={() => setUpdate(false)} />
         </Toast>
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="admin page" className="ml-[48px] mb-4">
+          <Breadcrumb
+            aria-label="admin page"
+            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
+          >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Adminlar</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
-            <h1 className="text-3xl font-medium">Kategoriyalar </h1>
+          <div className="w-full px-4 sm:px-2 lg:px-12 flex flex-col sm:flex-row gap-y-3 justify-between items-start sm:items-center">
+            <h1 className="text-3xl font-medium">Adminlar</h1>
             <div className="flex gap-3">
               <button
                 className="text-white px-3 bg-gray-700 rounded-md"
@@ -132,25 +135,25 @@ const Admins = () => {
           </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+            <div className="overflow-x-auto w-full shadow-lg">
               <Table hoverable className="rounded-lg">
                 <TableHead className="border-gray-800">
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Id
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Username
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Paroli
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Tizimga qo'shilgan sana
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     SuperAdmin
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Delete
                   </TableHeadCell>
                 </TableHead>
@@ -162,19 +165,19 @@ const Admins = () => {
                         key={el.id}
                         className=" border-b border-gray-200"
                       >
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.id}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.username}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.password}
                         </TableCell>
-                        <TableCell className="py-1 text-center">
+                        <TableCell className="py-1 text-center whitespace-nowrap">
                           {el.createdAt}
                         </TableCell>
-                        <TableCell className="py-1 px-4 text-center">
+                        <TableCell className="py-1 px-4 text-center whitespace-nowrap">
                           <label className="inline-flex items-center cursor-pointer">
                             <input
                               type="checkbox"
@@ -188,7 +191,7 @@ const Admins = () => {
                             <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700"></div>
                           </label>
                         </TableCell>
-                        <TableCell className="py-1 px-4 flex justify-center gap-2 text-center">
+                        <TableCell className="py-1 px-4 flex justify-center gap-2 text-center whitespace-nowrap">
                           {" "}
                           <button
                             type="button"
@@ -229,18 +232,18 @@ const Admins = () => {
                         </TableCell>
                       </TableRow>
                     ))}
-                  <TableRow className="border-b border-gray-200">
-                    <TableCell className="py-1 text-center" colSpan={6}>
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={admin?.pagination?.totalPages}
-                        onPageChange={onPageChange}
-                        showIcons
-                      />
-                    </TableCell>
-                  </TableRow>
                 </TableBody>
               </Table>
+            </div>
+            <div className="mx-auto flex justify-center mt-3">
+              <Pagination
+                className="text-center"
+                layout="table"
+                currentPage={currentPage}
+                totalPages={admin?.pagination?.totalPages}
+                onPageChange={onPageChange}
+                showIcons
+              />
             </div>
           </div>
 

@@ -57,8 +57,8 @@ const Profile = () => {
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full rounded-lg">
-              <div className="flex justify-between gap-4">
-                <div className="flex grow-[0.4] flex-col">
+              <div className="flex flex-col sm:flex-row justify-between gap-4">
+                <div className="flex grow md:grow-[0.4] flex-col">
                   <p>Joined {adminData[0]?.createdAt.slice(0, 10)}</p>
                   <form
                     className="flex mt-4 flex-col gap-4"
@@ -111,14 +111,14 @@ const Profile = () => {
                     </div>
                     <button
                       type="submit"
-                      className="focus:outline-none focus:ring-0 border-none text-gray-800 bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 w-[150px] h-[40px]"
+                      className="w-full sm:w-[150px] focus:outline-none focus:ring-0 border-none text-gray-800 bg-[#E6ECEE] hover:ring-2 font-medium rounded-lg text-sm mt-3 h-[40px]"
                     >
                       Saqlash
                     </button>
                   </form>
                 </div>
                 <img
-                  className="h-[200px] w-[200px] rounded-full"
+                  className="mx-auto sm:mx-0 h-[200px] w-[200px] rounded-full"
                   src={
                     adminData[0]?.image
                       ? `https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/avatar/${adminData[0]?.image}`
