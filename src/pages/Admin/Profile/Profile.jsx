@@ -73,7 +73,7 @@ const Profile = () => {
                         className="w-full border rounded-md"
                         type="text"
                         placeholder="Safarmurod Urinov"
-                        value={data.username ?? adminData[0].username}
+                        value={data?.username ?? adminData[0]?.username}
                         onChange={(e) =>
                           setData({ ...data, username: e.target.value })
                         }
@@ -87,7 +87,7 @@ const Profile = () => {
                         className="w-full border rounded-md"
                         type="text"
                         placeholder="safarmurodurinov@gmail.com"
-                        value={data.email ?? adminData[0].email}
+                        value={data?.email ?? adminData[0]?.email}
                         onChange={(e) =>
                           setData({ ...data, email: e.target.value })
                         }
@@ -102,7 +102,7 @@ const Profile = () => {
                         id="password"
                         className="w-full border rounded-md"
                         type="password"
-                        value={data.password ?? adminData[0].password}
+                        value={data?.password ?? adminData[0]?.password}
                         onChange={(e) =>
                           setData({ ...data, password: e.target.value })
                         }

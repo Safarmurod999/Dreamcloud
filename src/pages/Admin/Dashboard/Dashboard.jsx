@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
 import Spinner from "../../../components/Spinner/Spinner";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../../utils/slice";
-import { HiArrowNarrowRight, HiCalendar, HiHome } from "react-icons/hi";
+import { HiCalendar, HiHome } from "react-icons/hi";
 import { Breadcrumb, Button, Timeline } from "flowbite-react";
 import { IoLayersSharp } from "react-icons/io5";
 import { MdCalendarMonth } from "react-icons/md";
 import { FaRegCreditCard } from "react-icons/fa";
-import { Bar, Line, Pie, Radar } from "react-chartjs-2";
+import { Bar, Line} from "react-chartjs-2";
 import {
   CategoryScale,
   LinearScale,
@@ -18,6 +15,7 @@ import {
 } from "chart.js";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa6";
+import useFetch from "../../../hooks/useFetch";
 
 Chart.register(
   CategoryScale,
@@ -39,15 +37,10 @@ function groupByDay(items) {
   return grouped;
 }
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const orders = useSelector((state) => state.data.data);
-  const isLoading = useSelector((state) => state.data.isLoading);
-  const error = useSelector((state) => state.data.error);
-  useEffect(() => {
-    dispatch(fetchData("orders"));
-  }, [dispatch]);
+  const {data:orders,loading,error} = useFetch("orders?page=1&limit=10");
+  console.log(orders);
 
-  if (isLoading) {
+  if (loading) {
     return <Spinner position={"relative"} />;
   }
   if (orders) {
@@ -133,7 +126,7 @@ const Dashboard = () => {
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-5">
                 <div className="mt-2 py-4 m-1">
                   <div className="flex justify-between items-center pt-3">
                     <p className="texm-sm xl:text-xl font-medium">
@@ -175,7 +168,7 @@ const Dashboard = () => {
                   </div>
                   <div className="mt-4 p-4 rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
                     <Timeline className="ml-6 mt-2">
-                      {orders.data.slice(-5).map((order) => {
+                      {orders?.data.slice(-5).map((order) => {
                        return <Timeline.Item key={order.id} className="mb-5">
                           <Timeline.Point icon={HiCalendar} />
                           <Timeline.Content>
