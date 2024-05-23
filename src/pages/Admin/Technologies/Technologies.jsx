@@ -28,7 +28,6 @@ const Technologies = () => {
     state: 1,
   });
   const [openModal, setOpenModal] = useState(false);
-  let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
 
   const dispatch = useDispatch();
   const technologies = useSelector((state) => state.data.data);
@@ -56,15 +55,18 @@ const Technologies = () => {
   return (
     technologies &&
     filteredArray && (
-      <main className="pt-[90px]">
+      <main className="pt-[60px]">
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="Technologies page" className="ml-[48px] mb-4">
+          <Breadcrumb
+            aria-label="Technologies page"
+            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
+          >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Texnologiyalar</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+          <div className="w-full px-4 sm:px-2 lg:px-12 flex flex-col sm:flex-row gap-y-3 justify-between items-start sm:items-center">
             <h1 className="text-3xl font-medium">Texnologiyalar</h1>
             <div className="flex gap-3">
               <button
@@ -78,22 +80,22 @@ const Technologies = () => {
           </div>
           <div className="mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+            <div className="overflow-x-auto shadow-lg">
               <Table hoverable className="rounded-lg">
                 <TableHead className="border-gray-800">
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Id
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Nomi
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Matn
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Video
                   </TableHeadCell>
-                  <TableHeadCell className="text-center bg-gray-700 text-white py-4">
+                  <TableHeadCell className="text-center whitespace-nowrap bg-gray-700 text-white py-4">
                     Edit
                   </TableHeadCell>
                 </TableHead>
@@ -105,21 +107,21 @@ const Technologies = () => {
                         className="border-b border-gray-200"
                         key={el.id}
                       >
-                        <TableCell className="text-center py-1">
+                        <TableCell className="text-center whitespace-nowrap py-1">
                           {el.id}
                         </TableCell>
-                        <TableCell className="text-center py-1">
+                        <TableCell className="text-center whitespace-nowrap py-1">
                           {el.name}
                         </TableCell>
-                        <TableCell className="text-center py-1 text-ellipsis overflow-hidden">
+                        <TableCell className="text-center whitespace-nowrap py-1 text-ellipsis overflow-hidden">
                           {el.description && el.description.length > 30
                             ? el.description.slice(0, 30) + "..."
                             : el.description}
                         </TableCell>
-                        <TableCell className="px-4 text-center">
+                        <TableCell className="px-4 text-center whitespace-nowrap">
                           {el.video}
                         </TableCell>
-                        <TableCell className="flex justify-center gap-2 py-1 text-center">
+                        <TableCell className="flex justify-center gap-2 py-1 text-center whitespace-nowrap">
                           {" "}
                           <button
                             type="button"
@@ -160,18 +162,18 @@ const Technologies = () => {
                         </TableCell>
                       </TableRow>
                     ))}
-                  <TableRow className="border-b border-gray-200">
-                    <TableCell className="py-1 text-center" colSpan={9}>
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={technologies?.pagination?.totalPages}
-                        onPageChange={onPageChange}
-                        showIcons
-                      />
-                    </TableCell>
-                  </TableRow>
                 </TableBody>
               </Table>
+            </div>
+            <div className="mx-auto flex justify-center mt-3">
+              <Pagination
+                className="text-center"
+                layout="table"
+                currentPage={currentPage}
+                totalPages={technologies?.pagination?.totalPages}
+                onPageChange={onPageChange}
+                showIcons
+              />
             </div>
           </div>
           <TechnologiesModal

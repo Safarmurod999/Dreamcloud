@@ -48,11 +48,11 @@ const TechnologiesModal = ({
         </Modal.Header>
         <Modal.Body>
           <form
-            className="grid grid-cols-2 w-full gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 w-full gap-4"
             onSubmit={requestTechnology}
           >
             {" "}
-            <div className="max-w-md">
+            <div className="max-w-full sm:max-w-md">
               <div className="mb-2 block">
                 <Label htmlFor="technology" value="Texnologiya nomi" />
               </div>
@@ -87,7 +87,7 @@ const TechnologiesModal = ({
                 Submit
               </button>
             </div>
-            <div className="max-w-md">
+            <div className="max-w-full sm:max-w-md">
               <Label
                 htmlFor="dropzone-video"
                 className="flex w-full h-full relative cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
@@ -108,11 +108,11 @@ const TechnologiesModal = ({
                       d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                     />
                   </svg>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <p className="mb-2 text-sm text-center text-gray-500 dark:text-gray-400">
                     <span className="font-semibold">Click to upload</span> or
                     drag and drop
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                     MP4 format
                   </p>
                 </div>

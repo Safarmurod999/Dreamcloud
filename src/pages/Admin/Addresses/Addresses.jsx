@@ -56,15 +56,18 @@ const Addresses = () => {
   return (
     addresses &&
     filteredArray && (
-      <main className="pt-[90px]">
+      <main className="pt-[60px]">
         <div className="flex-1 py-6">
-          <Breadcrumb aria-label="Orders page" className="ml-[48px] mb-4">
+          <Breadcrumb
+            aria-label="Orders page"
+            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
+          >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Manzillar</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+          <div className="w-full px-4 sm:px-2 lg:px-12 flex flex-col sm:flex-row gap-y-3 justify-between items-start sm:items-center">
             <h1 className="text-3xl font-medium">Manzillar </h1>
             <div className="flex gap-3">
               <button
@@ -78,22 +81,22 @@ const Addresses = () => {
           </div>
           <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
             <div className="border mb-6"></div>
-            <div className="overflow-x-auto w-full rounded-lg shadow-lg">
+            <div className="overflow-x-auto shadow-lg">
               <Table hoverable className="rounded-lg">
                 <Table.Head className="border-gray-800">
-                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center  whitespace-nowrap">
                     Id
                   </Table.HeadCell>
-                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center  whitespace-nowrap">
                     Manzil
                   </Table.HeadCell>
-                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center  whitespace-nowrap">
                     Matn
                   </Table.HeadCell>
-                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center  whitespace-nowrap">
                     Location
                   </Table.HeadCell>
-                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center">
+                  <Table.HeadCell className="bg-gray-700 text-white py-4 text-center  whitespace-nowrap">
                     Edit
                   </Table.HeadCell>
                 </Table.Head>
@@ -105,19 +108,19 @@ const Addresses = () => {
                         key={el.id}
                         className="dark:bg-gray-800 border-b border-gray-200"
                       >
-                        <Table.Cell className="py-1 text-center whitespace-nowrap font-medium text-gray-900">
+                        <Table.Cell className="py-1 text-center  whitespace-nowrap whitespace-nowrap font-medium text-gray-900">
                           {el.id}
                         </Table.Cell>
-                        <Table.Cell className="py-1 text-center text-ellipsis overflow-hidden">
+                        <Table.Cell className="py-1 text-center  whitespace-nowrap text-ellipsis overflow-hidden">
                           {el.address}
                         </Table.Cell>
-                        <Table.Cell className="py-1 text-center text-ellipsis overflow-hidden">
+                        <Table.Cell className="py-1 text-center  whitespace-nowrap text-ellipsis overflow-hidden">
                           {el?.description}
                         </Table.Cell>
-                        <Table.Cell className="py-1 text-center max-w-[250px] text-ellipsis overflow-hidden">
+                        <Table.Cell className="py-1 text-center  whitespace-nowrap max-w-[250px] text-ellipsis overflow-hidden">
                           {el?.location}
                         </Table.Cell>
-                        <Table.Cell className="py-1 text-center flex justify-center gap-2 px-4">
+                        <Table.Cell className="py-1 text-center  whitespace-nowrap flex justify-center gap-2 px-4">
                           {" "}
                           <button
                             type="button"
@@ -158,18 +161,18 @@ const Addresses = () => {
                         </Table.Cell>
                       </Table.Row>
                     ))}
-                  <Table.Row className="border-b border-gray-200">
-                    <Table.Cell className="py-1 text-center" colSpan={5}>
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={addresses?.pagination?.totalPages}
-                        onPageChange={onPageChange}
-                        showIcons
-                      />
-                    </Table.Cell>
-                  </Table.Row>
                 </Table.Body>
               </Table>
+            </div>
+            <div className="mx-auto flex justify-center mt-3">
+              <Pagination
+                className="text-center"
+                layout="table"
+                currentPage={currentPage}
+                totalPages={addresses?.pagination?.totalPages}
+                onPageChange={onPageChange}
+                showIcons
+              />
             </div>
           </div>
           <AdminAddresses

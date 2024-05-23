@@ -46,11 +46,11 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
       </Modal.Header>
       <Modal.Body>
         <form
-          className="grid grid-cols-3 w-full gap-4"
+          className="grid grid-cols-1 md:grid-cols-3 w-full gap-4"
           onSubmit={requestaddress}
         >
           {" "}
-          <div className="max-w-md">
+          <div className="max-w-full md:max-w-md">
             <Label
               htmlFor="dropzone-image"
               className="flex w-full h-[200px] relative cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
@@ -71,11 +71,11 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                   />
                 </svg>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mb-2 text-sm text-center text-gray-500 dark:text-gray-400">
                   <span className="font-semibold">Click to upload</span> or drag
                   and drop
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                   MP4 format
                 </p>
               </div>
@@ -90,7 +90,7 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
             </Label>
             <p className="text-center">{address.image.name}</p>
           </div>
-          <div className="max-w-md">
+          <div className="max-w-full md:max-w-md">
             <div className="mb-2 block">
               <Label htmlFor="address" value="Texnologiya nomi" />
             </div>
@@ -137,7 +137,7 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
               </label>
             </div>
           </div>
-          <div className="max-w-md">
+          <div className="max-w-full md:max-w-md">
             {" "}
             <div className="mb-2 block">
               <Label htmlFor="textarea" value="Ma'lumot" />
@@ -153,7 +153,7 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
               required
             />
             <button
-              className="w-full py-2 mt-4 bg-white border-2 border-indigo-500 rounded-md"
+              className="w-full py-2 mt-[32px] bg-white border-2 border-indigo-500 rounded-md"
               style={{ border: "1px solid" }}
               type="submit"
             >
