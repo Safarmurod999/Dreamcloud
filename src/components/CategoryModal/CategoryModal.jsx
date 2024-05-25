@@ -31,7 +31,8 @@ const CategoryModal = ({ category, openModal, setOpenModal, setCategory }) => {
   return (
     <>
       <Modal
-        className="bg-opacity backdrop-blur-sm"
+        className="backdrop-blur-sm"
+        position={"center"}
         show={openModal}
         onClose={() => {
           setOpenModal(false);

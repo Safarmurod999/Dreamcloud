@@ -66,7 +66,7 @@ const ProductModal = ({
   };
   return (
     <Modal
-      className=" bg-opacity backdrop-blur-sm"
+      className="backdrop-blur-sm"
       show={productModal}
       size={"6xl"}
       onClose={() => {
@@ -143,7 +143,7 @@ const ProductModal = ({
                 }}
               />
             </Label>
-            <p className="text-center">{product.image.name}</p>
+            
           </div>
           <div className="max-w-full md:max-w-md">
             <div className="mb-2 block">

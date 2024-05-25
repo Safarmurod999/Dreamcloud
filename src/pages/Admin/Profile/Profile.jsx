@@ -45,7 +45,7 @@ const Profile = () => {
   }
   return (
     admin && (
-      <main className="pt-[90px]">
+      <main className="pt-[60px]">
         <div className="flex-1 py-6">
           <Breadcrumb aria-label="admin page" className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4">
             <Breadcrumb.Item href="/admin" icon={HiHome}>

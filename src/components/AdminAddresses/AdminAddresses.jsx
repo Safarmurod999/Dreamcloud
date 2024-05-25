@@ -33,7 +33,7 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
   };
   return (
     <Modal
-      className="bg-opacity backdrop-blur-sm"
+      className="backdrop-blur-sm"
       size={"3xl"}
       show={openModal}
       onClose={() => {
@@ -88,7 +88,6 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
                 }}
               />
             </Label>
-            <p className="text-center">{address.image.name}</p>
           </div>
           <div className="max-w-full md:max-w-md">
             <div className="mb-2 block">

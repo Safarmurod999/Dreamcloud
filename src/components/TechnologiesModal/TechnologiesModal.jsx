@@ -36,7 +36,7 @@ const TechnologiesModal = ({
   return (
     <>
       <Modal
-        className="bg-opacity backdrop-blur-sm"
+        className="backdrop-blur-sm"
         show={openModal}
         onClose={() => {
           setOpenModal(false);
@@ -125,7 +125,6 @@ const TechnologiesModal = ({
                   }}
                 />
               </Label>
-              <p className="text-center">{technology.video.name}</p>
             </div>
             <div className="flex items-center justify-between gap-2">
               <Label htmlFor="state">Holat</Label>
