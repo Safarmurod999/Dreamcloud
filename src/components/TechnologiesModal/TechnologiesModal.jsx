@@ -1,6 +1,7 @@
 import { FileInput, Label, Modal, TextInput } from "flowbite-react";
 import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
+import { BASE_URL } from "../../data/data";
 const TechnologiesModal = ({
   technology,
   openModal,
@@ -44,7 +45,8 @@ const TechnologiesModal = ({
         }}
       >
         <Modal.Header>
-          {technology.id ? "Texnologiya tahrirlash" : "Texnologiya qo'shish"}  {technology.name.length > 0 && `- ${technology.name}`}
+          {technology.id ? "Texnologiya tahrirlash" : "Texnologiya qo'shish"}{" "}
+          {technology.name.length > 0 && `- ${technology.name}`}
         </Modal.Header>
         <Modal.Body>
           <form
@@ -115,6 +117,18 @@ const TechnologiesModal = ({
                   <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                     MP4 format
                   </p>
+                  {technology.video?.type && (
+                    <video
+                      src={URL.createObjectURL(technology.video)}
+                      className="w-full h-full bg-gray-200 object-contain absolute top-0 left-0 rounded-lg"
+                    ></video>
+                  )}
+                  {technology?.video.length > 0 && (
+                    <video
+                      src={`${BASE_URL}uploads/technologies/${technology.video}`}
+                      className="w-full h-full bg-gray-200 object-contain absolute top-0 left-0 rounded-lg"
+                    ></video>
+                  )}
                 </div>
                 <FileInput
                   id="dropzone-video"

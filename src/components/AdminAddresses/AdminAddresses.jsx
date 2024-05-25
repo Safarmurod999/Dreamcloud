@@ -1,6 +1,7 @@
 import { FileInput, Label, Modal, TextInput } from "flowbite-react";
 import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
+import { BASE_URL } from "../../data/data";
 
 const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
@@ -78,6 +79,20 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
                 <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                   MP4 format
                 </p>
+                {address.image?.type && (
+                  <img
+                    src={URL.createObjectURL(address.image)}
+                    className="w-full h-full bg-gray-200 object-contain absolute top-0 left-0 rounded-lg"
+                    alt=""
+                  />
+                )}
+                {address?.image.length > 0 && (
+                  <img
+                    src={`${BASE_URL}uploads/addresses/${address.image}`}
+                    className="w-full h-full bg-gray-200 object-contain absolute top-0 left-0 rounded-lg"
+                    alt=""
+                  />
+                )}
               </div>
               <FileInput
                 id="dropzone-image"

@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
 import React from "react";
+import { BASE_URL } from "../../data/data";
 
 const ProductModal = ({
   product,
@@ -19,6 +20,7 @@ const ProductModal = ({
 }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
   const dispatch = useDispatch();
+
   const onChangeHandler = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
@@ -89,7 +91,6 @@ const ProductModal = ({
     >
       <Modal.Header>
         {product.id ? "Mahsulot tahrirlash" : "Mahsulot qo'shish"}{" "}
-        {product.product_name.length > 0 && `- ${product.product_name}`}
       </Modal.Header>
       <Modal.Body>
         <form
@@ -128,6 +129,13 @@ const ProductModal = ({
                 {product.image?.type && (
                   <img
                     src={URL.createObjectURL(product.image)}
+                    className="w-full h-full bg-gray-200 object-contain absolute top-0 left-0 rounded-lg"
+                    alt=""
+                  />
+                )}
+                {product?.image.length>0 && (
+                  <img
+                    src={`${BASE_URL}uploads/products/${product.image}`}
                     className="w-full h-full bg-gray-200 object-contain absolute top-0 left-0 rounded-lg"
                     alt=""
                   />

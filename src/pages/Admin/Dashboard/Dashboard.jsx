@@ -128,7 +128,7 @@ const Dashboard = () => {
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-5">
                 <div className="mt-2 py-4 m-1">
-                  <div className="flex justify-between items-center pt-3">
+                  <div className="flex justify-between items-center pt-0 lg:pt-3">
                     <p className="texm-sm xl:text-xl font-medium">
                       Kunlik buyurtmalar statisikasi{" "}
                     </p>
@@ -154,8 +154,8 @@ const Dashboard = () => {
                     />
                   </div>
                 </div>
-                <div className="mt-2 py-4 m-1">
-                  <div className="flex justify-between items-center pt-3">
+                <div className="mt-2 py-0 lg:py-4 m-1">
+                  <div className="flex justify-between items-center pt-0 xl:pt-3">
                     <p className="texm-sm xl:text-xl font-medium">
                       Oxirgi buyurtmalar{" "}
                     </p>
@@ -184,7 +184,7 @@ const Dashboard = () => {
                     </Timeline>
                   </div>
                 </div>
-                <div className="mt-2 py-4 m-1">
+                <div className="mt-2 py-0 lg:py-4 m-1">
                   <div className="flex justify-between items-center pt-3">
                     <p className="texm-sm xl:text-xl font-medium">
                       Kunlik buyurtmalar statisikasi{" "}
