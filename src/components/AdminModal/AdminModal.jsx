@@ -24,7 +24,6 @@ const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
         password: admin.password,
         email: admin.email,
       };
-      console.log(newData);
       dispatch(addData({ apiEndpoint: "admin", newData }));
     }
     setOpenModal(false);

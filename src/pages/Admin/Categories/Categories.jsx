@@ -44,7 +44,6 @@ const Categories = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
-  console.log(categories);
   if (error) {
     console.log(error);
   }

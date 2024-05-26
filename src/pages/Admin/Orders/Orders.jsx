@@ -34,7 +34,6 @@ const Orders = () => {
     let { id, customer_name, product_name, mobile_phone, count, recall } = obj;
     return { id, customer_name, product_name, mobile_phone, count, recall };
   });
-  console.log(filteredArray);
   if (error) {
     console.log(error);
   }

@@ -147,7 +147,6 @@ const ProductModal = ({
                 name="image"
                 onChange={(e) => {
                   setProduct({ ...product, image: e.target.files[0] });
-                  console.log(e.target.files[0]);
                 }}
               />
             </Label>

@@ -46,7 +46,6 @@ const Customers = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
-  console.log(orders);
   if (error) {
     console.log(error);
   }

@@ -51,7 +51,6 @@ const Addresses = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
-  console.log(addresses);
   if (error) {
     console.log(error);
   }

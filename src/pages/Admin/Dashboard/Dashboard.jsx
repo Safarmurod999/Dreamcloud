@@ -38,7 +38,6 @@ function groupByDay(items) {
 }
 const Dashboard = () => {
   const {data:orders,loading,error} = useFetch("orders?page=1&limit=10");
-  console.log(orders);
 
   if (loading) {
     return <Spinner position={"relative"} />;

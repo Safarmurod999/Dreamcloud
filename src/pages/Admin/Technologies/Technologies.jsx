@@ -48,7 +48,6 @@ const Technologies = () => {
   if (isLoading) {
     return <Spinner position={"relative"} />;
   }
-  console.log(technologies);
   if (error) {
     console.log(error);
   }

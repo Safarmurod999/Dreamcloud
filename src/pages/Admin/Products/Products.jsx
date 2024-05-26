@@ -108,7 +108,6 @@ const Products = () => {
       return { ...product, category_name };
     });
   }
-  console.log(products);
   return (
     products &&
     productsArr &&

@@ -22,7 +22,6 @@ const CategoryModal = ({ category, openModal, setOpenModal, setCategory }) => {
       let newData = {
         category_name: category.category_name,
       };
-      console.log(newData);
       dispatch(addData({ apiEndpoint: "categories", newData }));
     }
     setOpenModal(false);

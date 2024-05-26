@@ -66,7 +66,6 @@ const Admins = () => {
     let { id, username, password, createdAt, isSuperAdmin } = obj;
     return { id, username, password, createdAt, isSuperAdmin };
   });
-  console.log(admin);
   if (error) {
     console.log(error);
   }

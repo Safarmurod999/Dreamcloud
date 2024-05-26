@@ -39,7 +39,7 @@ const Profile = () => {
     return <Spinner position={"relative"} />;
   }
   const adminData = admin?.data.filter((data) => data.username === username);
-  console.log(admin);
+
   if (error) {
     console.log(error);
   }

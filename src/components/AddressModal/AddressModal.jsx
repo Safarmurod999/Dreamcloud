@@ -10,6 +10,7 @@ function AddressModal({src}) {
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
+          
         ></iframe>
         <button className="modal__btn" onClick={()=>document.querySelector('.modal').style.display="none"}>Close</button>
       </div>

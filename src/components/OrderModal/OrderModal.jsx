@@ -65,7 +65,6 @@ function OrderModal({ data }) {
   }
   if (products && !loading) {
     var product_count = products.data.find((el) => el.id == id)?.count;
-    console.log(product_count);
   }
   return (
     products && (

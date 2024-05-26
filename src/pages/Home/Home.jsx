@@ -50,16 +50,10 @@ function Home() {
       }
       video.play();
       html.style.display = "none";
-      // video.addEventListener("mouseover", () => {
-      //   html.style.display = "flex";
-      //   console.log(html);
-      //   html.innerHTML = <IoPauseCircleSharp />;
-      // });
     } else {
       video.pause();
       html.style.display = "flex";
-      console.log(html);
-      // html.innerHTML = <IoIosPlayCircle />;
+
     }
   }
   const modalControl = () => {
@@ -67,9 +61,9 @@ function Home() {
   };
   const contactPost = (e) => {
     e.preventDefault();
-    // postData("contacts", { phone_number: `+998${contact}` });
+    postData("customers", { mobile_phone: `+998${contact}` });
     setContact("");
-  };
+  };  
   const orderControl = (data) => {
     setProductData(data);
     document.querySelector(".order").style.display = "flex";
