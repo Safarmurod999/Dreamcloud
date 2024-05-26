@@ -5,8 +5,7 @@ import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import { useDispatch, useSelector } from "react-redux";
 import { TechnologiesModal } from "../../../components";
 import {
-  Breadcrumb,
-  Button,
+  Breadcrumb,   
   Pagination,
   Table,
   TableBody,
@@ -17,6 +16,7 @@ import {
 } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
+import { BsPlus } from "react-icons/bs";
 const Technologies = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -59,26 +59,27 @@ const Technologies = () => {
         <div className="flex-1 py-6">
           <Breadcrumb
             aria-label="Technologies page"
-            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
+            className="px-3 sm:px-4 lg:px-6 xl:px-8 mb-4"
           >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Texnologiyalar</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="w-full px-4 sm:px-2 lg:px-12 flex flex-col sm:flex-row gap-y-3 justify-between items-start sm:items-center">
+          <div className="w-full px-3 sm:px-4 lg:px-6 xl:px-8 flex flex-row gap-y-3 justify-between items-start sm:items-center">
             <h1 className="text-3xl font-medium">Texnologiyalar</h1>
             <div className="flex gap-3">
-              <button
-                className="text-white px-3 bg-gray-700 rounded-md"
+            <button
+                className="p-3 w-auto  bg-gray-700 rounded-md flex items-center justify-between md:justify-center"
                 onClick={() => setOpenModal(true)}
               >
-                Qo'shish
+                <p className="mr-2 text-white hidden md:flex">Qo'shish</p>
+                <BsPlus className="fill-white w-[20px] text-xl" />
               </button>
               <ExportButton data={filteredArray} filename={"Technologies"} />
             </div>
           </div>
-          <div className="mx-auto px-4 py-6 sm:px-2 lg:px-12">
+          <div className="mx-auto py-6 px-3 sm:px-4 lg:px-6 xl:px-8">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto shadow-lg">
               <Table hoverable className="rounded-lg">

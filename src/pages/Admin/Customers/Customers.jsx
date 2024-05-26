@@ -57,20 +57,20 @@ const Customers = () => {
         <div className="flex-1 py-6">
           <Breadcrumb
             aria-label="Customers page"
-            className="px-4 sm:px-2 lg:px-6 xl:px-12 mb-4"
+            className="px-3 sm:px-4 lg:px-6 xl:px-8 mb-4"
           >
             <Breadcrumb.Item href="/admin" icon={HiHome}>
               Dashboard
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Mijozlar</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="w-full px-4 sm:px-2 lg:px-12 flex justify-between items-center">
+          <div className="w-full px-3 sm:px-4 lg:px-6 xl:px-8 flex justify-between items-center">
             <h1 className="text-3xl font-medium">Mijozlar</h1>
             <div className="flex gap-3">
               <ExportButton data={filteredArray} filename={"Customers"} />
             </div>
           </div>
-          <div className="w-full mx-auto px-4 py-6 sm:px-2 lg:px-12">
+          <div className="w-full mx-auto py-6 px-3 sm:px-4 lg:px-6 xl:px-8">
             <div className="border mb-6"></div>
             <div className="overflow-x-auto w-full shadow-lg">
               <Table hoverable className="table-auto w-full rounded-lg">

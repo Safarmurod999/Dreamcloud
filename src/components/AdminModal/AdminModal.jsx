@@ -14,6 +14,7 @@ const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
       let newData = {
         username: admin.username,
         password: admin.password,
+        email: admin.email,
         isSuperAdmin: admin.isSuperAdmin,
       };
       dispatch(updateData({ apiEndpoint: "admin", id, newData, accessToken }));
@@ -21,6 +22,7 @@ const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
       let newData = {
         username: admin.username,
         password: admin.password,
+        email: admin.email,
       };
       console.log(newData);
       dispatch(addData({ apiEndpoint: "admin", newData }));
@@ -69,6 +71,20 @@ const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
                 value={admin.password}
                 onChange={onChangeHandler}
                 name="password"
+                required
+              />
+            </div>
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="email" value="Email" />
+              </div>
+              <TextInput
+                id="email"
+                type="email"
+                placeholder="johndoe@example.com"
+                value={admin.email}
+                onChange={onChangeHandler}
+                name="email"
                 required
               />
             </div>

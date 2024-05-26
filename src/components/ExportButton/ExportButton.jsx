@@ -9,7 +9,7 @@ const ExportButton = ({ data, filename }) => {
       className="p-3 w-auto md:w-[150px] bg-gray-700 rounded-md flex items-center justify-center"
     >
       <p className="mr-2 text-white hidden md:flex">Yuklab olish</p>
-      <BsDownload className="fill-white w-[30px]" />
+      <BsDownload className="fill-white w-[20px]" />
     </button>
   );
 };
