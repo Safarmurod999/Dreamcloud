@@ -13,7 +13,7 @@ import address_img from "../../assets/images/home/address.png";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AddressModal from "../../components/AddressModal/AddressModal";
-// import { postData } from "../../utils/postData";
+import { postData } from "../../utils/postData";
 import BackTop from "../../components/BackTop/BackTop";
 import OrderModal from "../../components/OrderModal/OrderModal";
 import { features } from "../../data/data";
@@ -23,7 +23,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Spinner from "../../components/Spinner/Spinner";
-import { IoPauseCircleSharp } from "react-icons/io5";
+// import { IoPauseCircleSharp } from "react-icons/io5";
 import { IoIosPlayCircle } from "react-icons/io";
 
 function Home() {
@@ -38,8 +38,16 @@ function Home() {
 
   function videoControl(id) {
     const video = document.getElementById(`${id}`);
+    const videos = document.getElementsByClassName("video");
     let html = document.getElementById(`btn-${id}`);
+    const htmls = document.getElementsByClassName("video--btn");
     if (video.paused) {
+      for (const el of videos) {
+        el.pause();
+      }
+      for (const el of htmls) {
+        el.style.display = "flex";
+      }
       video.play();
       html.style.display = "none";
       // video.addEventListener("mouseover", () => {
@@ -211,14 +219,14 @@ function Home() {
                       <div className="w-full flex items-center justify-center relative">
                         <video
                           src={`https://dreamcloud-backend-e4327b791528.herokuapp.com/uploads/technologies/${el.video}`}
-                          className="technologies--card--video"
+                          className="technologies--card--video video"
                           id={el.id}
                         ></video>
                         <div
                           className="technologies--card--btn"
                           onClick={() => videoControl(el.id)}
                         >
-                          <div id={`btn-${el.id}`}>
+                          <div id={`btn-${el.id}`} className="video--btn">
                             <IoIosPlayCircle className="text-[76px]" />
                           </div>
                         </div>
@@ -262,13 +270,13 @@ function Home() {
                 <video
                   src={video}
                   id="about__video"
-                  className="about__video"
+                  className="about__video video"
                 ></video>
                 <div
                   className="about__video--btn"
                   onClick={() => videoControl("about__video")}
                 >
-                  <div id="btn-about__video">
+                  <div id="btn-about__video" className="video--btn">
                     <IoIosPlayCircle className="text-[76px]" />
                   </div>
                 </div>
