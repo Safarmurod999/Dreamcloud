@@ -15,6 +15,7 @@ import {
 } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
+import { ToastContainer, toast } from "react-toastify";
 const Customers = () => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,11 +37,13 @@ const Customers = () => {
 
   const deleteCustomer = (id) => {
     dispatch(deleteData({ apiEndpoint: "orders", id }));
+    toast.error("Mijoz o'chirildi");
   };
 
   const updateCustomer = (data, id) => {
     let newData = { recall: data };
     dispatch(updateData({ apiEndpoint: "orders", id, newData, accessToken }));
+    toast.success("Ma'lumot muvaffaqiyatli o'zgartirildi!");
   };
 
   if (isLoading) {
@@ -148,6 +151,7 @@ const Customers = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </main>
     )
   );

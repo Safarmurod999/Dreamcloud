@@ -1,6 +1,7 @@
 import { Label, Modal, TextInput } from "flowbite-react";
 import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
+import { toast } from "react-toastify";
 const CategoryModal = ({ category, openModal, setOpenModal, setCategory }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
   const onChangeHandler = (e) => {
@@ -18,11 +19,13 @@ const CategoryModal = ({ category, openModal, setOpenModal, setCategory }) => {
       dispatch(
         updateData({ apiEndpoint: "categories", id, newData, accessToken })
       );
+      toast.success("Kategoriya muvaffaqiyatli o'zgartirildi!");
     } else {
       let newData = {
         category_name: category.category_name,
       };
       dispatch(addData({ apiEndpoint: "categories", newData }));
+      toast.success("Kategoriya muvaffaqiyatli qo'shildi!");
     }
     setOpenModal(false);
     setCategory({ category_name: "", isActive: false });

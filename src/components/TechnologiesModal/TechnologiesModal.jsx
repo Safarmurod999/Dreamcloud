@@ -2,6 +2,7 @@ import { FileInput, Label, Modal, TextInput } from "flowbite-react";
 import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
 import { BASE_URL } from "../../data/data";
+import { toast } from "react-toastify";
 const TechnologiesModal = ({
   technology,
   openModal,
@@ -28,8 +29,10 @@ const TechnologiesModal = ({
       dispatch(
         updateData({ apiEndpoint: "technologies", id, newData, accessToken })
       );
+      toast.success("Texnologiya muvaffaqiyatli o'zgartirildi!");
     } else {
       dispatch(addData({ apiEndpoint: "technologies", newData }));
+      toast.success("Texnologiya muvaffaqiyatli qo'shildi!");
     }
     setOpenModal(false);
     setTechnology({ name: "", video: "", description: "", state: 1 });

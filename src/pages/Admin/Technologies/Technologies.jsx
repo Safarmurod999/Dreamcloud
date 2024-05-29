@@ -5,7 +5,7 @@ import { deleteData, fetchData, updateData } from "../../../utils/slice";
 import { useDispatch, useSelector } from "react-redux";
 import { TechnologiesModal } from "../../../components";
 import {
-  Breadcrumb,   
+  Breadcrumb,
   Pagination,
   Table,
   TableBody,
@@ -17,6 +17,7 @@ import {
 import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
 import { BsPlus } from "react-icons/bs";
+import { ToastContainer, toast } from "react-toastify";
 const Technologies = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -43,6 +44,7 @@ const Technologies = () => {
 
   const deleteTechnology = (id) => {
     dispatch(deleteData({ apiEndpoint: "technologies", id }));
+    toast.error("Texnologiya o'chirildi");
   };
 
   if (isLoading) {
@@ -68,7 +70,7 @@ const Technologies = () => {
           <div className="w-full px-3 sm:px-4 lg:px-6 xl:px-8 flex flex-row gap-y-3 justify-between items-start sm:items-center">
             <h1 className="text-3xl font-medium">Texnologiyalar</h1>
             <div className="flex gap-3">
-            <button
+              <button
                 className="p-3 w-auto  bg-gray-700 rounded-md flex items-center justify-between md:justify-center"
                 onClick={() => setOpenModal(true)}
               >
@@ -183,6 +185,7 @@ const Technologies = () => {
             setOpenModal={setOpenModal}
           />
         </div>
+        <ToastContainer />
       </main>
     )
   );

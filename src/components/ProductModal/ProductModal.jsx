@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
 import React from "react";
 import { BASE_URL } from "../../data/data";
+import { toast } from "react-toastify";
 
 const ProductModal = ({
   product,
@@ -47,8 +48,10 @@ const ProductModal = ({
       dispatch(
         updateData({ apiEndpoint: "products", id, newData, accessToken })
       );
+      toast.success("Mahsulot muvaffaqiyatli o'zgartirildi!");
     } else {
       dispatch(addData({ apiEndpoint: "products", newData }));
+      toast.success("Mahsulot muvaffaqiyatli qo'shildi!");
     }
     setProductModal(false);
     setProduct({

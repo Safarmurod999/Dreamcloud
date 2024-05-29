@@ -1,6 +1,7 @@
 import { Label, Modal, TextInput } from "flowbite-react";
 import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
+import { toast } from "react-toastify";
 const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
   const onChangeHandler = (e) => {
@@ -18,6 +19,7 @@ const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
         isSuperAdmin: admin.isSuperAdmin,
       };
       dispatch(updateData({ apiEndpoint: "admin", id, newData, accessToken }));
+      toast.success("Admin muvaffaqiyatli o'zgartirildi!");
     } else {
       let newData = {
         username: admin.username,
@@ -25,6 +27,7 @@ const AdminModal = ({ admin, openModal, setOpenModal, setAdminData }) => {
         email: admin.email,
       };
       dispatch(addData({ apiEndpoint: "admin", newData }));
+      toast.success("Admin muvaffaqiyatli qo'shildi!");
     }
     setOpenModal(false);
     setAdminData({ username: "", password: "", isSuperAdmin: false });

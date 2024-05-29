@@ -2,6 +2,7 @@ import { FileInput, Label, Modal, TextInput } from "flowbite-react";
 import { useDispatch } from "react-redux";
 import { addData, updateData } from "../../utils/slice";
 import { BASE_URL } from "../../data/data";
+import { toast } from "react-toastify";
 
 const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
@@ -26,8 +27,10 @@ const AdminAddresses = ({ address, openModal, setOpenModal, setAddress }) => {
       dispatch(
         updateData({ apiEndpoint: "addresses", id, newData, accessToken })
       );
+      toast.success("Texnologiya muvaffaqiyatli o'zgartirildi!");
     } else {
       dispatch(addData({ apiEndpoint: "addresses", newData }));
+      toast.success("Texnologiya muvaffaqiyatli qo'shildi!");
     }
     setOpenModal(false);
     setAddress({ address: "", image: "", description: "", state: true });

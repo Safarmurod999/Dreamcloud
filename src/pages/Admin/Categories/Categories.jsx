@@ -8,6 +8,7 @@ import { HiHome } from "react-icons/hi";
 import CategoryModal from "../../../components/CategoryModal/CategoryModal";
 import ExportButton from "../../../components/ExportButton/ExportButton";
 import { BsPlus } from "react-icons/bs";
+import { ToastContainer, toast } from "react-toastify";
 const Categories = () => {
   const [openModal, setOpenModal] = useState(false);
   const [category, setCategory] = useState({
@@ -33,6 +34,7 @@ const Categories = () => {
 
   const deleteCategory = (id) => {
     dispatch(deleteData({ apiEndpoint: "categories", id }));
+    toast.error("Kategoriya o'chirildi");
   };
 
   const updateCategory = (data, id) => {
@@ -40,6 +42,7 @@ const Categories = () => {
     dispatch(
       updateData({ apiEndpoint: "categories", id, newData, accessToken })
     );
+    toast.success("Kategoriya muvaffaqiyatli o'zgartirildi!");
   };
   if (isLoading) {
     return <Spinner position={"relative"} />;
@@ -183,6 +186,7 @@ const Categories = () => {
             setCategory={setCategory}
           />
         </div>
+        <ToastContainer />
       </main>
     )
   );

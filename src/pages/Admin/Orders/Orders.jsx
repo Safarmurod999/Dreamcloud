@@ -13,6 +13,7 @@ import {
 } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
+import { ToastContainer } from "react-toastify";
 
 const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -106,6 +107,7 @@ const Orders = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </main>
     )
   );

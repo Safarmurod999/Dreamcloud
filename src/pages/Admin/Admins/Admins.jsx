@@ -12,15 +12,13 @@ import {
   TableHead,
   TableHeadCell,
   TableRow,
-  Toast,
 } from "flowbite-react";
-import { HiCheck, HiHome, HiX } from "react-icons/hi";
+import { HiHome } from "react-icons/hi";
 import { AdminModal } from "../../../components";
 import ExportButton from "../../../components/ExportButton/ExportButton";
 import { BsPlus } from "react-icons/bs";
+import { ToastContainer, toast } from "react-toastify";
 const Admins = () => {
-  const [update, setUpdate] = useState(false);
-  const [deleted, setDeleted] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [adminData, setAdminData] = useState({
     username: "",
@@ -43,20 +41,14 @@ const Admins = () => {
 
   const deleteAdmin = (id) => {
     dispatch(deleteData({ apiEndpoint: "admin", id }));
-    setDeleted(true);
-    setTimeout(() => {
-      setDeleted(false);
-    }, 3000);
+    toast.error("Admin o'chirildi");
   };
 
   const updateAdmin = (data, id) => {
     let newData = { isSuperAdmin: data };
     dispatch(updateData({ apiEndpoint: "admin", id, newData, accessToken }));
-    setUpdate(true);
     localStorage.setItem("isSuperAdmin", JSON.stringify(newData.isSuperAdmin));
-    setTimeout(() => {
-      setUpdate(false);
-    }, 3000);
+    toast.success("Ma'lumot muvaffaqiyatli o'zgartirildi!");
   };
 
   if (isLoading) {
@@ -73,45 +65,6 @@ const Admins = () => {
     admin &&
     filteredArray && (
       <main className="pt-[60px]">
-        <Toast
-          className={`hidden absolute bottom-[30px] right-[40px] ${
-            update ? "flex" : ""
-          }`}
-        >
-          <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
-            <HiCheck className="h-5 w-5" />
-          </div>
-          <div className="ml-3 text-sm font-normal">
-            Item updated successfully.
-          </div>
-          <Toast.Toggle onDismiss={() => setUpdate(false)} />
-        </Toast>
-        <Toast
-          className={`hidden absolute bottom-[30px] right-[40px] ${
-            deleted ? "flex" : ""
-          }`}
-        >
-          <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-100 text-red-500 dark:bg-red-800 dark:text-red-200">
-            <HiX className="h-5 w-5" />
-          </div>
-          <div className="ml-3 text-sm font-normal">
-            Item deleted successfully.
-          </div>
-          <Toast.Toggle onDismiss={() => setDeleted(false)} />
-        </Toast>
-        <Toast
-          className={`hidden absolute bottom-[30px] right-[40px] ${
-            update ? "flex" : ""
-          }`}
-        >
-          <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
-            <HiCheck className="h-5 w-5" />
-          </div>
-          <div className="ml-3 text-sm font-normal">
-            Item updated successfully.
-          </div>
-          <Toast.Toggle onDismiss={() => setUpdate(false)} />
-        </Toast>
         <div className="flex-1 py-6">
           <Breadcrumb
             aria-label="admin page"
@@ -262,6 +215,7 @@ const Admins = () => {
             setOpenModal={setOpenModal}
           />
         </div>
+        <ToastContainer />
       </main>
     )
   );

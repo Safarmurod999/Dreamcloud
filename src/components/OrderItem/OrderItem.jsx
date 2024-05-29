@@ -4,6 +4,7 @@ import { deleteData, updateData } from "../../utils/slice";
 import { useDispatch } from "react-redux";
 
 import { TableCell, TableRow } from "flowbite-react";
+import { toast } from "react-toastify";
 const OrderItem = ({ el }) => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
   const dispatch = useDispatch();
@@ -11,42 +12,56 @@ const OrderItem = ({ el }) => {
   const updateOrder = (data, id) => {
     let newData = { recall: data };
     dispatch(updateData({ apiEndpoint: "orders", id, newData, accessToken }));
+    toast.success("Buyurtma muvaffaqiyatli o'zgartirildi!");
   };
   const deleteOrder = (id) => {
     dispatch(deleteData({ apiEndpoint: "orders", id }));
+    toast.error("Buyurtma muvaffaqiyatli o'chirildi!");
   };
   return (
-    <TableRow key={el.id} className="border-b border-gray-200 bg-white">
-      <TableCell className="py-1 text-center whitespace-nowrap">{el.id}</TableCell>
-      <TableCell className="py-1 text-center whitespace-nowrap">{el.customer_name}</TableCell>
-      <TableCell className="py-1 text-center whitespace-nowrap">{el.mobile_phone}</TableCell>
-      <TableCell className="py-1 text-center whitespace-nowrap">{el.product_name}</TableCell>
-      <TableCell className="py-1 text-center whitespace-nowrap">{el.count}</TableCell>
-      <TableCell className="py-1 px-4 text-center whitespace-nowrap">
-        <label className="inline-flex items-center cursor-pointer">
-          <input
-            type="checkbox"
-            value={el.recall}
-            className="sr-only peer"
-            checked={el.recall}
-            onChange={() => {
-              updateOrder(!el.recall, el.id);
-            }}
-          />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700"></div>
-        </label>
-      </TableCell>
-      <TableCell className="py-1 px-4 text-center">
-        {" "}
-        <button
-          type="button"
-          className="focus:outline-none text-white bg-[#FBE9E9] focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm  px-3 py-3 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
-          onClick={() => deleteOrder(el.id)}
-        >
-          <MdDeleteOutline style={{ fill: "#f00", fontSize: "20px" }} />
-        </button>
-      </TableCell>
-    </TableRow>
+    <>
+      <TableRow key={el.id} className="border-b border-gray-200 bg-white">
+        <TableCell className="py-1 text-center whitespace-nowrap">
+          {el.id}
+        </TableCell>
+        <TableCell className="py-1 text-center whitespace-nowrap">
+          {el.customer_name}
+        </TableCell>
+        <TableCell className="py-1 text-center whitespace-nowrap">
+          {el.mobile_phone}
+        </TableCell>
+        <TableCell className="py-1 text-center whitespace-nowrap">
+          {el.product_name}
+        </TableCell>
+        <TableCell className="py-1 text-center whitespace-nowrap">
+          {el.count}
+        </TableCell>
+        <TableCell className="py-1 px-4 text-center whitespace-nowrap">
+          <label className="inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              value={el.recall}
+              className="sr-only peer"
+              checked={el.recall}
+              onChange={() => {
+                updateOrder(!el.recall, el.id);
+              }}
+            />
+            <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700"></div>
+          </label>
+        </TableCell>
+        <TableCell className="py-1 px-4 text-center">
+          {" "}
+          <button
+            type="button"
+            className="focus:outline-none text-white bg-[#FBE9E9] focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm  px-3 py-3 dark:bg-red-600 dark:hover:bg-[#FBE9E9] dark:focus:ring-red-900"
+            onClick={() => deleteOrder(el.id)}
+          >
+            <MdDeleteOutline style={{ fill: "#f00", fontSize: "20px" }} />
+          </button>
+        </TableCell>
+      </TableRow>
+    </>
   );
 };
 

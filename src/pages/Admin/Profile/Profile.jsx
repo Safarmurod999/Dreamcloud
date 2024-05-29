@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchData, updateData } from "../../../utils/slice";
 
 import { HiHome } from "react-icons/hi";
+import { ToastContainer, toast } from "react-toastify";
 const Profile = () => {
   const [data, setData] = useState({
     username: null,
@@ -33,6 +34,7 @@ const Profile = () => {
       localStorage.setItem("username", JSON.stringify(data.username));
     }
     dispatch(updateData({ apiEndpoint: `admin`, id, newData, accessToken }));
+    toast.success("Admin muvaffaqiyatli o'zgartirildi!");
   };
 
   if (isLoading) {
@@ -130,6 +132,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </main>
     )
   );

@@ -19,6 +19,7 @@ import { ProductModal } from "../../../components";
 import { HiHome } from "react-icons/hi";
 import ExportButton from "../../../components/ExportButton/ExportButton";
 import { BsPlus } from "react-icons/bs";
+import { ToastContainer, toast } from "react-toastify";
 const Products = () => {
   const { data: categories, loading } = useFetch("categories");
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,11 +54,13 @@ const Products = () => {
 
   const deleteProduct = (id) => {
     dispatch(deleteData({ apiEndpoint: "products", id }));
+    toast.error("Mahsulot o'chirildi");
   };
 
   const updateProduct = (data, id) => {
     let newData = { status: data };
     dispatch(updateData({ apiEndpoint: "products", id, newData, accessToken }));
+    toast.success("Mahsulot muvaffaqiyatli o'zgartirildi!");
   };
 
   if (isLoading || loading) {
@@ -274,6 +277,7 @@ const Products = () => {
             setProduct={setProduct}
           />
         </div>
+        <ToastContainer />
       </main>
     )
   );

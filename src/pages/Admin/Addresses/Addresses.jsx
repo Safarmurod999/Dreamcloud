@@ -8,6 +8,7 @@ import { HiHome } from "react-icons/hi";
 import { AdminAddresses } from "../../../components";
 import ExportButton from "../../../components/ExportButton/ExportButton";
 import { BsPlus } from "react-icons/bs";
+import { ToastContainer, toast } from "react-toastify";
 
 const Addresses = () => {
   let accessToken = JSON.parse(localStorage.getItem("access_token")) || "";
@@ -38,14 +39,7 @@ const Addresses = () => {
 
   const deleteAddress = (id) => {
     dispatch(deleteData({ apiEndpoint: "addresses", id }));
-  };
-
-  const updateAddress = (data, id) => {
-    let newData = { recall: data };
-    dispatch(
-      updateData({ apiEndpoint: "addresses", id, newData, accessToken })
-    );
-    location.reload();
+    toast.error("Manzil o'chirildi");
   };
 
   if (isLoading) {
@@ -184,6 +178,7 @@ const Addresses = () => {
             setOpenModal={setOpenModal}
           />
         </div>
+        <ToastContainer />
       </main>
     )
   );

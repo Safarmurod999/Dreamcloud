@@ -34,6 +34,7 @@ const AdminNavbar = ({ toggle, setToggle }) => {
   };
   const logOut = () => {
     localStorage.clear();
+    sessionStorage.clear();
   };
   return (
     admin && (
