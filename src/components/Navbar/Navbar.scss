@@ -42,7 +42,7 @@
   }
   &__contact {
     width: 100%;
-    @include mixin.flex-box(row, center, end, 40px);
+    @include mixin.flex-box(row, center, flex-end, 40px);
     a {
       @include mixin.flex-box(row, center, center, 5px);
       color: var(--primary-color, #01384d);
@@ -80,7 +80,7 @@
   .navbar {
     &__menus {
       position: absolute;
-      justify-content: start;
+      justify-content: flex-start;
       z-index: 999;
       top: 0;
       right: -100%;
